@@ -1,0 +1,57 @@
+---
+import DefaultHeader from '@astrojs/starlight/components/Header.astro';
+---
+
+<DefaultHeader {...Astro.props}>
+  <div class="sl-flex logo-wrapper" slot="logo">
+    <a href="/" class="site-logo sl-flex">
+      <svg class="logo light-logo" width="32" height="32" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+        <g fill="currentColor">
+          <rect x="0" y="0" width="120" height="120" rx="20"/>
+          <rect x="160" y="0" width="120" height="120" rx="20"/>
+          <rect x="320" y="0" width="120" height="120" rx="20"/>
+          <rect x="0" y="160" width="120" height="120" rx="20"/>
+          <rect x="160" y="160" width="120" height="120" rx="20"/>
+          <rect x="320" y="160" width="120" height="120" rx="20"/>
+          <rect x="0" y="320" width="120" height="120" rx="20"/>
+          <rect x="160" y="320" width="120" height="120" rx="20"/>
+          <rect x="320" y="320" width="120" height="120" rx="20"/>
+        </g>
+      </svg>
+      <span class="site-title">Block Documentation</span>
+    </a>
+  </div>
+</DefaultHeader>
+
+<style>
+  .logo-wrapper {
+    gap: var(--sl-nav-gap);
+    align-items: center;
+  }
+
+  .site-logo {
+    gap: var(--sl-nav-gap);
+    align-items: center;
+    text-decoration: none;
+    color: var(--sl-color-text-accent);
+  }
+
+  .logo {
+    height: var(--sl-nav-height);
+    width: auto;
+    padding: 0.3rem 0;
+    color: var(--sl-color-text);
+  }
+
+  .site-title {
+    font-size: var(--sl-text-lg);
+    font-weight: 600;
+  }
+
+  /* Responsive design */
+  @media (max-width: 50rem) {
+    .site-title {
+      display: none;
+    }
+  }
+</style>
