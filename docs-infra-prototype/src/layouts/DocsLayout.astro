@@ -1,0 +1,91 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import type { MarkdownHeading } from 'astro';
+import DocsSidebar from "@/components/docs/DocsSidebar.astro";
+import TableOfContents from "@/components/docs/TableOfContents.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  headings?: MarkdownHeading[];
+}
+
+const { title, description, headings } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="docs-layout mx-auto min-h-[calc(100vh-64px)]">
+    <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700">
+      <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-4">
+        <DocsSidebar currentPath={Astro.url.pathname} />
+      </div>
+    </nav>
+
+    <main class="docs-main min-w-0 py-6 px-8">
+      <div class="prose prose-slate dark:prose-invert max-w-none">
+        <slot />
+      </div>
+    </main>
+
+    {headings && headings.length > 0 && (
+      <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700">
+        <div class="sticky top-16 h-fit py-6 px-4">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+    )}
+  </div>
+</BaseLayout>
+
+<style>
+  /* Keep the core layout styles in CSS */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 2.5fr) 240px;
+    gap: 1rem;
+    max-width: 1600px;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  @media (max-width: 1024px) {
+    .docs-layout {
+      grid-template-columns: 240px 1fr;
+    }
+    .docs-toc {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .docs-layout {
+      grid-template-columns: 1fr;
+    }
+    .docs-sidebar {
+      display: none;
+    }
+    .docs-main {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* Dark mode scrollbar */
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+      background-color: #4b5563;
+    }
+  }
+</style>
