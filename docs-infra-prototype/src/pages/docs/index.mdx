@@ -1,0 +1,92 @@
+---
+title: "Block Documentation"
+description: "Welcome to the documentation."
+---
+
+import DocsLayout from "../../layouts/DocsLayout.astro"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import MDXComponents from "@/components/mdx/MDXComponents"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# Block Documentation Templates
+
+This template provides a minimal setup to get started with your documentation.
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <Card className="p-6">
+    <h3 class="text-xl font-semibold mb-2">Quick Start</h3>
+    <p class="text-muted-foreground mb-4">
+      Get started quickly with our template using pnpm.
+    </p>
+    <Button variant="outline" asChild>
+      <a href="/docs/installation">Read Installation Guide</a>
+    </Button>
+  </Card>
+  <Card className="p-6">
+    <h3 class="text-xl font-semibold mb-2">Components</h3>
+    <p class="text-muted-foreground mb-4">
+      Explore our collection of ready-to-use components.
+    </p>
+    <Button variant="outline" asChild>
+      <a href="/docs/components/button">View Components</a>
+    </Button>
+  </Card>
+</div>
+
+## Introduction
+
+Welcome to the documentation. This is a template for building documentation sites using Astro and shadcn/ui.
+
+## Key Features
+
+- **Built with Astro** - Fast, modern static site generator
+- **Styled with Tailwind CSS** - Utility-first CSS framework
+- **UI components from shadcn/ui** - High-quality, accessible components
+- **Dark mode support** - Automatic and manual dark mode
+- **Full-text search** (coming soon) - Easy content discovery
+- **Documentation-specific components** - Purpose-built for documentation
+- **MDX support** - Use React components in Markdown
+- **TypeScript** - Full type safety and autocompletion
+
+## Getting Started
+
+1. **Installation**: Start by following our [installation guide](/docs/installation)
+2. **Configuration**: Learn how to [configure](/docs/configuration) the template
+3. **Components**: Explore available [components](/docs/components/button)
+
+## Project Structure
+
+```
+.
+├── src/
+│   ├── components/     # UI and documentation components
+│   ├── layouts/        # Page layouts
+│   ├── pages/         # Documentation pages
+│   └── styles/        # Global styles
+├── public/            # Static assets
+├── astro.config.ts    # Astro configuration
+└── package.json       # Project dependencies
+```
+
+## Customization
+
+This template is designed to be easily customizable. You can:
+
+- Modify the theme using Tailwind CSS
+- Add new components from shadcn/ui
+- Create custom documentation components
+- Extend the MDX configuration
+
+Check out our [configuration guide](/docs/configuration) for more details.
+
+## Community and Support
+
+- **GitHub**: [Report issues](https://github.com/AREA44/astro-shadcn-ui-template/issues)
+- **Discord**: Join our community (coming soon)
+- **Twitter**: Follow us for updates (coming soon)
+
+</DocsLayout>
