@@ -1,0 +1,261 @@
+---
+title: "Create a Blog Post"
+description: "Learn how to create and manage blog posts using MDX."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# Create a Blog Post
+
+Learn how to create and manage blog posts using MDX and our blog layout system.
+
+## Blog Post Structure
+
+Blog posts are created as MDX files in the `src/pages/blog` directory:
+
+```bash
+src/pages/blog/
+├── index.astro              # Blog listing page
+└── posts/
+    ├── first-post.mdx
+    ├── second-post.mdx
+    └── [page].astro         # Pagination template
+```
+
+## Creating a Blog Post
+
+Create a new MDX file in the `src/pages/blog/posts` directory:
+
+```mdx
+---
+title: "Your Blog Post Title"
+description: "A brief description of your post"
+date: "2024-01-01"
+authors: ["your-name"]
+tags: ["tag1", "tag2"]
+image: "/blog/your-image.jpg"
+---
+
+import BlogLayout from "@/layouts/BlogLayout.astro"
+
+<BlogLayout 
+  title={frontmatter.title}
+  description={frontmatter.description}
+  date={frontmatter.date}
+  authors={frontmatter.authors}
+  tags={frontmatter.tags}
+  image={frontmatter.image}
+>
+
+# Your Blog Post Title
+
+Your content goes here...
+
+</BlogLayout>
+```
+
+## Frontmatter Fields
+
+The blog post frontmatter supports several fields:
+
+```typescript
+interface BlogFrontmatter {
+  title: string;          // Post title
+  description: string;    // Brief description
+  date: string;          // Publication date (YYYY-MM-DD)
+  authors?: string[];     // Array of author IDs
+  tags?: string[];       // Array of tag names
+  image?: string;        // Cover image path
+  draft?: boolean;       // If true, only shown in development
+}
+```
+
+## Adding Rich Content
+
+### Images
+
+Use the Astro Image component for optimized images:
+
+```mdx
+import { Image } from 'astro:assets'
+
+<Image
+  src="/blog/example.jpg"
+  alt="Example image"
+  width={800}
+  height={400}
+  class="rounded-lg"
+/>
+```
+
+### Code Blocks
+
+Use fenced code blocks with language specification:
+
+````mdx
+```typescript
+function greet(name: string) {
+  console.log(`Hello, ${name}!`);
+}
+```
+````
+
+### Embeds
+
+Embed external content like videos or tweets:
+
+```mdx
+<div class="aspect-video">
+  <iframe
+    src="https://www.youtube.com/embed/..."
+    class="w-full rounded-lg"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  />
+</div>
+```
+
+## Blog Features
+
+### Authors
+
+Create author profiles in `src/data/authors.ts`:
+
+```typescript
+// src/data/authors.ts
+export const authors = {
+  "your-name": {
+    name: "Your Name",
+    avatar: "/avatars/your-name.jpg",
+    bio: "Your brief bio",
+    twitter: "@yourhandle"
+  }
+}
+```
+
+Example usage in a blog post:
+
+<Card className="p-6">
+  <div className="flex items-center space-x-4">
+    <div className="h-12 w-12 rounded-full bg-muted" />
+    <div>
+      <h3 className="font-semibold">John Doe</h3>
+      <p className="text-sm text-muted-foreground">@johndoe</p>
+    </div>
+  </div>
+  <p className="mt-4 text-muted-foreground">
+    Software engineer and technical writer.
+  </p>
+</Card>
+
+### Tags
+
+Tags are automatically collected and generate tag pages at `/blog/tags/[tag]`:
+
+<div className="flex flex-wrap gap-2 my-4">
+  <Button variant="secondary" size="sm">javascript</Button>
+  <Button variant="secondary" size="sm">react</Button>
+  <Button variant="secondary" size="sm">typescript</Button>
+</div>
+
+### RSS Feed
+
+An RSS feed is automatically generated at `/rss.xml`:
+
+```typescript
+// src/pages/rss.xml.js
+import rss from '@astrojs/rss';
+
+export const get = () => rss({
+  title: 'Your Blog',
+  description: 'Your blog description',
+  site: 'https://your-site.com',
+  items: await getAllPosts()
+});
+```
+
+## Blog Layout Features
+
+### Table of Contents
+
+Generate a table of contents from your headings:
+
+```mdx
+<TableOfContents headings={headings} />
+```
+
+### Previous/Next Navigation
+
+Add navigation between posts:
+
+```astro
+<div class="flex justify-between">
+  {previousPost && (
+    <a href={previousPost.url}>← {previousPost.title}</a>
+  )}
+  {nextPost && (
+    <a href={nextPost.url}>{nextPost.title} →</a>
+  )}
+</div>
+```
+
+### Social Sharing
+
+Add social sharing buttons:
+
+```astro
+<div class="flex space-x-2">
+  <Button variant="outline" size="sm">
+    Share on Twitter
+  </Button>
+  <Button variant="outline" size="sm">
+    Share on LinkedIn
+  </Button>
+</div>
+```
+
+## Best Practices
+
+1. **Content Organization**
+   - Use consistent file naming
+   - Organize posts by date/category
+   - Keep images in appropriate directories
+
+2. **Writing Style**
+   - Write clear, engaging titles
+   - Include meaningful descriptions
+   - Use proper heading hierarchy
+   - Break up long content with subheadings
+
+3. **Media**
+   - Optimize images for web
+   - Include alt text
+   - Consider responsive images
+   - Use appropriate image formats
+
+4. **SEO**
+   - Write SEO-friendly titles
+   - Include meta descriptions
+   - Use proper heading structure
+   - Add relevant tags
+
+5. **Maintenance**
+   - Keep content up to date
+   - Check for broken links
+   - Update outdated information
+   - Respond to comments
+
+6. **Performance**
+   - Optimize images
+   - Lazy load content
+   - Use appropriate image sizes
+   - Consider loading indicators
+
+</DocsLayout>

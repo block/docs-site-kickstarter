@@ -1,0 +1,259 @@
+---
+title: "Headings and Text"
+description: "Learn how to style typography in your site using Tailwind CSS and shadcn/ui."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# Headings and Text
+
+Learn how to style typography in your site using our predefined styles and Tailwind CSS utilities.
+
+## Headings
+
+We provide consistent heading styles across your site. Here are the available heading styles:
+
+<div className="space-y-6">
+  <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+    The Largest Heading (H1)
+  </h1>
+
+  <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+    Second-Level Heading (H2)
+  </h2>
+
+  <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+    Third-Level Heading (H3)
+  </h3>
+
+  <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+    Fourth-Level Heading (H4)
+  </h4>
+</div>
+
+```tsx
+<h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+  The Largest Heading
+</h1>
+
+<h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+  Second-Level Heading
+</h2>
+
+<h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+  Third-Level Heading
+</h3>
+
+<h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+  Fourth-Level Heading
+</h4>
+```
+
+## Paragraphs and Text
+
+### Regular Paragraph
+
+<p className="leading-7 [&:not(:first-child)]:mt-6">
+  The king, seeing how much happier his subjects were, realized the value of kindness
+  and promised to be a better ruler. From that day forward, the kingdom prospered
+  and flourished.
+</p>
+
+```tsx
+<p className="leading-7 [&:not(:first-child)]:mt-6">
+  Your paragraph text here...
+</p>
+```
+
+### Large Text
+
+<p className="text-lg text-muted-foreground">
+  This is larger text often used for introductory paragraphs or important quotes.
+</p>
+
+```tsx
+<p className="text-lg text-muted-foreground">
+  Your large text here...
+</p>
+```
+
+### Lead Paragraph
+
+<p className="text-xl text-muted-foreground">
+  A lead paragraph stands out from regular text and helps introduce sections.
+</p>
+
+```tsx
+<p className="text-xl text-muted-foreground">
+  Your lead paragraph here...
+</p>
+```
+
+### Small Text
+
+<p className="text-sm text-muted-foreground">
+  This is smaller text often used for captions or supporting information.
+</p>
+
+```tsx
+<p className="text-sm text-muted-foreground">
+  Your small text here...
+</p>
+```
+
+## Lists
+
+### Unordered List
+
+<ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+  <li>First item in the list</li>
+  <li>Second item in the list</li>
+  <li>Third item in the list</li>
+</ul>
+
+```tsx
+<ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ul>
+```
+
+### Ordered List
+
+<ol className="my-6 ml-6 list-decimal [&>li]:mt-2">
+  <li>First item in the list</li>
+  <li>Second item in the list</li>
+  <li>Third item in the list</li>
+</ol>
+
+```tsx
+<ol className="my-6 ml-6 list-decimal [&>li]:mt-2">
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ol>
+```
+
+## Inline Text Styles
+
+### Links
+
+<a 
+  href="#" 
+  className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+>
+  Click here to learn more
+</a>
+
+```tsx
+<a 
+  href="#" 
+  className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+>
+  Click here
+</a>
+```
+
+### Inline Code
+
+<code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+  @layer
+</code>
+
+```tsx
+<code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+  @layer
+</code>
+```
+
+### Blockquotes
+
+<blockquote className="mt-6 border-l-2 pl-6 italic">
+  "The best way to predict the future is to invent it." - Alan Kay
+</blockquote>
+
+```tsx
+<blockquote className="mt-6 border-l-2 pl-6 italic">
+  Your quote here...
+</blockquote>
+```
+
+## Text Utilities
+
+### Text Alignment
+
+<div className="space-y-2">
+  <p className="text-left">Left aligned text</p>
+  <p className="text-center">Center aligned text</p>
+  <p className="text-right">Right aligned text</p>
+</div>
+
+```tsx
+<p className="text-left">Left aligned</p>
+<p className="text-center">Center aligned</p>
+<p className="text-right">Right aligned</p>
+```
+
+### Text Transform
+
+<div className="space-y-2">
+  <p className="uppercase">Uppercase text</p>
+  <p className="lowercase">Lowercase text</p>
+  <p className="capitalize">Capitalized text</p>
+</div>
+
+```tsx
+<p className="uppercase">Uppercase</p>
+<p className="lowercase">Lowercase</p>
+<p className="capitalize">Capitalized</p>
+```
+
+### Text Decoration
+
+<div className="space-y-2">
+  <p className="underline">Underlined text</p>
+  <p className="line-through">Strikethrough text</p>
+  <p className="no-underline">No decoration</p>
+</div>
+
+```tsx
+<p className="underline">Underlined</p>
+<p className="line-through">Strikethrough</p>
+<p className="no-underline">No decoration</p>
+```
+
+## Best Practices
+
+1. **Hierarchy**
+   - Use appropriate heading levels (h1-h6)
+   - Maintain consistent spacing between elements
+   - Use lead paragraphs for important sections
+
+2. **Readability**
+   - Keep line lengths comfortable (around 65-75 characters)
+   - Use appropriate line height
+   - Ensure sufficient contrast
+
+3. **Responsiveness**
+   - Use responsive font sizes
+   - Adjust spacing on different screen sizes
+   - Consider reading experience on all devices
+
+4. **Accessibility**
+   - Use semantic HTML elements
+   - Maintain proper heading structure
+   - Ensure sufficient color contrast
+   - Consider users with screen readers
+
+5. **Dark Mode**
+   - Test all text styles in dark mode
+   - Ensure proper contrast ratios
+   - Use appropriate color variables
+
+</DocsLayout>
