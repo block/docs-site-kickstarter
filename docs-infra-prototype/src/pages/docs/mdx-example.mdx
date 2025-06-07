@@ -1,0 +1,67 @@
+---
+layout: "@/layouts/DocsLayout.astro"
+title: "MDX Example"
+description: "Example documentation page using MDX"
+---
+
+import { Button } from "@/components/ui/button";
+
+# MDX Example
+
+This is an example documentation page written in MDX. MDX allows you to use JSX components directly in your markdown content.
+
+## Interactive Components
+
+Here's an example of using a React component in MDX:
+
+<Button>Click me!</Button>
+
+## Code Examples
+
+```tsx
+// You can include code blocks with syntax highlighting
+import { Button } from "@/components/ui/button";
+
+export default function Example() {
+  return (
+    <Button variant="outline">
+      Click me
+    </Button>
+  );
+}
+```
+
+## Lists and Typography
+
+- MDX supports all standard markdown features
+- Including lists
+- And other formatting
+
+1. Numbered lists
+2. Work as well
+3. As expected
+
+## Custom Components
+
+You can import and use any React component:
+
+<div className="bg-muted p-4 rounded-lg">
+  This is a custom styled div using Tailwind classes
+</div>
+
+## Math Equations
+
+MDX can also support math equations if you add the right plugins:
+
+```math
+E = mc^2
+```
+
+## Tables
+
+| Feature | Supported |
+|---------|-----------|
+| Tables   | ✅        |
+| Lists    | ✅        |
+| Code     | ✅        |
+| JSX      | ✅        |

@@ -1,0 +1,129 @@
+---
+const sidebarNav = [
+  {
+    title: "Getting Started",
+    items: [
+      {
+        title: "Introduction",
+        href: "/docs",
+      },
+      {
+        title: "Installation",
+        href: "/docs/installation",
+      },
+      {
+        title: "Configuration",
+        href: "/docs/configuration",
+      },
+      {
+        title: "Deploy your Doc Site",
+        href: "/docs/deployment",
+      },
+    ],
+  },
+  {
+    title: "Create Content",
+    items: [
+      {
+        title: "Create a Page",
+        href: "/docs/create-content/create-page",
+      },
+      {
+        title: "Create a Doc Page",
+        href: "/docs/create-content/create-doc",
+      },
+      {
+        title: "Create a Blog Post",
+        href: "/docs/create-content/create-blog",
+      },
+    ],
+  },
+  {
+    title: "Styling",
+    items: [
+      {
+        title: "Headings and Text",
+        href: "/docs/styling/typography",
+      },
+      {
+        title: "Icons",
+        href: "/docs/styling/icons",
+      },
+      {
+        title: "Themes",
+        href: "/docs/styling/themes",
+      },
+    ],
+  },
+  {
+    title: "Components & Layouts",
+    items: [
+      {
+        title: "Button",
+        href: "/docs/components/button",
+      },
+      {
+        title: "Card Group",
+        href: "/docs/components/card-group",
+      },
+      {
+        title: "Code Snippet",
+        href: "/docs/components/code-snippet",
+      },
+      {
+        title: "Code Group",
+        href: "/docs/components/code-group",
+      },
+      {
+        title: "Divider",
+        href: "/docs/components/divider",
+      },
+      {
+        title: "Inline Code",
+        href: "/docs/components/inline-code",
+      },
+      {
+        title: "Sidebar",
+        href: "/docs/components/sidebar",
+      },
+      {
+        title: "Table",
+        href: "/docs/components/table",
+      },
+    ],
+  },
+]
+
+type Props = {
+  currentPath?: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<div class="w-full">
+  {sidebarNav.map((group) => (
+    <div class="pb-4">
+      <h4 class="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
+        {group.title}
+      </h4>
+      {group.items?.length && (
+        <div class="grid grid-flow-row auto-rows-max text-sm">
+          {group.items.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "flex w-full items-center rounded-md p-2 hover:underline",
+                {
+                  "bg-accent": currentPath === item.href,
+                },
+              ]}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+</div>

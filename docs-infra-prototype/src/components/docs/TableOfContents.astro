@@ -1,0 +1,29 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+type Props = {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class="space-y-2">
+  <p class="font-medium">On This Page</p>
+  <ul class="m-0 list-none">
+    {headings.map(heading => (
+      <li class:list={[
+        "line-clamp-2 text-sm",
+        { "pl-4": heading.depth === 3 },
+        { "pl-8": heading.depth === 4 },
+      ]}>
+        <a
+          href={`#${heading.slug}`}
+          class="inline-block py-1 text-muted-foreground no-underline transition-colors hover:text-foreground"
+        >
+          {heading.text}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
