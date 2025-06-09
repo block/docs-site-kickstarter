@@ -8,37 +8,35 @@ import { buttonVariants } from "@/components/ui/button";
   description="This template helps you build documentation sites with Astro, Tailwind CSS, and Shadcn UI."
 >
   <div class="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-background">
-    <!-- Background Pattern -->
+    <!-- Background Elements -->
     <div class="absolute inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="subtle-orb"></div>
+    </div>
 
-    <!-- Main Content -->
+    <!-- Hero Section -->
     <section class="container relative">
       <div class="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-10">
-        <!-- Logo Section -->
-        <div class="w-24 h-24 mb-8 transition-transform hover:scale-110">
-          <svg 
-            viewBox="0 0 440 440" 
-            class="w-full h-full fill-foreground transition-colors"
-            xmlns="http://www.w3.org/2000/svg" 
-            shape-rendering="crispEdges"
-          >
+        <!-- Logo -->
+        <div class="w-24 h-24 mb-8 hover:scale-110 transition-transform duration-300">
+          <svg viewBox="0 0 440 440" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
             <g>
-              <rect x="0" y="0" width="120" height="120" rx="20" />
-              <rect x="160" y="0" width="120" height="120" rx="20" />
-              <rect x="320" y="0" width="120" height="120" rx="20" />
-              <rect x="0" y="160" width="120" height="120" rx="20" />
-              <rect x="160" y="160" width="120" height="120" rx="20" />
-              <rect x="320" y="160" width="120" height="120" rx="20" />
-              <rect x="0" y="320" width="120" height="120" rx="20" />
-              <rect x="160" y="320" width="120" height="120" rx="20" />
-              <rect x="320" y="320" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 0ms" x="0" y="0" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 100ms" x="160" y="0" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 200ms" x="320" y="0" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 300ms" x="0" y="160" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 400ms" x="160" y="160" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 500ms" x="320" y="160" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 600ms" x="0" y="320" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 700ms" x="160" y="320" width="120" height="120" rx="20" />
+              <rect class="fill-foreground animate-block-fade" style="animation-delay: 800ms" x="320" y="320" width="120" height="120" rx="20" />
             </g>
           </svg>
         </div>
 
-        <!-- Text Content -->
-        <div class="flex max-w-[980px] flex-col items-center text-center gap-4">
-          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+        <!-- Hero Text -->
+        <div class="flex max-w-[980px] flex-col items-center text-center gap-4 animate-fade-in">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 animate-gradient">
             Block Documentation Template
           </h1>
           <p class="text-muted-foreground max-w-[700px] text-lg sm:text-xl leading-relaxed">
@@ -47,38 +45,188 @@ import { buttonVariants } from "@/components/ui/button";
           </p>
         </div>
 
-        <!-- Feature Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-8 max-w-[980px]">
-          {[
-            {
-              title: "Modern Stack",
-              description: "Built with Astro, React, and Tailwind CSS for optimal performance and developer experience."
-            },
-            {
-              title: "Block-Ready",
-              description: "Follows Block's design principles, and includes style customizations along with built-in dark mode and light mode support."
-            },
-            {
-              title: "Easy to Use",
-              description: "Simple content structure using MDX and shadcn/ui components. Just write your docs and deploy your site."
-            }
-          ].map(feature => (
-            <div class="relative group">
-              <div class="absolute -inset-px bg-gradient-to-r from-foreground/10 to-foreground/5 rounded-lg blur-sm group-hover:blur"></div>
-              <div class="relative p-6 bg-card rounded-lg border border-border">
-                <h3 class="font-bold text-xl mb-2">{feature.title}</h3>
-                <p class="text-muted-foreground">{feature.description}</p>
-              </div>
-            </div>
-          ))}
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+          <p class="text-muted-foreground text-sm mb-2 animate-fade-in" style="animation-delay: 1000ms">
+            Scroll to learn more
+          </p>
+          <svg class="w-6 h-6 text-muted-foreground animate-bounce mx-auto" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </div>
+      </div>
+    </section>
 
-        <!-- CTA Buttons -->
+    <!-- Steps Section -->
+    <section class="container relative py-20 space-y-32">
+      <!-- Step 1: Installation -->
+      <div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
+        <div class="flex-1 space-y-4">
+          <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Step 1</div>
+          <h2 class="text-3xl font-bold tracking-tight">Quick Installation</h2>
+          <p class="text-muted-foreground text-lg">Get started in seconds with our pre-configured template. Just clone, install, and start building.</p>
+          <div class="relative">
+            <pre class="language-bash rounded-lg p-4 bg-card/40 backdrop-blur-sm overflow-x-auto"><code>git clone https://github.com/block/docs-site-kickstarter.git my-docs
+cd my-docs
+pnpm install
+pnpm dev</code></pre>
+          </div>
+        </div>
+        <div class="flex-1 relative">
+          <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
+          <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+            <ul class="space-y-4 text-muted-foreground">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Modern Stack with Astro & React
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Pre-configured Tailwind CSS
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Built-in Dark Mode Support
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Create Content -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-12 animate-on-scroll">
+        <div class="flex-1 space-y-4">
+          <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Step 2</div>
+          <h2 class="text-3xl font-bold tracking-tight">Create Your Content</h2>
+          <p class="text-muted-foreground text-lg">Write documentation using MDX - the perfect blend of Markdown and React components.</p>
+          <div class="relative">
+            <pre class="language-mdx rounded-lg p-4 bg-card/40 backdrop-blur-sm overflow-x-auto"><code>---
+title: "Getting Started"
+description: "Learn how to use our template"
+---
+
+# Welcome to Your Docs
+
+## Features
+
+- ✨ **Modern Stack** - Built with Astro and React
+- 🎨 **Beautiful Design** - Customizable themes
+- 📱 **Responsive** - Works on all devices
+
+## Quick Start
+
+1. Clone the repository
+2. Install dependencies
+3. Start writing!</code></pre>
+          </div>
+        </div>
+        <div class="flex-1 relative">
+          <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
+          <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+            <ul class="space-y-4 text-muted-foreground">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                MDX Support Built-in
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Interactive Components
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Auto-generated Navigation
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Customize -->
+      <div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
+        <div class="flex-1 space-y-4">
+          <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Step 3</div>
+          <h2 class="text-3xl font-bold tracking-tight">Customize & Extend</h2>
+          <p class="text-muted-foreground text-lg">Add components, modify styles, and make it your own with our flexible template.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-lg border bg-card/80 backdrop-blur-sm p-4">
+              <h4 class="font-semibold mb-2">UI Components</h4>
+              <p class="text-sm text-muted-foreground">Pre-built components for common use cases</p>
+            </div>
+            <div class="rounded-lg border bg-card/80 backdrop-blur-sm p-4">
+              <h4 class="font-semibold mb-2">Styling</h4>
+              <p class="text-sm text-muted-foreground">Tailwind CSS for easy customization</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 relative">
+          <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
+          <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+            <ul class="space-y-4 text-muted-foreground">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Customizable Components
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Flexible Layout System
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Easy Theme Customization
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Deploy -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-12 animate-on-scroll">
+        <div class="flex-1 space-y-4">
+          <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Step 4</div>
+          <h2 class="text-3xl font-bold tracking-tight">Deploy Anywhere</h2>
+          <p class="text-muted-foreground text-lg">Deploy your documentation site to your favorite hosting platform with ease.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="flex items-center justify-center rounded-lg border bg-card/80 backdrop-blur-sm p-4">
+              <span class="font-semibold">Vercel</span>
+            </div>
+            <div class="flex items-center justify-center rounded-lg border bg-card/80 backdrop-blur-sm p-4">
+              <span class="font-semibold">Netlify</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 relative">
+          <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
+          <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+            <ul class="space-y-4 text-muted-foreground">
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                One-click Deployment
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Automatic Updates
+              </li>
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                HTTPS & CDN Included
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center space-y-8 animate-on-scroll">
+        <h2 class="text-3xl font-bold tracking-tight">Ready to Build Your Documentation?</h2>
+        <p class="text-muted-foreground text-lg max-w-[600px] mx-auto">
+          Start creating beautiful documentation sites for your Block projects today.
+        </p>
         <div class="flex flex-wrap justify-center gap-4 mt-8">
           <a
-            href="/docs-site-kickstarter/docs"
+            href="https://block.github.io/docs-site-kickstarter/docs"
+            target="_blank"
             rel="noreferrer"
-            class={buttonVariants({ size: "lg" })}
+            class={buttonVariants({ size: "lg" }) + " transition-transform hover:scale-105"}
           >
             Get Started
           </a>
@@ -86,7 +234,7 @@ import { buttonVariants } from "@/components/ui/button";
             href="https://github.com/block/docs-site-kickstarter"
             target="_blank"
             rel="noreferrer"
-            class={buttonVariants({ variant: "outline", size: "lg" })}
+            class={buttonVariants({ variant: "outline", size: "lg" }) + " transition-transform hover:scale-105"}
           >
             View on GitHub
           </a>
@@ -106,4 +254,126 @@ import { buttonVariants } from "@/components/ui/button";
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
     }
   }
+
+  /* Subtle Gradient Orb */
+  .subtle-orb {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(var(--foreground-rgb), 0.03), rgba(var(--foreground-rgb), 0.01));
+    filter: blur(100px);
+    animation: subtleFloat 30s ease-in-out infinite;
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Animations */
+  @keyframes subtleFloat {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-45%, -48%); }
+  }
+
+  @keyframes blockFade {
+    from {
+      opacity: 0;
+      transform: scale(0.8) rotate(-10deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Animation Classes */
+  .animate-block-fade {
+    opacity: 0;
+    animation: blockFade 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  /* Scroll Animation */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dark Mode Support */
+  :root {
+    --foreground-rgb: 0, 0, 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --foreground-rgb: 255, 255, 255;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .subtle-orb {
+      animation: none;
+    }
+  }
 </style>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+    observer.observe(element);
+  });
+</script>
