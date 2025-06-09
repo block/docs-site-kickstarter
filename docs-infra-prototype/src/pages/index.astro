@@ -7,36 +7,103 @@ import { buttonVariants } from "@/components/ui/button";
   title="Block Documentation Template"
   description="This template helps you build documentation sites with Astro, Tailwind CSS, and Shadcn UI."
 >
-  <section class="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-    <div class="flex max-w-[980px] flex-col items-start gap-2">
-      <h1
-        class="text-3xl leading-tight font-extrabold tracking-tighter md:text-4xl"
-      >
-        Block Documentation Site Template <br class="hidden sm:inline" />
-        built with Radix UI and Tailwind CSS.
-      </h1>
-      <p class="text-muted-foreground max-w-[700px] text-lg">
-        Accessible and customizable components that you can copy and paste into
-        your apps. Free. Open Source.
-      </p>
-    </div>
-    <div class="flex gap-4">
-      <a
-        href="https://block.github.io/docs-site-kickstarter/docs"
-        target="_blank"
-        rel="noreferrer"
-        class={buttonVariants()}
-      >
-        Documentation
-      </a>
-      <a
-        href="https://github.com/block/docs-site-kickstarter"
-        target="_blank"
-        rel="noreferrer"
-        class={buttonVariants({ variant: 'outline' })}
-      >
-        GitHub
-      </a>
-    </div>
-  </section>
+  <div class="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-background">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+
+    <!-- Main Content -->
+    <section class="container relative">
+      <div class="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-10">
+        <!-- Logo Section -->
+        <div class="w-24 h-24 mb-8 transition-transform hover:scale-110">
+          <svg 
+            viewBox="0 0 440 440" 
+            class="w-full h-full fill-foreground transition-colors"
+            xmlns="http://www.w3.org/2000/svg" 
+            shape-rendering="crispEdges"
+          >
+            <g>
+              <rect x="0" y="0" width="120" height="120" rx="20" />
+              <rect x="160" y="0" width="120" height="120" rx="20" />
+              <rect x="320" y="0" width="120" height="120" rx="20" />
+              <rect x="0" y="160" width="120" height="120" rx="20" />
+              <rect x="160" y="160" width="120" height="120" rx="20" />
+              <rect x="320" y="160" width="120" height="120" rx="20" />
+              <rect x="0" y="320" width="120" height="120" rx="20" />
+              <rect x="160" y="320" width="120" height="120" rx="20" />
+              <rect x="320" y="320" width="120" height="120" rx="20" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Text Content -->
+        <div class="flex max-w-[980px] flex-col items-center text-center gap-4">
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+            Block Documentation Template
+          </h1>
+          <p class="text-muted-foreground max-w-[700px] text-lg sm:text-xl leading-relaxed">
+            Create beautiful, accessible, and consistent documentation sites for your Block projects. 
+            Built with modern tools, ready for your content.
+          </p>
+        </div>
+
+        <!-- Feature Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 mb-8 max-w-[980px]">
+          {[
+            {
+              title: "Modern Stack",
+              description: "Built with Astro, React, and Tailwind CSS for optimal performance and developer experience."
+            },
+            {
+              title: "Block-Ready",
+              description: "Follows Block's design principles, and includes style customizations along with built-in dark mode and light mode support."
+            },
+            {
+              title: "Easy to Use",
+              description: "Simple content structure using MDX and shadcn/ui components. Just write your docs and deploy your site."
+            }
+          ].map(feature => (
+            <div class="relative group">
+              <div class="absolute -inset-px bg-gradient-to-r from-foreground/10 to-foreground/5 rounded-lg blur-sm group-hover:blur"></div>
+              <div class="relative p-6 bg-card rounded-lg border border-border">
+                <h3 class="font-bold text-xl mb-2">{feature.title}</h3>
+                <p class="text-muted-foreground">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mt-8">
+          <a
+            href="/docs-site-kickstarter/docs"
+            rel="noreferrer"
+            class={buttonVariants({ size: "lg" })}
+          >
+            Get Started
+          </a>
+          <a
+            href="https://github.com/block/docs-site-kickstarter"
+            target="_blank"
+            rel="noreferrer"
+            class={buttonVariants({ variant: "outline", size: "lg" })}
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .bg-grid-slate-200\/20 {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-grid-slate-200\/20 {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+    }
+  }
+</style>
