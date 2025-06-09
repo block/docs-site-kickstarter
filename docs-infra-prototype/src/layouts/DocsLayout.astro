@@ -14,26 +14,32 @@ const { title, description, headings } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="docs-layout mx-auto min-h-[calc(100vh-64px)]">
-    <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700">
-      <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-4">
-        <DocsSidebar currentPath={Astro.url.pathname} />
-      </div>
-    </nav>
+  <div class="relative min-h-[calc(100vh-4rem)]">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
 
-    <main class="docs-main min-w-0 py-6 px-8">
-      <div class="prose prose-slate dark:prose-invert max-w-none">
-        <slot />
-      </div>
-    </main>
-
-    {headings && headings.length > 0 && (
-      <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700">
-        <div class="sticky top-16 h-fit py-6 px-4">
-          <TableOfContents headings={headings} />
+    <!-- Main Content -->
+    <div class="docs-layout relative mx-auto min-h-[calc(100vh-64px)]">
+      <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-4">
+          <DocsSidebar currentPath={Astro.url.pathname} />
         </div>
-      </aside>
-    )}
+      </nav>
+
+      <main class="docs-main min-w-0 py-6 px-8">
+        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-6">
+          <slot />
+        </div>
+      </main>
+
+      {headings && headings.length > 0 && (
+        <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+          <div class="sticky top-16 h-fit py-6 px-4">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      )}
+    </div>
   </div>
 </BaseLayout>
 
@@ -86,6 +92,16 @@ const { title, description, headings } = Astro.props;
   @media (prefers-color-scheme: dark) {
     ::-webkit-scrollbar-thumb {
       background-color: #4b5563;
+    }
+  }
+
+  .bg-grid-slate-200\/20 {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-grid-slate-200\/20 {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
     }
   }
 </style>
