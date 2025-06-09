@@ -14,7 +14,7 @@ export default defineConfig({
     : "http://localhost:4321", */
   
   site: 'https://block.github.io',
-  base: '/docs-site-kickstarter', 
+  base: '/docs-site-kickstarter/docs', 
   
   integrations: [
     mdx({
