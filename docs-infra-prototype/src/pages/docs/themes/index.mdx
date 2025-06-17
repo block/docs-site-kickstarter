@@ -5,6 +5,9 @@ description: "Learn how to customize the appearance of your documentation site u
 
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import MDXComponents from "@/components/mdx/MDXComponents"
+import { ThemeCustomizer } from "@/components/ui/theme-customizer"
+import { ThemePreview } from "@/components/ui/theme-preview"
+import { ThemeVariants } from "@/components/ui/theme-variants"
 
 export const components = MDXComponents
 
@@ -13,6 +16,18 @@ export const components = MDXComponents
 # Theme Customization
 
 The documentation template comes with a powerful theming system built on Tailwind CSS and shadcn/ui. You can customize colors, typography, spacing, and more to match your brand.
+
+## Interactive Theme Editor
+
+Try customizing the theme using the interactive editor below. Changes will be reflected in real-time, and you can export your custom theme when you're done.
+
+<ThemeCustomizer client:load />
+
+## Theme Preview
+
+See how different components look with the current theme settings:
+
+<ThemePreview client:load />
 
 ## Theme Configuration
 
@@ -67,28 +82,7 @@ Theme colors and properties are defined using CSS variables in `src/styles/globa
 
 ## Available Themes
 
-### 1. Light Theme (Default)
-The default light theme provides:
-- Clean, minimal design
-- High contrast for readability
-- Professional color scheme
-- Subtle shadows and borders
-
-### 2. Dark Theme
-A dark theme optimized for low-light environments:
-- Dark background with light text
-- Reduced eye strain
-- Maintained contrast ratios
-- Subtle accent colors
-
-### 3. System Theme
-Automatically matches the user's system preferences:
-```js
-// Detect system theme
-if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  document.documentElement.classList.add('dark')
-}
-```
+<ThemeVariants client:load />
 
 ## Customizing Themes
 
@@ -143,24 +137,6 @@ Individual components can be themed using the `className` prop:
 <Button className="bg-brand-600 hover:bg-brand-700">
   Custom Themed Button
 </Button>
-```
-
-## Theme Switching
-
-The template includes a theme toggle component:
-
-```tsx
-// src/components/ThemeToggle.astro
-<script>
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark')
-    localStorage.setItem('theme', 
-      document.documentElement.classList.contains('dark') ? 'dark' : 'light'
-    )
-  }
-</script>
-
-<button onClick="toggleTheme()">Toggle Theme</button>
 ```
 
 ## Creating Custom Themes
@@ -222,14 +198,6 @@ Use the theme in your components:
    - Document theme tokens
    - Provide usage examples
    - Include theme screenshots
-
-## Theme Examples
-
-Here are some example themes:
-
-1. [Corporate Theme](/docs/examples/themes/corporate)
-2. [Modern Theme](/docs/examples/themes/modern)
-3. [Minimal Theme](/docs/examples/themes/minimal)
 
 ## Contributing Themes
 
