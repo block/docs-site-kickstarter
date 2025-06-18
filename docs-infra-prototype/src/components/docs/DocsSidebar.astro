@@ -75,7 +75,7 @@ const sidebarNav = [
         href: "/docs-site-kickstarter/docs/styling/icons",
       },
       {
-        title: "Themes",
+        title: "Theme Customization",
         href: "/docs-site-kickstarter/docs/themes",
       },
     ],
@@ -124,6 +124,19 @@ type Props = {
 }
 
 const { currentPath } = Astro.props;
+
+// Normalize paths for comparison
+function normalizePath(path: string): string {
+  // Remove trailing slash unless it's the root path
+  path = path === '/' ? path : path.replace(/\/$/, '');
+  // If path doesn't start with /docs-site-kickstarter, add it
+  if (!path.startsWith('/docs-site-kickstarter')) {
+    path = `/docs-site-kickstarter${path}`;
+  }
+  return path;
+}
+
+const normalizedCurrentPath = normalizePath(currentPath || '');
 ---
 
 <div class="w-full">
@@ -140,7 +153,7 @@ const { currentPath } = Astro.props;
               class:list={[
                 "flex w-full items-center rounded-md p-2 hover:underline",
                 {
-                  "bg-accent": currentPath === item.href,
+                  "bg-accent": normalizedCurrentPath === item.href,
                 },
               ]}
             >
