@@ -70,6 +70,27 @@ export function ThemeCustomizer() {
   const [activePreview, setActivePreview] = React.useState('button');
   const [isEditingContent, setIsEditingContent] = React.useState(false);
   const previewRef = React.useRef<HTMLDivElement>(null);
+  const styleRef = React.useRef<HTMLStyleElement | null>(null);
+
+  // Create a style element for our theme
+  React.useEffect(() => {
+    // Remove any existing style element
+    if (styleRef.current) {
+      styleRef.current.remove();
+    }
+
+    // Create a new style element
+    const style = document.createElement('style');
+    document.head.appendChild(style);
+    styleRef.current = style;
+
+    // Cleanup on unmount
+    return () => {
+      if (styleRef.current) {
+        styleRef.current.remove();
+      }
+    };
+  }, []);
 
   const updateThemeValue = (key: string, value: string) => {
     setTheme(prev => ({
@@ -77,21 +98,50 @@ export function ThemeCustomizer() {
       [key]: value,
     }));
 
-    if (previewRef.current) {
-      // Update the style property
-      previewRef.current.style.setProperty(`--${key}`, value);
-      
-      // Also update CSS custom properties on the :root for the preview container
-      const style = document.createElement('style');
-      style.textContent = `
+    if (styleRef.current && previewRef.current) {
+      // Get all current theme variables
+      const allVars = {
+        ...theme,
+        [key]: value,
+      };
+
+      // Create CSS rules for the preview container
+      const cssRules = Object.entries(allVars)
+        .map(([k, v]) => `--${k}: ${v};`)
+        .join('\n');
+
+      // Update the style element with scoped CSS
+      styleRef.current.textContent = `
         #preview-container {
-          --${key}: ${value};
+          ${cssRules}
         }
         #preview-container * {
-          --${key}: ${value};
+          ${cssRules}
+        }
+        
+        /* Override specific component styles */
+        #preview-container .btn,
+        #preview-container .button,
+        #preview-container [class*='button-'],
+        #preview-container [class*='btn-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .card,
+        #preview-container [class*='card-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .input,
+        #preview-container [class*='input-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .label,
+        #preview-container [class*='label-'] {
+          ${cssRules}
         }
       `;
-      document.head.appendChild(style);
     }
   };
 
@@ -103,10 +153,43 @@ export function ThemeCustomizer() {
   const resetTheme = () => {
     setTheme(defaultTheme);
     setContent(defaultContent);
-    if (previewRef.current) {
-      Object.entries(defaultTheme).forEach(([key, value]) => {
-        previewRef.current?.style.setProperty(`--${key}`, value);
-      });
+    
+    if (styleRef.current) {
+      const cssRules = Object.entries(defaultTheme)
+        .map(([k, v]) => `--${k}: ${v};`)
+        .join('\n');
+
+      styleRef.current.textContent = `
+        #preview-container {
+          ${cssRules}
+        }
+        #preview-container * {
+          ${cssRules}
+        }
+        
+        /* Override specific component styles */
+        #preview-container .btn,
+        #preview-container .button,
+        #preview-container [class*='button-'],
+        #preview-container [class*='btn-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .card,
+        #preview-container [class*='card-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .input,
+        #preview-container [class*='input-'] {
+          ${cssRules}
+        }
+        
+        #preview-container .label,
+        #preview-container [class*='label-'] {
+          ${cssRules}
+        }
+      `;
     }
   };
 
@@ -138,12 +221,9 @@ export function ThemeCustomizer() {
     }));
   };
 
+  // Initialize theme on mount
   React.useEffect(() => {
-    if (previewRef.current) {
-      Object.entries(theme).forEach(([key, value]) => {
-        previewRef.current?.style.setProperty(`--${key}`, value);
-      });
-    }
+    resetTheme();
   }, []);
 
   return (
