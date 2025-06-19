@@ -1,0 +1,213 @@
+---
+title: "Theme Customization"
+description: "Learn how to customize the appearance of your documentation site using themes."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import { ThemeCustomizer } from "@/components/ui/theme-customizer"
+import { ThemePreview } from "@/components/ui/theme-preview"
+import { ThemeVariants } from "@/components/ui/theme-variants"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# Theme Customization
+
+The documentation template comes with a powerful theming system built on Tailwind CSS and shadcn/ui. You can customize colors, typography, spacing, and more to match your brand.
+
+## Interactive Theme Editor
+
+Try customizing the theme using the interactive editor below. Changes will be reflected in real-time, and you can export your custom theme when you're done.
+
+<ThemeCustomizer client:load />
+
+## Theme Preview
+
+See how different components look with the current theme settings:
+
+<ThemePreview client:load />
+
+## Theme Configuration
+
+### Base Theme Setup
+
+The base theme is configured in `tailwind.config.js`:
+
+```js
+module.exports = {
+  darkMode: ["class"],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        // ... other color definitions
+      }
+    }
+  }
+}
+```
+
+### CSS Variables
+
+Theme colors and properties are defined using CSS variables in `src/styles/global.css`:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 47.4% 11.2%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  /* ... other variables */
+}
+
+.dark {
+  --background: 224 71% 4%;
+  --foreground: 213 31% 91%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  /* ... other dark mode variables */
+}
+```
+
+## Available Themes
+
+<ThemeVariants client:load />
+
+## Customizing Themes
+
+### 1. Colors
+
+Modify the color palette in your `tailwind.config.js`:
+
+```js
+theme: {
+  extend: {
+    colors: {
+      brand: {
+        50: '#f0f9ff',
+        100: '#e0f2fe',
+        // ... other shades
+        900: '#0c4a6e',
+      }
+    }
+  }
+}
+```
+
+### 2. Typography
+
+Customize typography settings:
+
+```js
+theme: {
+  extend: {
+    typography: {
+      DEFAULT: {
+        css: {
+          maxWidth: '65ch',
+          color: 'var(--foreground)',
+          h1: {
+            fontWeight: '800',
+            letterSpacing: '-0.025em',
+          },
+          // ... other typography styles
+        }
+      }
+    }
+  }
+}
+```
+
+### 3. Component Themes
+
+Individual components can be themed using the `className` prop:
+
+```tsx
+<Button className="bg-brand-600 hover:bg-brand-700">
+  Custom Themed Button
+</Button>
+```
+
+## Creating Custom Themes
+
+### 1. Define Theme Variables
+
+Create a new theme file:
+
+```css
+/* src/styles/themes/custom.css */
+[data-theme='custom'] {
+  --background: 210 40% 98%;
+  --foreground: 222.2 47.4% 11.2%;
+  /* ... other variables */
+}
+```
+
+### 2. Register Theme
+
+Add your theme to the theme provider:
+
+```tsx
+// src/components/ThemeProvider.tsx
+const themes = ['light', 'dark', 'custom']
+
+export function ThemeProvider({ children }) {
+  // Theme provider implementation
+}
+```
+
+### 3. Apply Theme
+
+Use the theme in your components:
+
+```tsx
+<div data-theme="custom">
+  {/* Themed content */}
+</div>
+```
+
+## Theme Best Practices
+
+1. **Accessibility**
+   - Maintain WCAG contrast ratios
+   - Test with screen readers
+   - Provide sufficient color contrast
+
+2. **Consistency**
+   - Use theme tokens consistently
+   - Avoid hard-coded colors
+   - Follow design system patterns
+
+3. **Performance**
+   - Minimize CSS variables
+   - Use system fonts when possible
+   - Optimize theme switching
+
+4. **Documentation**
+   - Document theme tokens
+   - Provide usage examples
+   - Include theme screenshots
+
+## Contributing Themes
+
+To contribute a new theme:
+
+1. Create theme variables
+2. Add theme components
+3. Provide documentation
+4. Submit a pull request
+
+Include screenshots and examples of your theme in use.
+
+</DocsLayout>
