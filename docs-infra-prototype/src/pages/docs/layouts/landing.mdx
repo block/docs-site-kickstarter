@@ -5,6 +5,8 @@ description: "A layout designed for documentation home pages and section introdu
 
 import DocsLayout from "../../../layouts/DocsLayout.astro"
 import MDXComponents from "@/components/mdx/MDXComponents"
+import { MinimalLanding, FullLanding } from "@/components/docs/landing/LandingExamples"
+import { LayoutDiagram } from "@/components/docs/landing/LayoutDiagram"
 
 export const components = MDXComponents
 
@@ -14,15 +16,29 @@ export const components = MDXComponents
 
 The Landing Layout is designed for documentation home pages and section introductions. It provides a visually appealing and informative entry point to your documentation.
 
+## Example Layouts
+
+### Minimal Landing Page
+
+A clean, focused landing page with essential elements:
+
+<MinimalLanding client:load />
+
+### Full Documentation Landing Page
+
+A comprehensive landing page with features and quick links:
+
+<FullLanding client:load />
+
 ## Features
 
-- Hero section
-- Feature highlights
-- Quick navigation cards
-- Search integration
-- Call-to-action buttons
-- Visual hierarchy
-- Brand customization
+- **Hero Section**: Engaging introduction with clear call-to-action buttons
+- **Feature Highlights**: Showcase key features with icons and descriptions
+- **Quick Navigation**: Card-based navigation to important sections
+- **Search Integration**: Built-in search functionality
+- **Responsive Design**: Adapts to all screen sizes
+- **Brand Customization**: Easy theming and styling options
+- **Visual Hierarchy**: Clear content organization
 
 ## Usage
 
@@ -33,71 +49,6 @@ To use the Landing Layout, specify it in your page's frontmatter:
 layout: LandingLayout
 title: Documentation
 description: Welcome to our documentation
-features:
-  - title: Easy Setup
-    description: Get started in minutes
-    icon: rocket
-  - title: Customizable
-    description: Tailor to your needs
-    icon: palette
-quickLinks:
-  - title: Getting Started
-    description: Learn the basics
-    href: /docs/getting-started
-  - title: API Reference
-    description: Explore the API
-    href: /docs/api
----
-```
-
-## Layout Structure
-
-The Landing Layout uses a modular structure:
-
-```
-┌──────────────────────────────┐
-│           Header             │
-├──────────────────────────────┤
-│            Hero              │
-├──────────────────────────────┤
-│          Features           │
-├──────────────────────────────┤
-│        Quick Links          │
-├──────────────────────────────┤
-│           Content            │
-└──────────────────────────────┘
-```
-
-### Hero Section
-
-- Title and description
-- Call-to-action buttons
-- Search bar
-- Background patterns
-
-### Features Grid
-
-- Icon or image
-- Title
-- Description
-- Optional link
-
-### Quick Links
-
-- Card layout
-- Visual categories
-- Direct navigation
-- Description preview
-
-## Configuration
-
-### Frontmatter Options
-
-```yaml
----
-layout: LandingLayout
-title: Documentation
-description: Comprehensive guides and examples
 hero:
   title: Welcome to Our Docs
   description: Everything you need to get started
@@ -127,123 +78,196 @@ quickLinks:
 ---
 ```
 
-## Examples
+## Layout Structure
 
-### Documentation Home
+The Landing Layout uses a modular structure that can be customized to your needs:
 
-```mdx
----
-layout: LandingLayout
-title: Documentation
-description: Learn how to use our platform
-features:
-  - title: Quick Start
-    description: Get up and running
-    icon: rocket
-  - title: Guides
-    description: In-depth tutorials
-    icon: book
-  - title: API
-    description: Complete reference
-    icon: code
----
+<LayoutDiagram client:load />
 
-Welcome to our documentation! Choose a path to get started...
+## Component Examples
+
+### Hero Section
+
+The hero section is the first thing visitors see. Make it count with a clear value proposition:
+
+```tsx
+<Hero
+  title="Build Better Documentation"
+  description="A complete solution for creating beautiful documentation sites"
+  primaryAction={{
+    text: "Get Started",
+    href: "/docs/getting-started"
+  }}
+  secondaryAction={{
+    text: "Learn More",
+    href: "/docs/features"
+  }}
+/>
 ```
 
-### Product Section
+### Feature Cards
 
-```mdx
----
-layout: LandingLayout
-title: Features
-description: Explore our features
-features:
-  - title: Authentication
-    description: Secure user access
-    icon: lock
-  - title: Database
-    description: Data management
-    icon: database
----
+Highlight key features with visual cards:
 
-Discover what our product can do...
+```tsx
+<FeaturesGrid
+  features={[
+    {
+      title: "Quick Setup",
+      description: "Get started in minutes",
+      icon: <RocketLaunchIcon />
+    },
+    {
+      title: "Component Library",
+      description: "Beautiful, accessible components",
+      icon: <PuzzlePieceIcon />
+    },
+    {
+      title: "MDX Support",
+      description: "Write in Markdown and JSX",
+      icon: <DocumentTextIcon />
+    }
+  ]}
+/>
+```
+
+### Quick Links
+
+Help users find important content quickly:
+
+```tsx
+<QuickLinksGrid
+  links={[
+    {
+      title: "Installation",
+      description: "Step-by-step setup guide",
+      href: "/docs/installation"
+    },
+    {
+      title: "Components",
+      description: "UI component library",
+      href: "/docs/components"
+    }
+  ]}
+/>
 ```
 
 ## Best Practices
 
-1. **Visual Hierarchy**
-   - Clear headings
-   - Consistent spacing
-   - Visual cues
-   - Scannable content
+### Visual Hierarchy
 
-2. **Navigation**
-   - Logical grouping
-   - Clear CTAs
-   - Search prominence
-   - Breadcrumbs
+1. **Clear Headlines**
+   - Use descriptive, action-oriented titles
+   - Keep headlines concise and impactful
+   - Maintain consistent heading levels
 
-3. **Content**
-   - Concise copy
-   - Clear benefits
-   - Action items
-   - Next steps
+2. **Content Organization**
+   - Most important information first
+   - Logical grouping of related content
+   - Progressive disclosure of details
 
-4. **Design**
-   - Brand alignment
-   - Whitespace
-   - Responsive images
-   - Accessibility
+3. **Visual Elements**
+   - Use icons to enhance recognition
+   - Maintain consistent spacing
+   - Apply color purposefully
+
+### Navigation Design
+
+1. **Primary Actions**
+   - Make main actions prominent
+   - Use clear, action-oriented labels
+   - Limit primary actions (1-2 max)
+
+2. **Quick Links**
+   - Group by topic or user journey
+   - Include brief descriptions
+   - Use meaningful categories
+
+3. **Search Integration**
+   - Prominent search placement
+   - Clear search input styling
+   - Helpful placeholder text
+
+### Content Guidelines
+
+1. **Writing Style**
+   - Clear and concise language
+   - Active voice
+   - Consistent terminology
+
+2. **Documentation Structure**
+   - Logical content hierarchy
+   - Progressive complexity
+   - Clear next steps
+
+3. **Examples and Code**
+   - Relevant code samples
+   - Live examples where possible
+   - Copy-paste ready snippets
 
 ## Customization
 
-### Custom Components
+### Theme Customization
 
-Add landing-specific components:
+Customize the look and feel using CSS variables:
 
-```astro
-// src/components/FeatureCard.astro
----
-const { title, description, icon } = Astro.props;
----
-
-<div class="feature-card">
-  <div class="icon">{icon}</div>
-  <h3>{title}</h3>
-  <p>{description}</p>
-</div>
+```css
+.landing-page {
+  --hero-bg: hsl(var(--background));
+  --feature-card-bg: hsl(var(--card));
+  --quick-link-hover: hsl(var(--muted));
+}
 ```
 
-### Hero Customization
+### Custom Components
 
-Create custom hero sections:
+Add your own components to extend functionality:
 
-```astro
-// src/components/CustomHero.astro
+```tsx
+// src/components/CustomHero.tsx
+export function CustomHero() {
+  return (
+    <div className="custom-hero">
+      <h1>Welcome to Our Docs</h1>
+      <p>Get started with our platform</p>
+      <div className="actions">
+        <Button>Get Started</Button>
+        <Button variant="outline">Learn More</Button>
+      </div>
+    </div>
+  )
+}
+```
+
+### Layout Variants
+
+Create different layout variants for specific needs:
+
+```yaml
 ---
-const { title, description, image } = Astro.props;
+layout: LandingLayout
+variant: minimal # or 'full', 'api', etc.
 ---
-
-<div class="custom-hero">
-  <div class="content">
-    <h1>{title}</h1>
-    <p>{description}</p>
-    <slot name="actions" />
-  </div>
-  <div class="image">
-    <img src={image} alt="" />
-  </div>
-</div>
 ```
 
 ## Mobile Responsiveness
 
-The Landing Layout adapts for all devices:
+The Landing Layout is fully responsive and adapts to different screen sizes:
 
-- **Desktop**: Full-width sections
-- **Tablet**: Responsive grids
-- **Mobile**: Stacked layout
+- **Desktop** (≥1024px)
+  - Full-width hero section
+  - Three-column feature grid
+  - Two-column quick links
+
+- **Tablet** (≥768px)
+  - Centered hero content
+  - Two-column feature grid
+  - Two-column quick links
+
+- **Mobile** (&lt;768px)
+  - Stacked layout
+  - Full-width cards
+  - Optimized spacing
 
 ## Related
 
