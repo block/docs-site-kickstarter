@@ -7,7 +7,11 @@ import DocsLayout from "../../../layouts/DocsLayout.astro"
 import MDXComponents from "@/components/mdx/MDXComponents"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Label } from "@/components/ui/label"
+import { ThemeCustomizer } from "@/components/ui/theme-customizer"
+import { ThemePreview } from "@/components/ui/theme-preview"
+import { ThemeStructure } from "@/components/docs/ThemeStructure"
+import { ThemeVariablesReference } from "@/components/docs/ThemeVariablesReference"
 
 export const components = MDXComponents
 
@@ -17,163 +21,63 @@ export const components = MDXComponents
 
 Learn how to customize the appearance of your site using our theming system. Our theme implementation uses CSS variables and Tailwind CSS for maximum flexibility.
 
+## Live Theme Customizer
+
+Try out different theme combinations with our interactive theme customizer:
+
+<ThemeCustomizer client:load />
+
 ## Theme Structure
 
 Our theming system is built on CSS variables that control colors, spacing, and other design tokens:
 
-```css
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
+<ThemeStructure client:load />
 
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --radius: 0.5rem;
-}
+## Theme Variables Reference
 
-.dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  
-  /* ... other dark theme variables */
-}
-```
+<ThemeVariablesReference client:load />
 
-## Color Tokens
+## Theme Preview
 
-Here's how our color tokens look in both light and dark modes:
+See how your theme looks across different components:
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-  <Card className="p-6 space-y-4">
-    <h3 className="text-lg font-semibold">Background Colors</h3>
-    <div className="grid gap-2">
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-background border"></div>
-        <span>background</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-card border"></div>
-        <span>card</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-popover border"></div>
-        <span>popover</span>
-      </div>
-    </div>
-  </Card>
-  <Card className="p-6 space-y-4">
-    <h3 className="text-lg font-semibold">Foreground Colors</h3>
-    <div className="grid gap-2">
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-foreground"></div>
-        <span>foreground</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-card-foreground"></div>
-        <span>card-foreground</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-popover-foreground"></div>
-        <span>popover-foreground</span>
-      </div>
-    </div>
-  </Card>
-  <Card className="p-6 space-y-4">
-    <h3 className="text-lg font-semibold">UI Colors</h3>
-    <div className="grid gap-2">
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-primary"></div>
-        <span>primary</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-secondary"></div>
-        <span>secondary</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-accent"></div>
-        <span>accent</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-muted"></div>
-        <span>muted</span>
-      </div>
-    </div>
-  </Card>
-  <Card className="p-6 space-y-4">
-    <h3 className="text-lg font-semibold">State Colors</h3>
-    <div className="grid gap-2">
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-destructive"></div>
-        <span>destructive</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded border border-border"></div>
-        <span>border</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="h-8 w-8 rounded bg-ring"></div>
-        <span>ring</span>
-      </div>
-    </div>
-  </Card>
-</div>
+<ThemePreview client:load />
 
 ## Using Themes
 
-### Default Theme
+### Component Theming with CSS Variables
 
-The default theme is automatically applied. Use the theme variables in your components:
-
-```tsx
-<div className="bg-background text-foreground">
-  <h1 className="text-primary">Hello World</h1>
-</div>
-```
-
-### Dark Mode
-
-Dark mode is implemented using the `dark` class on the `html` element. Here's how to implement a theme toggle:
+Here's how to use theme variables in your components:
 
 ```tsx
-// components/ThemeToggle.tsx
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
-
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-
+// Example of a custom themed button component
+function ThemedButton({ variant = "primary", ...props }) {
   return (
     <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-    >
+      className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]
+                hover:bg-[hsl(var(--primary))]"
+      {...props}
+    />
+  )
+}
+```
+
+### Theme Switching Logic
+
+Implement theme switching in your components:
+
+```tsx
+function ThemeSwitcher() {
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+  
+  return (
+    <Button onClick={toggleTheme} variant="outline" size="icon">
       <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
       <span className="sr-only">Toggle theme</span>
@@ -181,6 +85,57 @@ export function ThemeToggle() {
   )
 }
 ```
+
+## Interactive Examples
+
+Try out different theme combinations:
+
+<Card className="p-6 my-6">
+  <div className="grid gap-6">
+    <div>
+      <Label>Background Variations</Label>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-2">
+        <div className="flex flex-col gap-2 items-center">
+          <div className="w-full h-16 rounded bg-background border"></div>
+          <span className="text-sm">Background</span>
+        </div>
+        <div className="flex flex-col gap-2 items-center">
+          <div className="w-full h-16 rounded bg-muted"></div>
+          <span className="text-sm">Muted</span>
+        </div>
+        <div className="flex flex-col gap-2 items-center">
+          <div className="w-full h-16 rounded bg-card border"></div>
+          <span className="text-sm">Card</span>
+        </div>
+        <div className="flex flex-col gap-2 items-center">
+          <div className="w-full h-16 rounded bg-popover border"></div>
+          <span className="text-sm">Popover</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <Label>Button Variants</Label>
+      <div className="flex flex-wrap gap-2 mt-2">
+        <Button>Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="destructive">Destructive</Button>
+      </div>
+    </div>
+
+    <div>
+      <Label>Text Colors</Label>
+      <div className="grid gap-2 mt-2">
+        <p className="text-foreground">Default text color</p>
+        <p className="text-muted-foreground">Muted text color</p>
+        <p className="text-primary">Primary text color</p>
+        <p className="text-secondary">Secondary text color</p>
+      </div>
+    </div>
+  </div>
+</Card>
 
 ## Creating Custom Themes
 
@@ -222,85 +177,32 @@ module.exports = {
 }
 ```
 
-### Theme Switching
-
-Implement theme switching functionality:
-
-```tsx
-function setTheme(theme: string) {
-  document.documentElement.setAttribute('data-theme', theme)
-  localStorage.setItem('theme', theme)
-}
-
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)')
-  .addEventListener('change', (e) => {
-    setTheme(e.matches ? 'dark' : 'light')
-  })
-```
-
-## Component Theming
-
-### Button Variants
-
-Example of themed button variants:
-
-<div className="flex gap-2 my-4">
-  <Button>Default</Button>
-  <Button variant="secondary">Secondary</Button>
-  <Button variant="destructive">Destructive</Button>
-  <Button variant="outline">Outline</Button>
-  <Button variant="ghost">Ghost</Button>
-</div>
-
-```tsx
-<Button>Default</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="destructive">Destructive</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
-```
-
-### Card Variants
-
-Example of themed cards:
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-  <Card className="p-6">
-    <h3 className="font-semibold">Default Card</h3>
-    <p className="text-muted-foreground">With default background</p>
-  </Card>
-  <Card className="p-6 bg-muted">
-    <h3 className="font-semibold">Muted Card</h3>
-    <p className="text-muted-foreground">With muted background</p>
-  </Card>
-</div>
-
 ## Best Practices
 
 1. **Color Usage**
-   - Use semantic color variables
-   - Maintain sufficient contrast
-   - Test in both light and dark modes
+   - Use semantic color variables instead of hard-coded values
+   - Maintain sufficient contrast ratios for accessibility
+   - Test colors in both light and dark modes
 
 2. **Theme Switching**
-   - Persist theme preference
-   - Respect system preferences
-   - Provide smooth transitions
+   - Persist theme preferences in localStorage
+   - Respect user's system color scheme preferences
+   - Provide smooth transitions between themes
 
 3. **Accessibility**
-   - Ensure readable contrast ratios
+   - Ensure WCAG 2.1 compliant contrast ratios
    - Test with screen readers
-   - Support reduced motion
+   - Support reduced motion preferences
 
 4. **Performance**
-   - Minimize theme-switching flicker
-   - Use efficient CSS variables
-   - Optimize theme assets
+   - Minimize theme-switching flicker with proper CSS loading
+   - Use efficient CSS variable implementations
+   - Optimize theme assets and transitions
 
 5. **Maintenance**
-   - Document color usage
-   - Keep themes consistent
-   - Version control themes
+   - Document all color tokens and their usage
+   - Maintain consistent naming conventions
+   - Version control theme changes
+   - Test themes across all components
 
 </DocsLayout>
