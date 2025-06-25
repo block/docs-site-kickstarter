@@ -1,7 +1,7 @@
 ---
 import { buttonVariants } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle.astro";
-import { MobileNav } from "@/components/docs/MobileNav";
+import MobileNav from "@/components/docs/MobileNav.astro";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -11,10 +11,7 @@ const currentPath = Astro.url.pathname;
 >
   <div class="header-container">
     <div class="flex items-center gap-6 md:gap-10">
-      <!-- Mobile Navigation -->
-      <div class="md:hidden">
-        <MobileNav currentPath={currentPath} client:load />
-      </div>
+      <MobileNav currentPath={currentPath} />
       
       <a href="/docs-site-kickstarter" class="flex items-center space-x-2">
         <span class="inline-block font-bold">Home</span>
