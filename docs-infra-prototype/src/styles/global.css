@@ -166,4 +166,9 @@
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }
+
+  /* Add styles for links in prose content */
+  .prose a {
+    @apply font-medium text-primary underline underline-offset-4 hover:no-underline;
+  }
 }
