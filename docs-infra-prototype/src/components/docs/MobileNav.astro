@@ -1,0 +1,14 @@
+---
+import { MobileNavigation } from "./MobileNavigation";
+import DocsSidebar from "./DocsSidebar.astro";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<MobileNavigation client:load currentPath={currentPath}>
+  <DocsSidebar currentPath={currentPath} />
+</MobileNavigation>
