@@ -92,6 +92,12 @@ const components = {
       {...props}
     />
   ),
+  a: (props) => (
+    <a
+      className="font-medium text-primary underline underline-offset-4 hover:no-underline"
+      {...props}
+    />
+  ),
 }
 
 export default components

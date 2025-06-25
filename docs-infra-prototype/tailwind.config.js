@@ -52,12 +52,26 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            a: {
+              color: 'hsl(var(--primary))',
+              textDecoration: 'underline',
+              textUnderlineOffset: '0.2em',
+              fontWeight: '500',
+              '&:hover': {
+                color: 'hsl(var(--primary))',
+                textDecoration: 'none',
+              },
+            },
+          },
+        },
         slate: {
           css: {
             '--tw-prose-body': theme('colors.foreground'),
             '--tw-prose-headings': theme('colors.foreground'),
             '--tw-prose-lead': theme('colors.foreground'),
-            '--tw-prose-links': theme('colors.foreground'),
+            '--tw-prose-links': 'hsl(var(--primary))',
             '--tw-prose-bold': theme('colors.foreground'),
             '--tw-prose-counters': theme('colors.foreground'),
             '--tw-prose-bullets': theme('colors.foreground'),
