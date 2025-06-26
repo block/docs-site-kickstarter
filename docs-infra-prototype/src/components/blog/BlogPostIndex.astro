@@ -1,0 +1,61 @@
+---
+import  { formatDate } from './blogUtils.ts';
+
+const { posts } = Astro.props;
+
+// Helper to strip Markdown and get a plain text excerpt
+function getExcerpt(post: any) {
+  if (post.data.snippet) return post.data.snippet;
+  // Remove import statements and code blocks at the top
+  let lines = post.body.split('\n');
+  // Remove lines that are import statements or empty
+  lines = lines.filter((line: string) =>
+    !line.trim().startsWith('import') &&
+    !line.trim().startsWith('export') &&
+    !line.trim().startsWith('---') &&
+    !line.trim().startsWith('```') &&
+    !line.trim().startsWith('<') &&
+    line.trim() !== ''
+  );
+  // Join remaining lines and remove Markdown formatting (basic)
+  let text = lines.join(' ')
+    .replace(/[#*_`>\-\[\]!]/g, '') // Remove Markdown symbols
+    .replace(/<[^>]+>/g, '') // Remove HTML tags if any
+    .trim();
+  // Limit to 200 chars, end at word boundary
+  if (text.length > 200) {
+    text = text.slice(0, 200);
+    const lastSpace = text.lastIndexOf(' ');
+    if (lastSpace > 0) text = text.slice(0, lastSpace);
+    text += '...';
+  }
+  return text;
+}
+---
+
+<section>
+    <section>
+        {posts.map((post) => {
+            return (
+                <div
+                class="rounded-xl shadow-md p-6 flex flex-col gap-2 border"
+                style="background: var(--color-secondary); border-color: var(--color-secondary-foreground);"
+                >
+                <a
+                    href={import.meta.env.BASE_URL + "/blog/" + post.id}
+                    class="text-xl font-bold hover:underline transition-colors duration-150"
+                    style="color: var(--block-color-contrast-highest); font-family: var(--block-font-header);"
+                    onmouseover="this.style.color='var(--block-color-accent)';" onmouseout="this.style.color='var(--block-color-contrast-highest)';"
+                >
+                    {post.data.title}
+                </a>
+                <div class="text-gray-500 text-xs mb-1">{formatDate(post.data.pubDate)}</div>
+                <div class="text-gray-700 dark:text-gray-300 text-base mt-1"
+                        style="color: var(--block-color-contrast-high);">
+                    {getExcerpt(post)}
+                </div>
+                </div>
+            )
+        })}
+    </section>
+</section>
