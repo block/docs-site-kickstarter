@@ -1,0 +1,152 @@
+---
+export interface Props {
+  image: string;
+  headline: string;
+  content: string | any;
+  cta?: string | any;
+}
+const { image, headline, content, cta } = Astro.props;
+---
+
+<!-- Hero Section -->
+<section class="container relative">
+    <div class="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] py-10">
+      <!-- Logo -->
+      <div class="w-32 h-32 mb-8 hover:scale-110 transition-transform duration-300">
+        <svg viewBox="0 0 240 240" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background Document -->
+          <path 
+            class="fill-foreground/10 animate-block-fade" 
+            style="animation-delay: 0ms"
+            d="M20 40C20 28.954 28.954 20 40 20h140c11.046 0 20 8.954 20 20v180c0 11.046-8.954 20-20 20H40c-11.046 0-20-8.954-20-20V40z"
+          />
+          <!-- Main Document -->
+          <path 
+            class="fill-foreground animate-block-fade" 
+            style="animation-delay: 200ms"
+            d="M40 20C40 8.954 48.954 0 60 0h140c11.046 0 20 8.954 20 20v180c0 11.046-8.954 20-20 20H60c-11.046 0-20-8.954-20-20V20z"
+          />
+          <!-- Cursor -->
+          <rect 
+            class="fill-background animate-cursor-blink" 
+            x="70" 
+            y="40" 
+            width="2" 
+            height="16" 
+            rx="1"
+          />
+          <!-- Appearing Text Lines -->
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 400ms"
+            x="70" 
+            y="40" 
+            width="80" 
+            height="4" 
+            rx="2"
+          />
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 600ms"
+            x="70" 
+            y="60" 
+            width="120" 
+            height="4" 
+            rx="2"
+          />
+          <!-- Code Block -->
+          <rect 
+            class="fill-background/10 animate-block-fade" 
+            style="animation-delay: 800ms"
+            x="70" 
+            y="80" 
+            width="120" 
+            height="40" 
+            rx="4"
+          />
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1000ms"
+            x="80" 
+            y="90" 
+            width="60" 
+            height="4" 
+            rx="2"
+          />
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1200ms"
+            x="80" 
+            y="100" 
+            width="90" 
+            height="4" 
+            rx="2"
+          />
+          <!-- List Items -->
+          <circle 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1400ms"
+            cx="75" 
+            cy="140" 
+            r="2"
+          />
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1400ms"
+            x="85" 
+            y="138" 
+            width="70" 
+            height="4" 
+            rx="2"
+          />
+          <circle 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1600ms"
+            cx="75" 
+            cy="160" 
+            r="2"
+          />
+          <rect 
+            class="fill-background animate-block-fade" 
+            style="animation-delay: 1600ms"
+            x="85" 
+            y="158" 
+            width="90" 
+            height="4" 
+            rx="2"
+          />
+        </svg>
+      </div>
+
+      <style>
+        @keyframes cursorBlink {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 1; }
+        }
+
+        .animate-cursor-blink {
+          animation: cursorBlink 1s infinite;
+        }
+      </style>
+
+      <!-- Hero Text -->
+      <div class="flex max-w-[980px] flex-col items-center text-center gap-4 animate-fade-in">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 animate-gradient">
+          {headline}
+        </h1>
+        <p class="text-muted-foreground max-w-[700px] text-lg sm:text-xl leading-relaxed">
+          {content}
+        </p>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+        <p class="text-muted-foreground text-sm mb-2 animate-fade-in" style="animation-delay: 1000ms">
+          {cta}
+        </p>
+        <svg class="w-6 h-6 text-muted-foreground animate-bounce mx-auto" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
