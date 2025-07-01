@@ -28,8 +28,13 @@ export default defineConfig({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
     shikiConfig: {
-      theme: 'github-dark',
-      wrap: true
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark'
+      },
+      wrap: true,
+      // Remove default theme application
+      defaultColor: 'light'
     }
   },
   vite: {

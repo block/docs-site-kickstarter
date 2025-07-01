@@ -171,4 +171,188 @@
   .prose a {
     @apply font-medium text-primary underline underline-offset-4 hover:no-underline;
   }
+
+  /* Enhanced code block styles with proper light/dark mode support */
+  /* Target Shiki pre elements by their inline styles and data attributes */
+  pre[data-language] {
+    @apply relative overflow-x-auto rounded-lg border;
+    /* Light mode - use !important to override Shiki inline styles */
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+    color: #334155 !important;
+    padding: 1rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.625 !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  }
+
+  .dark pre[data-language] {
+    /* Dark mode - use !important to override Shiki inline styles */
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+    color: #e2e8f0 !important;
+  }
+
+  /* Target Shiki code elements specifically - override MDX component styles */
+  pre[data-language] code {
+    background: transparent !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    /* Remove any borders from code elements inside code blocks */
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    /* Remove positioning and other inline code styles */
+    position: static !important;
+  }
+
+  /* More specific selector to ensure override */
+  pre[data-language] code.relative {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    position: static !important;
+  }
+
+  /* Override Shiki's inline background colors on pre elements */
+  pre[style*="background-color"] {
+    background-color: #f8fafc !important;
+  }
+
+  .dark pre[style*="background-color"] {
+    background-color: #0f172a !important;
+  }
+
+  /* Syntax highlighting overrides for better contrast */
+  /* Light mode syntax colors */
+  pre[data-language] .line {
+    color: #24292e !important;
+  }
+
+  /* Dark mode syntax colors */
+  .dark pre[data-language] .line {
+    color: #e1e4e8 !important;
+  }
+
+  /* Specific syntax highlighting color fixes */
+  /* Keywords (red) */
+  pre[data-language] span[style*="color:#D73A49"],
+  pre[data-language] span[style*="color:#d73a49"] {
+    color: #d73a49 !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#D73A49"],
+  .dark pre[data-language] span[style*="color:#d73a49"] {
+    color: #f97583 !important;
+  }
+
+  /* Strings (blue) */
+  pre[data-language] span[style*="color:#032F62"],
+  pre[data-language] span[style*="color:#032f62"] {
+    color: #032f62 !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#032F62"],
+  .dark pre[data-language] span[style*="color:#032f62"] {
+    color: #9ecbff !important;
+  }
+
+  /* Functions (purple) */
+  pre[data-language] span[style*="color:#6F42C1"],
+  pre[data-language] span[style*="color:#6f42c1"] {
+    color: #6f42c1 !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#6F42C1"],
+  .dark pre[data-language] span[style*="color:#6f42c1"] {
+    color: #b392f0 !important;
+  }
+
+  /* Numbers (blue) */
+  pre[data-language] span[style*="color:#005CC5"],
+  pre[data-language] span[style*="color:#005cc5"] {
+    color: #005cc5 !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#005CC5"],
+  .dark pre[data-language] span[style*="color:#005cc5"] {
+    color: #79b8ff !important;
+  }
+
+  /* Comments (gray) */
+  pre[data-language] span[style*="color:#6A737D"],
+  pre[data-language] span[style*="color:#6a737d"] {
+    color: #6a737d !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#6A737D"],
+  .dark pre[data-language] span[style*="color:#6a737d"] {
+    color: #6a737d !important;
+  }
+
+  /* Default text */
+  pre[data-language] span[style*="color:#24292E"],
+  pre[data-language] span[style*="color:#24292e"] {
+    color: #24292e !important;
+  }
+
+  .dark pre[data-language] span[style*="color:#24292E"],
+  .dark pre[data-language] span[style*="color:#24292e"] {
+    color: #e1e4e8 !important;
+  }
+
+  /* Inline code improvements with enhanced light/dark mode */
+  :not(pre) > code {
+    @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium border;
+    /* Light mode */
+    background-color: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #475569;
+  }
+
+  .dark :not(pre) > code {
+    /* Dark mode */
+    background-color: #1e293b;
+    border-color: #475569;
+    color: #cbd5e1;
+  }
+
+  /* Enhanced scrollbar styling for better visibility */
+  pre[data-language]::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  pre[data-language]::-webkit-scrollbar-track {
+    @apply rounded;
+    /* Light mode */
+    background-color: #e2e8f0;
+  }
+
+  .dark pre[data-language]::-webkit-scrollbar-track {
+    /* Dark mode */
+    background-color: #334155;
+  }
+
+  pre[data-language]::-webkit-scrollbar-thumb {
+    @apply rounded;
+    /* Light mode */
+    background-color: #94a3b8;
+  }
+
+  pre[data-language]::-webkit-scrollbar-thumb:hover {
+    /* Light mode hover */
+    background-color: #64748b;
+  }
+
+  .dark pre[data-language]::-webkit-scrollbar-thumb {
+    /* Dark mode */
+    background-color: #64748b;
+  }
+
+  .dark pre[data-language]::-webkit-scrollbar-thumb:hover {
+    /* Dark mode hover */
+    background-color: #94a3b8;
+  }
 }
