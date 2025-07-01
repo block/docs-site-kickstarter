@@ -23,7 +23,9 @@ const { label, headline, description } = Astro.props;
   </div>
   <div class="flex-1 relative">
     <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
-    <slot name="content" />
+    <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+        <slot name="content" />
+    </div>
   </div>
 </div>
 
