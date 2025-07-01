@@ -3,9 +3,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { buttonVariants } from "@/components/ui/button";
 import DocumentIcon from '@/pages/home/DocumentIcon.astro';
 import FeatureCard from "@/components/block/FeatureCard.astro";
-import FeatureCardLeftPane from "@/components/block/FeatureCardLeftPane.astro";
-import FeatureCardRightPane from "@/components/block/FeatureCardRightPane.astro";
 import Hero from "@/components/block/Hero.astro";
+import Checklist from "@/components/block/Checklist.astro";
 ---
 
 <BaseLayout
@@ -42,20 +41,11 @@ cd my-docs
 pnpm install
 pnpm dev</code></pre>
         <div slot="content">
-          <ul class="space-y-4 text-muted-foreground" slot="content">
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              Modern Stack with Astro & React
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              Pre-configured Tailwind CSS
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              Built-in Dark Mode Support
-            </li>
-          </ul>
+          <Checklist items={[
+            "Modern Stack with Astro & React",
+            "Pre-configured Tailwind CSS",
+            "Built-in Dark Mode Support"
+          ]} />
         </div>
       </FeatureCard>
 
@@ -84,20 +74,11 @@ description: "Learn how to use our template"
 2. Install dependencies
 3. Start writing!</code></pre>
         <div slot="content">
-          <ul class="space-y-4 text-muted-foreground">
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              MDX Support Built-in
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              Interactive Components
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-              Auto-generated Navigation
-            </li>
-          </ul>
+          <Checklist items={[
+            "MDX Support Built-in",
+            "Interactive Components",
+            "Auto-generated Navigation"
+          ]} />
         </div>
       </FeatureCard>
 
@@ -122,20 +103,11 @@ description: "Learn how to use our template"
         <div class="flex-1 relative">
           <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
           <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
-            <ul class="space-y-4 text-muted-foreground">
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Customizable Components
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Flexible Layout System
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Easy Theme Customization
-              </li>
-            </ul>
+            <Checklist items={[
+              "Customizable Components",
+              "Flexible Layout System",
+              "Easy Theme Customization"
+            ]} />
           </div>
         </div>
       </div>
@@ -158,20 +130,11 @@ description: "Learn how to use our template"
         <div class="flex-1 relative">
           <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
           <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
-            <ul class="space-y-4 text-muted-foreground">
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                One-click Deployment
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Automatic Updates
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                HTTPS & CDN Included
-              </li>
-            </ul>
+            <Checklist items={[
+              "One-click Deployment",
+              "Automatic Updates",
+              "HTTPS & CDN Included"
+            ]} />
           </div>
         </div>
       </div>
