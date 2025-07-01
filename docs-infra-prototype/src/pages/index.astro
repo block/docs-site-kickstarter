@@ -60,13 +60,12 @@ pnpm dev</code></pre>
       </FeatureCard>
 
       <!-- Step 2: Create Content -->
-      <div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
-        <div class="flex-1 space-y-4">
-          <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Step 2</div>
-          <h2 class="text-3xl font-bold tracking-tight">Create Your Content</h2>
-          <p class="text-muted-foreground text-lg">Write documentation using MDX - the perfect blend of Markdown and React components.</p>
-          <div class="relative">
-            <pre class="language-mdx rounded-lg p-4 bg-card/40 backdrop-blur-sm overflow-x-auto"><code>---
+      <FeatureCard
+        label="Step 2"
+        headline="Create Your Content"
+        description="Write documentation using MDX - the perfect blend of Markdown and React components."
+      >
+      <pre class="language-mdx rounded-lg p-4 bg-card/40 backdrop-blur-sm overflow-x-auto"><code>---
 title: "Getting Started"
 description: "Learn how to use our template"
 ---
@@ -84,28 +83,24 @@ description: "Learn how to use our template"
 1. Clone the repository
 2. Install dependencies
 3. Start writing!</code></pre>
-          </div>
+        <div slot="content">
+          <ul class="space-y-4 text-muted-foreground">
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              MDX Support Built-in
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Interactive Components
+            </li>
+            <li class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Auto-generated Navigation
+            </li>
+          </ul>
         </div>
-        <div class="flex-1 relative">
-          <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
-          <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
-            <ul class="space-y-4 text-muted-foreground">
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                MDX Support Built-in
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Interactive Components
-              </li>
-              <li class="flex items-center gap-3">
-                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                Auto-generated Navigation
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      </FeatureCard>
+
 
       <!-- Step 3: Customize -->
       <div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
