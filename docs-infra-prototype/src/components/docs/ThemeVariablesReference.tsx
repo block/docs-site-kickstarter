@@ -27,7 +27,7 @@ export function ThemeVariablesReference() {
       <div className="grid gap-4">
         {variables.map(([name, description]) => (
           <div key={name} className="flex items-center gap-4">
-            <code className="text-sm px-2 py-1 bg-muted rounded">{`--${name}`}</code>
+            <code className="text-sm px-2 py-1 rounded">{`--${name}`}</code>
             <span className="text-muted-foreground text-sm">{description}</span>
             <div 
               className="ml-auto w-6 h-6 rounded-full border"
