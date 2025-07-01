@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { buttonVariants } from "@/components/ui/button";
+import DocumentIcon from '@/pages/home/DocumentIcon.astro';
 import Hero from "@/components/block/Hero.astro";
 ---
 
@@ -16,14 +17,14 @@ import Hero from "@/components/block/Hero.astro";
     </div>
 
     <Hero
-      image="/path/to/image.jpg"
+      image={DocumentIcon}
       headline="Block Documentation Template"
-      content={`
-        Create beautiful, accessible, and consistent documentation sites for your Block projects. 
-        Built with modern tools, ready for your content.
-      `}
-      cta="Scroll to learn more"
-    />
+      cta="Scroll to learn more">
+
+      Create beautiful, accessible, and consistent documentation sites for your Block projects. 
+      Built with modern tools, ready for your content.
+
+    </Hero>
 
     <!-- Steps Section -->
     <section class="container relative py-20 space-y-32">
