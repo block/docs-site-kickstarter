@@ -1,3 +1,5 @@
+import { CopyButton } from '@/components/ui/copy-button';
+
 const components = {
   h1: (props) => (
     <h1
@@ -64,7 +66,7 @@ const components = {
   ),
   tr: (props) => (
     <tr
-      className="m-0 border-t p-0 even:bg-muted"
+      className="m-0 border-t p-0 even:bg-slate-50 dark:even:bg-slate-800/50"
       {...props}
     />
   ),
@@ -80,18 +82,36 @@ const components = {
       {...props}
     />
   ),
-  pre: (props) => (
-    <pre
-      className="mb-4 mt-6 overflow-x-auto rounded-lg bg-slate-900 py-4"
-      {...props}
-    />
-  ),
-  code: (props) => (
-    <code
-      className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold"
-      {...props}
-    />
-  ),
+  pre: (props) => {
+    // Extract text content for copying
+    const getTextContent = (children: any): string => {
+      if (typeof children === 'string') return children;
+      if (Array.isArray(children)) return children.map(getTextContent).join('');
+      if (children?.props?.children) return getTextContent(children.props.children);
+      return '';
+    };
+
+    const textContent = getTextContent(props.children);
+
+    return (
+      <div className="relative group my-6">
+        <pre
+          {...props}
+        />
+        <CopyButton text={textContent} />
+      </div>
+    );
+  },
+  code: (props) => {
+    // Simple approach: always apply inline code styling
+    // CSS will override this for code elements inside pre blocks
+    return (
+      <code
+        className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300"
+        {...props}
+      />
+    );
+  },
   a: (props) => (
     <a
       className="font-medium text-primary underline underline-offset-4 hover:no-underline"
