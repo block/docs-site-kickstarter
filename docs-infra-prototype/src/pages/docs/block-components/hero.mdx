@@ -1,0 +1,46 @@
+---
+title: "Hero"
+description: "The center of attention for the page"
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import DocumentIcon from "@/pages/home/DocumentIcon.astro"
+import Hero from "@/components/block/Hero.astro";
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+    # Hero
+
+    The center of attention for a page. Includes a headline, short content, an icon, and a call to action.
+
+    ## Usage
+
+    ```tsx
+    import DocumentIcon from "@/pages/home/DocumentIcon.astro"
+    import { Hero } from "@/components/block/Hero.astro"
+
+    <Hero
+      image={DocumentIcon}
+      headline="Ray"
+      cta="Scroll to learn more">
+
+      When someone asks if you're a god, you say, "YES!"
+
+    </Hero>
+    ```
+
+    Displays like:
+
+    <Hero
+        image={DocumentIcon}
+        headline="Ray"
+        cta="Scroll to learn more">
+
+        When someone asks if you're a god, you say, "YES!"
+
+    </Hero>
+
+</DocsLayout>
