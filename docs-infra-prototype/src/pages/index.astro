@@ -5,6 +5,7 @@ import DocumentIcon from '@/pages/home/DocumentIcon.astro';
 import FeatureCard from "@/components/block/FeatureCard.astro";
 import Hero from "@/components/block/Hero.astro";
 import Checklist from "@/components/block/Checklist.astro";
+import CallToAction from "@/components/block/CallToAction.astro";
 ---
 
 <BaseLayout
@@ -132,29 +133,14 @@ description: "Learn how to use our template"
       </FeatureCard>
 
       <!-- CTA Section -->
-      <div class="text-center space-y-8 animate-on-scroll">
-        <h2 class="text-3xl font-bold tracking-tight">Ready to Build Your Documentation?</h2>
-        <p class="text-muted-foreground text-lg max-w-[600px] mx-auto">
-          Start creating beautiful documentation sites for your Block projects today.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4 mt-8">
-          <a
-            href="/docs-site-kickstarter/docs"
-            rel="noreferrer"
-            class={buttonVariants({ size: "lg" }) + " transition-transform hover:scale-105"}
-          >
-            Get Started
-          </a>
-          <a
-            href="https://github.com/block/docs-site-kickstarter"
-            target="_blank"
-            rel="noreferrer"
-            class={buttonVariants({ variant: "outline", size: "lg" }) + " transition-transform hover:scale-105"}
-          >
-            View on GitHub
-          </a>
-        </div>
-      </div>
+      <CallToAction
+        headline="Ready to Build Your Documentation?"
+        description="Start creating beautiful documentation sites for your Block projects today."
+        primaryCTA="Get Started"
+        primaryCTALink="/docs-site-kickstarter/docs"
+        secondaryCTA="View on GitHub"
+        secondaryCTALink="https://github.com/block/docs-site-kickstarter"
+      />
     </section>
   </div>
 </BaseLayout>
