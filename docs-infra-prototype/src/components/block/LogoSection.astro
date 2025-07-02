@@ -15,7 +15,6 @@ interface Props {
   logos: Logo[];
   layout?: 'grid' | 'marquee' | 'centered';
   variant?: 'default' | 'grayscale' | 'bordered';
-  columns?: 3 | 4 | 5 | 6;
   showNames?: boolean;
   autoplay?: boolean;
   className?: string;
@@ -28,7 +27,6 @@ const {
   logos = [],
   layout = 'grid',
   variant = 'grayscale',
-  columns = 5,
   showNames = false,
   autoplay = true,
   className = '',
@@ -38,7 +36,6 @@ const sectionClasses = [
   'logo-section',
   `layout-${layout}`,
   `variant-${variant}`,
-  `columns-${columns}`,
   className
 ].filter(Boolean).join(' ');
 ---
@@ -238,29 +235,15 @@ const sectionClasses = [
   }
   
   .layout-grid .logo-grid {
-    grid-template-columns: repeat(var(--columns, 5), 1fr);
-  }
-  
-  .layout-centered .logo-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
   }
   
-  .columns-3 .logo-grid {
-    --columns: 3;
-  }
-  
-  .columns-4 .logo-grid {
-    --columns: 4;
-  }
-  
-  .columns-5 .logo-grid {
-    --columns: 5;
-  }
-  
-  .columns-6 .logo-grid {
-    --columns: 6;
+  .layout-centered .logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   /* Marquee Layout */
@@ -357,16 +340,9 @@ const sectionClasses = [
   
   /* Responsive Design */
   @media (max-width: 1024px) {
-    .columns-6 .logo-grid {
-      --columns: 4;
-    }
-    
-    .columns-5 .logo-grid {
-      --columns: 4;
-    }
-    
-    .columns-4 .logo-grid {
-      --columns: 3;
+    .layout-grid .logo-grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      max-width: 800px;
     }
   }
   
@@ -383,11 +359,9 @@ const sectionClasses = [
       gap: 1.5rem;
     }
     
-    .columns-6 .logo-grid,
-    .columns-5 .logo-grid,
-    .columns-4 .logo-grid,
-    .columns-3 .logo-grid {
-      --columns: 2;
+    .layout-grid .logo-grid {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      max-width: 600px;
     }
     
     .logo-image {
@@ -409,9 +383,10 @@ const sectionClasses = [
       font-size: 1.75rem;
     }
     
-    .logo-grid {
-      --columns: 2;
+    .layout-grid .logo-grid {
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+      max-width: 400px;
     }
     
     .variant-bordered .logo-item {
@@ -427,8 +402,9 @@ const sectionClasses = [
   }
   
   @media (max-width: 480px) {
-    .logo-grid {
-      --columns: 1;
+    .layout-grid .logo-grid {
+      grid-template-columns: 1fr;
+      max-width: 200px;
     }
     
     .logo-image {

@@ -16,7 +16,6 @@ interface Props {
   description?: string;
   posts: BlogPost[];
   layout?: 'grid' | 'list' | 'featured';
-  columns?: 2 | 3 | 4;
   showExcerpts?: boolean;
   showCategories?: boolean;
   showAuthors?: boolean;
@@ -30,7 +29,6 @@ const {
   description = "Add a concise value statement that captures reader interest and previews content value. Focus on benefits while keeping it under two lines.",
   posts = [],
   layout = 'grid',
-  columns = 3,
   showExcerpts = true,
   showCategories = true,
   showAuthors = true,
@@ -41,7 +39,6 @@ const {
 const sectionClasses = [
   'blog-section',
   `layout-${layout}`,
-  `columns-${columns}`,
   className
 ].filter(Boolean).join(' ');
 
@@ -194,28 +191,22 @@ const formatDate = (dateString: string) => {
   
   .layout-grid .blog-posts {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-  
-  .layout-grid.columns-2 .blog-posts {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .layout-grid.columns-3 .blog-posts {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .layout-grid.columns-4 .blog-posts {
-    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .layout-list .blog-posts {
     grid-template-columns: 1fr;
     gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
   }
   
   .layout-featured .blog-posts {
     grid-template-columns: 1fr;
     gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   /* Blog Post Styles */
@@ -390,12 +381,9 @@ const formatDate = (dateString: string) => {
   
   /* Responsive Design */
   @media (max-width: 1024px) {
-    .layout-grid.columns-4 .blog-posts {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .layout-grid.columns-3 .blog-posts {
-      grid-template-columns: repeat(2, 1fr);
+    .layout-grid .blog-posts {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      max-width: 900px;
     }
   }
   
@@ -408,9 +396,9 @@ const formatDate = (dateString: string) => {
       font-size: 1rem;
     }
     
-    .layout-grid .blog-posts,
-    .layout-list .blog-posts {
+    .layout-grid .blog-posts {
       grid-template-columns: 1fr;
+      max-width: 600px;
     }
     
     .layout-list .blog-post,

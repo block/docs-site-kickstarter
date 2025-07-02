@@ -9,6 +9,93 @@ import BlogSection from "@/components/block/BlogSection.astro"
 
 export const components = MDXComponents
 
+export const samplePosts = [
+  {
+    title: "Building Accessible Documentation",
+    excerpt: "Learn how to create documentation that works for everyone, including users with disabilities. We'll cover WCAG guidelines, semantic HTML, and testing strategies.",
+    date: "2024-01-20",
+    author: "Sarah Johnson",
+    category: "Accessibility",
+    href: "/blog/accessible-docs",
+    readTime: "8 min read",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop&crop=center"
+  },
+  {
+    title: "Design Systems for Documentation",
+    excerpt: "Explore how to create consistent, scalable design systems that improve both user experience and development workflow.",
+    date: "2024-01-18",
+    author: "Mike Chen",
+    category: "Design",
+    href: "/blog/design-systems",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=300&fit=crop&crop=center"
+  },
+  {
+    title: "Performance Optimization Tips",
+    excerpt: "Speed up your documentation sites with these proven optimization techniques and modern web performance best practices.",
+    date: "2024-01-15",
+    author: "Alex Rodriguez",
+    category: "Performance",
+    href: "/blog/performance-tips",
+    readTime: "7 min read",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&crop=center"
+  }
+];
+
+export const listPosts = [
+  {
+    title: "New Component Library Released",
+    excerpt: "We've just released a comprehensive component library with over 50 pre-built components for faster development.",
+    date: "2024-01-22",
+    author: "Development Team",
+    category: "Release",
+    href: "/blog/component-library",
+    readTime: "4 min read",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    title: "Improved Search Functionality",
+    excerpt: "Our new search algorithm provides more accurate results and better performance across all documentation sites.",
+    date: "2024-01-20",
+    author: "Product Team",
+    category: "Feature",
+    href: "/blog/search-improvements",
+    readTime: "3 min read",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center"
+  }
+];
+
+export const featuredPosts = [
+  {
+    title: "The Future of Documentation: AI-Powered Content Creation",
+    excerpt: "Explore how artificial intelligence is revolutionizing the way we create, maintain, and optimize documentation. From automated content generation to intelligent user assistance, discover the tools and techniques that are shaping the future of technical writing.",
+    date: "2024-01-25",
+    author: "Dr. Emily Watson",
+    category: "Innovation",
+    href: "/blog/ai-documentation",
+    readTime: "12 min read",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop&crop=center"
+  },
+  {
+    title: "Community Spotlight: Open Source Contributors",
+    excerpt: "Meet the amazing developers who contribute to our open source projects and help make documentation better for everyone.",
+    date: "2024-01-23",
+    author: "Community Team",
+    category: "Community",
+    href: "/blog/community-spotlight",
+    readTime: "5 min read"
+  },
+  {
+    title: "Best Practices for Technical Writing",
+    excerpt: "Essential guidelines for creating clear, concise, and effective technical documentation that users actually want to read.",
+    date: "2024-01-21",
+    author: "Writing Team",
+    category: "Writing",
+    href: "/blog/writing-best-practices",
+    readTime: "9 min read"
+  }
+];
+
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
 
 # Blog Section
@@ -48,7 +135,6 @@ const posts = [
   description="Stay updated with the latest insights, tutorials, and best practices."
   posts={posts}
   layout="grid"
-  columns={3}
 />
 ```
 
@@ -60,40 +146,8 @@ const posts = [
   title="Latest Documentation Insights"
   tagline="From our blog"
   description="Discover best practices, tutorials, and insights to help you create better documentation."
-  posts={[
-    {
-      title: "Building Accessible Documentation",
-      excerpt: "Learn how to create documentation that works for everyone, including users with disabilities. We'll cover WCAG guidelines, semantic HTML, and testing strategies.",
-      date: "2024-01-20",
-      author: "Sarah Johnson",
-      category: "Accessibility",
-      href: "/blog/accessible-docs",
-      readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop&crop=center"
-    },
-    {
-      title: "Design Systems for Documentation",
-      excerpt: "Explore how to create consistent, scalable design systems that improve both user experience and development workflow.",
-      date: "2024-01-18",
-      author: "Mike Chen",
-      category: "Design",
-      href: "/blog/design-systems",
-      readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=300&fit=crop&crop=center"
-    },
-    {
-      title: "Performance Optimization Tips",
-      excerpt: "Speed up your documentation sites with these proven optimization techniques and modern web performance best practices.",
-      date: "2024-01-15",
-      author: "Alex Rodriguez",
-      category: "Performance",
-      href: "/blog/performance-tips",
-      readTime: "7 min read",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&crop=center"
-    }
-  ]}
+  posts={samplePosts}
   layout="grid"
-  columns={3}
 />
 
 ### List Layout
@@ -102,28 +156,7 @@ const posts = [
   title="Recent Updates"
   tagline="What's new"
   description="Keep up with the latest features, improvements, and announcements."
-  posts={[
-    {
-      title: "New Component Library Released",
-      excerpt: "We've just released a comprehensive component library with over 50 pre-built components for faster development.",
-      date: "2024-01-22",
-      author: "Development Team",
-      category: "Release",
-      href: "/blog/component-library",
-      readTime: "4 min read",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop&crop=center"
-    },
-    {
-      title: "Improved Search Functionality",
-      excerpt: "Our new search algorithm provides more accurate results and better performance across all documentation sites.",
-      date: "2024-01-20",
-      author: "Product Team",
-      category: "Feature",
-      href: "/blog/search-improvements",
-      readTime: "3 min read",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center"
-    }
-  ]}
+  posts={listPosts}
   layout="list"
 />
 
@@ -132,36 +165,7 @@ const posts = [
 <BlogSection
   title="Featured Content"
   description="Highlighted articles and important announcements from our team."
-  posts={[
-    {
-      title: "The Future of Documentation: AI-Powered Content Creation",
-      excerpt: "Explore how artificial intelligence is revolutionizing the way we create, maintain, and optimize documentation. From automated content generation to intelligent user assistance, discover the tools and techniques that are shaping the future of technical writing.",
-      date: "2024-01-25",
-      author: "Dr. Emily Watson",
-      category: "Innovation",
-      href: "/blog/ai-documentation",
-      readTime: "12 min read",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop&crop=center"
-    },
-    {
-      title: "Community Spotlight: Open Source Contributors",
-      excerpt: "Meet the amazing developers who contribute to our open source projects and help make documentation better for everyone.",
-      date: "2024-01-23",
-      author: "Community Team",
-      category: "Community",
-      href: "/blog/community-spotlight",
-      readTime: "5 min read"
-    },
-    {
-      title: "Best Practices for Technical Writing",
-      excerpt: "Essential guidelines for creating clear, concise, and effective technical documentation that users actually want to read.",
-      date: "2024-01-21",
-      author: "Writing Team",
-      category: "Writing",
-      href: "/blog/writing-best-practices",
-      readTime: "9 min read"
-    }
-  ]}
+  posts={featuredPosts}
   layout="featured"
 />
 
@@ -174,7 +178,6 @@ const posts = [
 | `description` | `string` | Default description | Descriptive text below the title |
 | `posts` | `BlogPost[]` | `[]` | Array of blog post objects |
 | `layout` | `'grid' \| 'list' \| 'featured'` | `'grid'` | Layout style for displaying posts |
-| `columns` | `2 \| 3 \| 4` | `3` | Number of columns in grid layout |
 | `showExcerpts` | `boolean` | `true` | Whether to show post excerpts |
 | `showCategories` | `boolean` | `true` | Whether to show post categories |
 | `showAuthors` | `boolean` | `true` | Whether to show post authors |
@@ -200,13 +203,13 @@ interface BlogPost {
 
 ### Grid Layout
 Perfect for showcasing multiple posts with equal visual weight:
-- Responsive grid system
+- Responsive auto-fit grid system
 - Consistent card-based design
-- Configurable column count
+- Automatic sizing based on content
 - Great for blog homepages
 
 ```tsx
-<BlogSection layout="grid" columns={3} posts={posts} />
+<BlogSection layout="grid" posts={posts} />
 ```
 
 ### List Layout
@@ -247,18 +250,6 @@ Control what information is shown for each post:
 />
 ```
 
-### Column Configuration
-
-Adjust grid layout for different content densities:
-
-```tsx
-<!-- Dense layout for many posts -->
-<BlogSection layout="grid" columns={4} posts={posts} />
-
-<!-- Spacious layout for detailed posts -->
-<BlogSection layout="grid" columns={2} posts={posts} />
-```
-
 ## Custom Actions
 
 Use the slot to add custom content like CTAs or navigation:
@@ -273,8 +264,8 @@ Use the slot to add custom content like CTAs or navigation:
 
 ## Responsive Behavior
 
-- **Desktop**: Full grid/list layout with all metadata
-- **Tablet**: Adjusted column counts and spacing
+- **Desktop**: Auto-fit grid layout with optimal post sizing
+- **Tablet**: Adjusted minimum sizes for better fit
 - **Mobile**: Single column layout with optimized spacing
 - **Images**: Responsive sizing with proper aspect ratios
 

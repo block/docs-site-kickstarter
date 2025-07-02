@@ -9,6 +9,71 @@ import FAQSection from "@/components/block/FAQSection.astro"
 
 export const components = MDXComponents
 
+export const defaultFaqs = [
+  {
+    question: "How do I get started with the documentation platform?",
+    answer: "Getting started is simple! First, sign up for an account, then follow our quick start guide to create your first documentation site. The entire process takes less than 10 minutes, and you'll have a fully functional site ready to customize."
+  },
+  {
+    question: "Can I customize the design and branding?",
+    answer: "Absolutely! Our platform offers extensive customization options including custom themes, colors, fonts, and logos. You can also add custom CSS for advanced styling needs. Everything is designed to match your brand perfectly."
+  },
+  {
+    question: "What file formats are supported for content?",
+    answer: "We support Markdown (.md), MDX (.mdx), and HTML files. You can also import content from popular formats like Word documents, Google Docs, and Notion pages. Our converter handles the formatting automatically."
+  },
+  {
+    question: "Is there a limit on the number of pages or users?",
+    answer: "Our free plan includes up to 100 pages and 5 team members. Paid plans offer unlimited pages and team members, plus additional features like advanced analytics, custom domains, and priority support."
+  },
+  {
+    question: "How does search functionality work?",
+    answer: "We provide built-in full-text search powered by modern search algorithms. The search indexes all your content automatically and provides instant results as users type. You can also customize search behavior and add filters."
+  }
+];
+
+export const technicalFaqs = [
+  {
+    question: "What technologies are used?",
+    answer: "Our platform is built with modern web technologies including React, TypeScript, and Node.js. We use static site generation for optimal performance and SEO."
+  },
+  {
+    question: "Can I integrate with my existing tools?",
+    answer: "Yes! We offer integrations with popular tools like GitHub, Slack, Jira, and many others through our API and webhook system."
+  },
+  {
+    question: "Is the platform secure?",
+    answer: "Security is our top priority. We use enterprise-grade encryption, regular security audits, and comply with industry standards like SOC 2 and GDPR."
+  },
+  {
+    question: "What about performance and uptime?",
+    answer: "We maintain 99.9% uptime with global CDN distribution. Our sites load in under 2 seconds worldwide, and we provide detailed performance analytics."
+  },
+  {
+    question: "Can I export my data?",
+    answer: "Absolutely! You can export all your content, settings, and user data at any time. We believe in data portability and never lock you in."
+  },
+  {
+    question: "What support options are available?",
+    answer: "We offer email support for all users, live chat for paid plans, and dedicated support managers for enterprise customers. Our response time is typically under 4 hours."
+  }
+];
+
+export const quickFaqs = [
+  {
+    question: "How much does it cost?",
+    answer: "We offer a free plan for personal use and paid plans starting at $9/month for teams. Enterprise pricing is available for larger organizations."
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer: "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees."
+  },
+  {
+    question: "Do you offer refunds?",
+    answer: "We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied, we'll provide a full refund."
+  }
+];
+
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
 
 # FAQ Section
@@ -56,28 +121,7 @@ const faqs = [
   title="Frequently Asked Questions"
   tagline="Need help?"
   description="We've compiled the most important information to help you get the most out of your experience. Can't find what you're looking for? Contact us."
-  faqs={[
-    {
-      question: "How do I get started with the documentation platform?",
-      answer: "Getting started is simple! First, sign up for an account, then follow our quick start guide to create your first documentation site. The entire process takes less than 10 minutes, and you'll have a fully functional site ready to customize."
-    },
-    {
-      question: "Can I customize the design and branding?",
-      answer: "Absolutely! Our platform offers extensive customization options including custom themes, colors, fonts, and logos. You can also add custom CSS for advanced styling needs. Everything is designed to match your brand perfectly."
-    },
-    {
-      question: "What file formats are supported for content?",
-      answer: "We support Markdown (.md), MDX (.mdx), and HTML files. You can also import content from popular formats like Word documents, Google Docs, and Notion pages. Our converter handles the formatting automatically."
-    },
-    {
-      question: "Is there a limit on the number of pages or users?",
-      answer: "Our free plan includes up to 100 pages and 5 team members. Paid plans offer unlimited pages and team members, plus additional features like advanced analytics, custom domains, and priority support."
-    },
-    {
-      question: "How does search functionality work?",
-      answer: "We provide built-in full-text search powered by modern search algorithms. The search indexes all your content automatically and provides instant results as users type. You can also customize search behavior and add filters."
-    }
-  ]}
+  faqs={defaultFaqs}
 />
 
 ### Two-Column Layout
@@ -87,32 +131,7 @@ const faqs = [
   tagline="Developer FAQ"
   description="Common technical questions and detailed answers for developers and technical users."
   layout="two-column"
-  faqs={[
-    {
-      question: "What technologies are used?",
-      answer: "Our platform is built with modern web technologies including React, TypeScript, and Node.js. We use static site generation for optimal performance and SEO."
-    },
-    {
-      question: "Can I integrate with my existing tools?",
-      answer: "Yes! We offer integrations with popular tools like GitHub, Slack, Jira, and many others through our API and webhook system."
-    },
-    {
-      question: "Is the platform secure?",
-      answer: "Security is our top priority. We use enterprise-grade encryption, regular security audits, and comply with industry standards like SOC 2 and GDPR."
-    },
-    {
-      question: "What about performance and uptime?",
-      answer: "We maintain 99.9% uptime with global CDN distribution. Our sites load in under 2 seconds worldwide, and we provide detailed performance analytics."
-    },
-    {
-      question: "Can I export my data?",
-      answer: "Absolutely! You can export all your content, settings, and user data at any time. We believe in data portability and never lock you in."
-    },
-    {
-      question: "What support options are available?",
-      answer: "We offer email support for all users, live chat for paid plans, and dedicated support managers for enterprise customers. Our response time is typically under 4 hours."
-    }
-  ]}
+  faqs={technicalFaqs}
 />
 
 ### Minimal Variant
@@ -120,20 +139,7 @@ const faqs = [
 <FAQSection
   title="Quick Answers"
   variant="minimal"
-  faqs={[
-    {
-      question: "How much does it cost?",
-      answer: "We offer a free plan for personal use and paid plans starting at $9/month for teams. Enterprise pricing is available for larger organizations."
-    },
-    {
-      question: "Can I cancel anytime?",
-      answer: "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees."
-    },
-    {
-      question: "Do you offer refunds?",
-      answer: "We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied, we'll provide a full refund."
-    }
-  ]}
+  faqs={quickFaqs}
 >
   <div class="faq-contact">
     <h3>Still have questions?</h3>

@@ -9,6 +9,146 @@ import LogoSection from "@/components/block/LogoSection.astro"
 
 export const components = MDXComponents
 
+export const clientLogos = [
+  {
+    name: "TechCorp",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%234F46E5'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ETechCorp%3C/text%3E%3C/svg%3E",
+    alt: "TechCorp Logo",
+    href: "https://techcorp.example.com",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "InnovateLab",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23059669'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EInnovateLab%3C/text%3E%3C/svg%3E",
+    alt: "InnovateLab Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "DataFlow",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23DC2626'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3EDataFlow%3C/text%3E%3C/svg%3E",
+    alt: "DataFlow Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "CloudSync",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%237C3AED'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3ECloudSync%3C/text%3E%3C/svg%3E",
+    alt: "CloudSync Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "DevTools Pro",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23EA580C'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EDevTools%3C/text%3E%3Ctext x='60' y='45' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EPro%3C/text%3E%3C/svg%3E",
+    alt: "DevTools Pro Logo",
+    width: 120,
+    height: 60
+  }
+];
+
+export const techLogos = [
+  {
+    name: "React",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Crect width='100' height='50' fill='%2361DAFB'/%3E%3Ctext x='50' y='30' text-anchor='middle' fill='black' font-family='Arial' font-size='14' font-weight='bold'%3EReact%3C/text%3E%3C/svg%3E",
+    alt: "React Logo",
+    width: 100,
+    height: 50
+  },
+  {
+    name: "TypeScript",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Crect width='100' height='50' fill='%233178C6'/%3E%3Ctext x='50' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3ETypeScript%3C/text%3E%3C/svg%3E",
+    alt: "TypeScript Logo",
+    width: 100,
+    height: 50
+  },
+  {
+    name: "Node.js",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Crect width='100' height='50' fill='%23339933'/%3E%3Ctext x='50' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='12' font-weight='bold'%3ENode.js%3C/text%3E%3C/svg%3E",
+    alt: "Node.js Logo",
+    width: 100,
+    height: 50
+  },
+  {
+    name: "PostgreSQL",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='50' viewBox='0 0 100 50'%3E%3Crect width='100' height='50' fill='%23336791'/%3E%3Ctext x='50' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EPostgreSQL%3C/text%3E%3C/svg%3E",
+    alt: "PostgreSQL Logo",
+    width: 100,
+    height: 50
+  }
+];
+
+export const marqueeLogos = [
+  {
+    name: "Alpha Corp",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%231F2937'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EAlpha Corp%3C/text%3E%3C/svg%3E",
+    alt: "Alpha Corp Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "Beta Systems",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23374151'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EBeta%3C/text%3E%3Ctext x='60' y='45' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3ESystems%3C/text%3E%3C/svg%3E",
+    alt: "Beta Systems Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "Gamma Tech",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%234B5563'/%3E%3Ctext x='60' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EGamma Tech%3C/text%3E%3C/svg%3E",
+    alt: "Gamma Tech Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "Delta Solutions",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%236B7280'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3EDelta%3C/text%3E%3Ctext x='60' y='45' text-anchor='middle' fill='white' font-family='Arial' font-size='10' font-weight='bold'%3ESolutions%3C/text%3E%3C/svg%3E",
+    alt: "Delta Solutions Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "Epsilon Labs",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%239CA3AF'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='black' font-family='Arial' font-size='10' font-weight='bold'%3EEpsilon%3C/text%3E%3Ctext x='60' y='45' text-anchor='middle' fill='black' font-family='Arial' font-size='10' font-weight='bold'%3ELabs%3C/text%3E%3C/svg%3E",
+    alt: "Epsilon Labs Logo",
+    width: 120,
+    height: 60
+  },
+  {
+    name: "Zeta Innovations",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60' viewBox='0 0 120 60'%3E%3Crect width='120' height='60' fill='%23D1D5DB'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='black' font-family='Arial' font-size='9' font-weight='bold'%3EZeta%3C/text%3E%3Ctext x='60' y='45' text-anchor='middle' fill='black' font-family='Arial' font-size='9' font-weight='bold'%3EInnovations%3C/text%3E%3C/svg%3E",
+    alt: "Zeta Innovations Logo",
+    width: 120,
+    height: 60
+  }
+];
+
+export const partnerLogos = [
+  {
+    name: "Enterprise Partner",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Crect width='140' height='70' fill='%231E40AF'/%3E%3Ctext x='70' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EEnterprise%3C/text%3E%3Ctext x='70' y='50' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EPartner%3C/text%3E%3C/svg%3E",
+    alt: "Enterprise Partner Logo",
+    href: "https://enterprise.example.com",
+    width: 140,
+    height: 70
+  },
+  {
+    name: "Innovation Hub",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Crect width='140' height='70' fill='%23BE185D'/%3E%3Ctext x='70' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EInnovation%3C/text%3E%3Ctext x='70' y='50' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EHub%3C/text%3E%3C/svg%3E",
+    alt: "Innovation Hub Logo",
+    width: 140,
+    height: 70
+  },
+  {
+    name: "Global Solutions",
+    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='70' viewBox='0 0 140 70'%3E%3Crect width='140' height='70' fill='%23059669'/%3E%3Ctext x='70' y='35' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3EGlobal%3C/text%3E%3Ctext x='70' y='50' text-anchor='middle' fill='white' font-family='Arial' font-size='11' font-weight='bold'%3ESolutions%3C/text%3E%3C/svg%3E",
+    alt: "Global Solutions Logo",
+    width: 140,
+    height: 70
+  }
+];
+
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
 
 # Logo Section
@@ -60,37 +200,9 @@ const logos = [
   title="Trusted by Industry Leaders"
   tagline="Our clients"
   description="Join thousands of companies worldwide who trust our documentation platform to create, manage, and scale their technical content."
-  logos={[
-    {
-      name: "TechCorp",
-      src: "https://via.placeholder.com/120x60/4F46E5/FFFFFF?text=TechCorp",
-      alt: "TechCorp Logo",
-      href: "https://techcorp.example.com"
-    },
-    {
-      name: "InnovateLab",
-      src: "https://via.placeholder.com/120x60/059669/FFFFFF?text=InnovateLab",
-      alt: "InnovateLab Logo"
-    },
-    {
-      name: "DataFlow",
-      src: "https://via.placeholder.com/120x60/DC2626/FFFFFF?text=DataFlow",
-      alt: "DataFlow Logo"
-    },
-    {
-      name: "CloudSync",
-      src: "https://via.placeholder.com/120x60/7C3AED/FFFFFF?text=CloudSync",
-      alt: "CloudSync Logo"
-    },
-    {
-      name: "DevTools Pro",
-      src: "https://via.placeholder.com/120x60/EA580C/FFFFFF?text=DevTools",
-      alt: "DevTools Pro Logo"
-    }
-  ]}
+  logos={clientLogos}
   variant="grayscale"
   layout="grid"
-  columns={5}
 />
 
 ### Bordered Layout with Names
@@ -99,31 +211,9 @@ const logos = [
   title="Technology Partners"
   tagline="Powered by"
   description="Built with industry-leading technologies and trusted by our technology partners."
-  logos={[
-    {
-      name: "React",
-      src: "https://via.placeholder.com/100x50/61DAFB/000000?text=React",
-      alt: "React Logo"
-    },
-    {
-      name: "TypeScript",
-      src: "https://via.placeholder.com/100x50/3178C6/FFFFFF?text=TypeScript",
-      alt: "TypeScript Logo"
-    },
-    {
-      name: "Node.js",
-      src: "https://via.placeholder.com/100x50/339933/FFFFFF?text=Node.js",
-      alt: "Node.js Logo"
-    },
-    {
-      name: "PostgreSQL",
-      src: "https://via.placeholder.com/100x50/336791/FFFFFF?text=PostgreSQL",
-      alt: "PostgreSQL Logo"
-    }
-  ]}
+  logos={techLogos}
   variant="bordered"
   showNames={true}
-  columns={4}
 />
 
 ### Marquee Layout
@@ -131,38 +221,7 @@ const logos = [
 <LogoSection
   title="Showcase that builds trust"
   description="Continuous display of partner logos with smooth scrolling animation."
-  logos={[
-    {
-      name: "Alpha Corp",
-      src: "https://via.placeholder.com/120x60/1F2937/FFFFFF?text=Alpha",
-      alt: "Alpha Corp Logo"
-    },
-    {
-      name: "Beta Systems",
-      src: "https://via.placeholder.com/120x60/374151/FFFFFF?text=Beta",
-      alt: "Beta Systems Logo"
-    },
-    {
-      name: "Gamma Tech",
-      src: "https://via.placeholder.com/120x60/4B5563/FFFFFF?text=Gamma",
-      alt: "Gamma Tech Logo"
-    },
-    {
-      name: "Delta Solutions",
-      src: "https://via.placeholder.com/120x60/6B7280/FFFFFF?text=Delta",
-      alt: "Delta Solutions Logo"
-    },
-    {
-      name: "Epsilon Labs",
-      src: "https://via.placeholder.com/120x60/9CA3AF/000000?text=Epsilon",
-      alt: "Epsilon Labs Logo"
-    },
-    {
-      name: "Zeta Innovations",
-      src: "https://via.placeholder.com/120x60/D1D5DB/000000?text=Zeta",
-      alt: "Zeta Innovations Logo"
-    }
-  ]}
+  logos={marqueeLogos}
   layout="marquee"
   variant="grayscale"
   autoplay={true}
@@ -174,24 +233,7 @@ const logos = [
   title="Featured Partners"
   tagline="Strategic alliances"
   description="Our key partnerships that drive innovation and excellence."
-  logos={[
-    {
-      name: "Enterprise Partner",
-      src: "https://via.placeholder.com/140x70/1E40AF/FFFFFF?text=Enterprise",
-      alt: "Enterprise Partner Logo",
-      href: "https://enterprise.example.com"
-    },
-    {
-      name: "Innovation Hub",
-      src: "https://via.placeholder.com/140x70/BE185D/FFFFFF?text=Innovation",
-      alt: "Innovation Hub Logo"
-    },
-    {
-      name: "Global Solutions",
-      src: "https://via.placeholder.com/140x70/059669/FFFFFF?text=Global",
-      alt: "Global Solutions Logo"
-    }
-  ]}
+  logos={partnerLogos}
   layout="centered"
   variant="default"
 >
@@ -221,7 +263,6 @@ const logos = [
 | `logos` | `Logo[]` | `[]` | Array of logo objects |
 | `layout` | `'grid' \| 'marquee' \| 'centered'` | `'grid'` | Layout arrangement |
 | `variant` | `'default' \| 'grayscale' \| 'bordered'` | `'grayscale'` | Visual style variant |
-| `columns` | `3 \| 4 \| 5 \| 6` | `5` | Number of columns in grid layout |
 | `showNames` | `boolean` | `false` | Whether to show logo names below images |
 | `autoplay` | `boolean` | `true` | Enable autoplay for marquee layout |
 | `className` | `string` | `''` | Additional CSS classes |
@@ -243,13 +284,13 @@ interface Logo {
 
 ### Grid Layout
 Perfect for organized display of multiple logos:
-- Responsive grid system
-- Configurable column count
+- Responsive auto-fit grid system
+- Automatic sizing based on content
 - Equal spacing and alignment
-- Best for 4-12 logos
+- Adapts to any number of logos
 
 ```tsx
-<LogoSection layout="grid" columns={5} logos={logos} />
+<LogoSection layout="grid" logos={logos} />
 ```
 
 ### Marquee Layout
@@ -308,18 +349,6 @@ Card-based logo presentation:
 <LogoSection variant="bordered" logos={logos} />
 ```
 
-## Column Configuration
-
-Adjust grid density based on content and space:
-
-```tsx
-<!-- Dense layout for many logos -->
-<LogoSection columns={6} logos={logos} />
-
-<!-- Spacious layout for fewer logos -->
-<LogoSection columns={3} logos={logos} />
-```
-
 ## Interactive Features
 
 ### Clickable Logos
@@ -368,10 +397,10 @@ Use the slot to add statistics, CTAs, or additional information:
 
 ## Responsive Behavior
 
-- **Desktop**: Full column count with optimal spacing
-- **Tablet**: Reduced columns (6→4, 5→4, 4→3)
-- **Mobile**: Further reduction (all→2 columns)
-- **Small Mobile**: Single column for very small screens
+- **Desktop**: Auto-fit grid with optimal logo sizing
+- **Tablet**: Adjusted minimum sizes for better fit
+- **Mobile**: Two-column layout for space efficiency
+- **Small Mobile**: Single column for optimal viewing
 
 ## Accessibility Features
 
