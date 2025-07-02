@@ -1,0 +1,79 @@
+name: Cleanup Branch Previews
+
+on:
+  # Run when branches are deleted
+  delete:
+  # Also allow manual trigger
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Branch name to clean up (optional)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup cleanup
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Checkout gh-pages branch
+          git fetch origin gh-pages:gh-pages 2>/dev/null || exit 0
+          git checkout gh-pages
+      
+      - name: Clean up deleted branches
+        run: |
+          # Get list of current branches
+          git fetch origin
+          CURRENT_BRANCHES=$(git branch -r | grep -v HEAD | sed 's/origin\///' | sed 's/^[[:space:]]*//' | grep -v gh-pages)
+          
+          # Check if branch directory exists but branch doesn't
+          if [ -d "branch" ]; then
+            cd branch
+            for dir in */; do
+              if [ -d "$dir" ]; then
+                BRANCH_NAME=$(basename "$dir")
+                # Convert safe branch name back to original (replace - with /)
+                ORIGINAL_BRANCH=$(echo "$BRANCH_NAME" | sed 's/-/\//g')
+                
+                # Check if this branch still exists
+                if ! echo "$CURRENT_BRANCHES" | grep -q "^$ORIGINAL_BRANCH$"; then
+                  echo "Cleaning up preview for deleted branch: $ORIGINAL_BRANCH"
+                  rm -rf "$dir"
+                fi
+              fi
+            done
+            cd ..
+          fi
+          
+          # If manual cleanup was requested
+          if [ -n "${{ github.event.inputs.branch_name }}" ]; then
+            SAFE_BRANCH=$(echo "${{ github.event.inputs.branch_name }}" | sed 's/\//-/g')
+            if [ -d "branch/$SAFE_BRANCH" ]; then
+              echo "Manually cleaning up preview for branch: ${{ github.event.inputs.branch_name }}"
+              rm -rf "branch/$SAFE_BRANCH"
+            fi
+          fi
+      
+      - name: Commit cleanup
+        run: |
+          if ! git diff --quiet; then
+            git add .
+            git commit -m "Clean up branch previews for deleted branches"
+            git push origin gh-pages
+            echo "Cleanup completed"
+          else
+            echo "No cleanup needed"
+          fi
