@@ -3,25 +3,25 @@ import { CopyButton } from '@/components/ui/copy-button';
 const components = {
   h1: (props) => (
     <h1
-      className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl"
+      className="scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl mb-4"
       {...props}
     />
   ),
   h2: (props) => (
     <h2
-      className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-10"
+      className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-10 mb-4"
       {...props}
     />
   ),
   h3: (props) => (
     <h3
-      className="scroll-m-20 text-2xl font-semibold tracking-tight"
+      className="scroll-m-20 text-2xl font-semibold tracking-tight mb-4"
       {...props}
     />
   ),
   h4: (props) => (
     <h4
-      className="scroll-m-20 text-xl font-semibold tracking-tight"
+      className="scroll-m-20 text-xl font-semibold tracking-tight mb-4"
       {...props}
     />
   ),
