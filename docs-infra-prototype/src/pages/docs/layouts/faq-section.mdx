@@ -1,0 +1,367 @@
+---
+title: "FAQ Section"
+description: "Interactive FAQ section component with accordion functionality, multiple layouts, and customizable styling for documentation sites."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import FAQSection from "@/components/block/FAQSection.astro"
+
+export const components = MDXComponents
+
+export const defaultFaqs = [
+  {
+    question: "How do I get started with the documentation platform?",
+    answer: "Getting started is simple! First, sign up for an account, then follow our quick start guide to create your first documentation site. The entire process takes less than 10 minutes, and you'll have a fully functional site ready to customize."
+  },
+  {
+    question: "Can I customize the design and branding?",
+    answer: "Absolutely! Our platform offers extensive customization options including custom themes, colors, fonts, and logos. You can also add custom CSS for advanced styling needs. Everything is designed to match your brand perfectly."
+  },
+  {
+    question: "What file formats are supported for content?",
+    answer: "We support Markdown (.md), MDX (.mdx), and HTML files. You can also import content from popular formats like Word documents, Google Docs, and Notion pages. Our converter handles the formatting automatically."
+  },
+  {
+    question: "Is there a limit on the number of pages or users?",
+    answer: "Our free plan includes up to 100 pages and 5 team members. Paid plans offer unlimited pages and team members, plus additional features like advanced analytics, custom domains, and priority support."
+  },
+  {
+    question: "How does search functionality work?",
+    answer: "We provide built-in full-text search powered by modern search algorithms. The search indexes all your content automatically and provides instant results as users type. You can also customize search behavior and add filters."
+  }
+];
+
+export const technicalFaqs = [
+  {
+    question: "What technologies are used?",
+    answer: "Our platform is built with modern web technologies including React, TypeScript, and Node.js. We use static site generation for optimal performance and SEO."
+  },
+  {
+    question: "Can I integrate with my existing tools?",
+    answer: "Yes! We offer integrations with popular tools like GitHub, Slack, Jira, and many others through our API and webhook system."
+  },
+  {
+    question: "Is the platform secure?",
+    answer: "Security is our top priority. We use enterprise-grade encryption, regular security audits, and comply with industry standards like SOC 2 and GDPR."
+  },
+  {
+    question: "What about performance and uptime?",
+    answer: "We maintain 99.9% uptime with global CDN distribution. Our sites load in under 2 seconds worldwide, and we provide detailed performance analytics."
+  },
+  {
+    question: "Can I export my data?",
+    answer: "Absolutely! You can export all your content, settings, and user data at any time. We believe in data portability and never lock you in."
+  },
+  {
+    question: "What support options are available?",
+    answer: "We offer email support for all users, live chat for paid plans, and dedicated support managers for enterprise customers. Our response time is typically under 4 hours."
+  }
+];
+
+export const quickFaqs = [
+  {
+    question: "How much does it cost?",
+    answer: "We offer a free plan for personal use and paid plans starting at $9/month for teams. Enterprise pricing is available for larger organizations."
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer: "Yes, you can cancel your subscription at any time. There are no long-term contracts or cancellation fees."
+  },
+  {
+    question: "Do you offer refunds?",
+    answer: "We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied, we'll provide a full refund."
+  }
+];
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# FAQ Section
+
+An interactive FAQ section component with accordion functionality, perfect for documentation sites, support pages, and product information. Features smooth animations, keyboard accessibility, and multiple layout options.
+
+## Features
+
+- **Interactive Accordion**: Smooth expand/collapse animations
+- **Multiple Layouts**: Single column and two-column options
+- **Visual Variants**: Default, bordered, and minimal styles
+- **Keyboard Accessible**: Full keyboard navigation support
+- **Responsive Design**: Adapts to all screen sizes
+- **Customizable Behavior**: Allow single or multiple open items
+
+## Basic Usage
+
+```tsx
+import FAQSection from "@/components/block/FAQSection.astro"
+
+const faqs = [
+  {
+    question: "How do I get started?",
+    answer: "Getting started is easy! Simply follow our installation guide and you'll be up and running in minutes."
+  },
+  {
+    question: "Is it free to use?",
+    answer: "Yes, our basic plan is completely free and includes all essential features for small projects."
+  }
+];
+
+<FAQSection
+  title="Frequently Asked Questions"
+  tagline="Need help?"
+  description="Find answers to common questions about our platform."
+  faqs={faqs}
+/>
+```
+
+## Examples
+
+### Default FAQ Section
+
+<FAQSection
+  title="Frequently Asked Questions"
+  tagline="Need help?"
+  description="We've compiled the most important information to help you get the most out of your experience. Can't find what you're looking for? Contact us."
+  faqs={defaultFaqs}
+/>
+
+### Two-Column Layout
+
+<FAQSection
+  title="Technical Questions"
+  tagline="Developer FAQ"
+  description="Common technical questions and detailed answers for developers and technical users."
+  layout="two-column"
+  faqs={technicalFaqs}
+/>
+
+### Minimal Variant
+
+<FAQSection
+  title="Quick Answers"
+  variant="minimal"
+  faqs={quickFaqs}
+>
+  <div class="faq-contact">
+    <h3>Still have questions?</h3>
+    <p>Can't find the answer you're looking for? Our support team is here to help.</p>
+    <a href="/contact" class="faq-contact-button">
+      Contact Support
+    </a>
+  </div>
+</FAQSection>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | `'Frequently asked questions'` | Main heading for the FAQ section |
+| `tagline` | `string` | `'FAQ'` | Small tagline above the title |
+| `description` | `string` | Default description | Descriptive text below the title |
+| `faqs` | `FAQItem[]` | `[]` | Array of FAQ objects |
+| `layout` | `'single' \| 'two-column'` | `'single'` | Layout arrangement |
+| `variant` | `'default' \| 'bordered' \| 'minimal'` | `'default'` | Visual style variant |
+| `allowMultiple` | `boolean` | `false` | Allow multiple items to be open simultaneously |
+| `className` | `string` | `''` | Additional CSS classes |
+
+## FAQItem Interface
+
+```typescript
+interface FAQItem {
+  question: string;  // The question text (required)
+  answer: string;    // The answer text (required)
+  id?: string;       // Optional unique identifier
+}
+```
+
+## Layout Options
+
+### Single Column Layout
+Best for most use cases with a clean, focused design:
+- All questions in one column
+- Easy to scan and read
+- Works well with any number of questions
+
+```tsx
+<FAQSection layout="single" faqs={faqs} />
+```
+
+### Two-Column Layout
+Great for organizing many questions or creating visual balance:
+- Questions distributed across two columns
+- Better use of horizontal space
+- Ideal for 6+ questions
+
+```tsx
+<FAQSection layout="two-column" faqs={faqs} />
+```
+
+## Visual Variants
+
+### Default Variant
+Clean card-based design with subtle shadows and borders:
+
+```tsx
+<FAQSection variant="default" faqs={faqs} />
+```
+
+### Bordered Variant
+Minimal design with borders but no background fill:
+
+```tsx
+<FAQSection variant="bordered" faqs={faqs} />
+```
+
+### Minimal Variant
+Ultra-clean design with just bottom borders:
+
+```tsx
+<FAQSection variant="minimal" faqs={faqs} />
+```
+
+## Behavior Options
+
+### Single Open Item (Default)
+Only one FAQ can be open at a time - opening another closes the previous:
+
+```tsx
+<FAQSection allowMultiple={false} faqs={faqs} />
+```
+
+### Multiple Open Items
+Users can open multiple FAQs simultaneously:
+
+```tsx
+<FAQSection allowMultiple={true} faqs={faqs} />
+```
+
+## Custom Content
+
+Use the slot to add additional content like contact information or CTAs:
+
+```tsx
+<FAQSection title="Common Questions" faqs={faqs}>
+  <div class="faq-contact">
+    <h3>Need more help?</h3>
+    <p>Our support team is available 24/7 to assist you.</p>
+    <a href="/support" class="faq-contact-button">
+      Get Support
+    </a>
+  </div>
+</FAQSection>
+```
+
+## Accessibility Features
+
+- **Keyboard Navigation**: Full keyboard support with Tab and Enter keys
+- **ARIA Attributes**: Proper `aria-expanded` and `aria-controls` attributes
+- **Screen Reader Support**: Semantic HTML structure for assistive technologies
+- **Focus Management**: Clear focus indicators and logical tab order
+
+## Interactive Behavior
+
+The FAQ section includes built-in JavaScript for:
+- Smooth accordion animations
+- Keyboard event handling
+- Multiple/single open item management
+- Hover and focus states
+
+## Responsive Design
+
+- **Desktop**: Full layout with optimal spacing
+- **Tablet**: Adjusted spacing and typography
+- **Mobile**: Single column layout regardless of original layout setting
+- **Touch Friendly**: Optimized touch targets for mobile devices
+
+## Styling Customization
+
+### CSS Custom Properties
+
+```css
+.faq-section {
+  --faq-border-radius: 0.75rem;
+  --faq-padding: 1.5rem;
+  --faq-gap: 1rem;
+  --faq-transition: 0.3s ease;
+}
+```
+
+### Custom Styling
+
+```tsx
+<FAQSection 
+  className="custom-faq"
+  faqs={faqs}
+>
+  <style>
+    .custom-faq .faq-question {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+  </style>
+</FAQSection>
+```
+
+## Best Practices
+
+1. **Question Writing**: Use clear, specific questions that users actually ask
+2. **Answer Length**: Keep answers concise but complete (2-4 sentences ideal)
+3. **Organization**: Group related questions together
+4. **Search Integration**: Consider adding search functionality for many FAQs
+5. **Regular Updates**: Keep content current and add new questions based on user feedback
+
+## Common Use Cases
+
+- **Product Documentation**: Feature explanations and troubleshooting
+- **Support Pages**: Customer service and technical support
+- **Onboarding**: New user questions and getting started guides
+- **Pricing Pages**: Billing, plans, and feature questions
+- **Legal Pages**: Terms, privacy, and compliance questions
+
+## Integration with Search
+
+For sites with many FAQs, consider adding search functionality:
+
+```tsx
+<!-- Add search before FAQ section -->
+<div class="faq-search">
+  <input type="search" placeholder="Search FAQs..." />
+</div>
+
+<FAQSection faqs={filteredFaqs} />
+```
+
+## Analytics and Optimization
+
+Track which questions are most frequently opened to:
+- Identify common user pain points
+- Optimize question ordering
+- Create additional documentation for popular topics
+- Improve product features based on common questions
+
+## Content Management
+
+### Static Content
+```tsx
+const faqs = [
+  { question: "...", answer: "..." },
+  // ... more FAQs
+];
+```
+
+### Dynamic Content
+```tsx
+// Fetch from CMS or API
+const faqs = await fetch('/api/faqs').then(res => res.json());
+```
+
+### Markdown Support
+```tsx
+const faqs = [
+  {
+    question: "How do I format code?",
+    answer: "Use backticks for `inline code` or triple backticks for code blocks."
+  }
+];
+```
+
+</DocsLayout>
