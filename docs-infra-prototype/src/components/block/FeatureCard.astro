@@ -5,6 +5,7 @@ export interface Props {
   description?: string;
 }
 const { label, headline, description } = Astro.props;
+import HighlightCard from '@/components/block/HighlightCard.astro';
 ---
 
 <div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
@@ -19,9 +20,6 @@ const { label, headline, description } = Astro.props;
     </div>
   </div>
   <div class="flex-1 relative">
-    <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
-    <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
-        <slot name="content" />
-    </div>
+    <HighlightCard><slot name="content" /></HighlightCard>
   </div>
 </div>

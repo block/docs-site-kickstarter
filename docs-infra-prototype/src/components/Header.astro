@@ -19,10 +19,16 @@ const currentPath = Astro.url.pathname;
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex gap-6">
         <a
-          href="/docs-site-kickstarter/docs"
+          href={import.meta.env.BASE_URL + '/docs' }
           class="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
         >
           Documentation
+        </a>
+        <a
+        href={import.meta.env.BASE_URL + '/blog' }
+          class="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
+        >
+          Blog
         </a>
       </nav>
     </div>

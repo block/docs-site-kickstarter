@@ -1,12 +1,21 @@
 ---
+import { formatDate } from '../../components/blog/blogUtils';
+import { Image } from 'astro:assets';
+
+interface Props {
+   imagePath: string;
+   altText: string;
+   name: string;
+   age: number;
+}
+
 interface BlogPost {
   title: string;
-  excerpt: string;
+  author: string;
   date: string;
-  author?: string;
-  category?: string;
+  excerpt: string;
   image?: string;
-  href: string;
+  tags?: string[];
   readTime?: string;
 }
 
@@ -17,7 +26,7 @@ interface Props {
   posts: BlogPost[];
   layout?: 'grid' | 'list' | 'featured';
   showExcerpts?: boolean;
-  showCategories?: boolean;
+  showTags?: boolean;
   showAuthors?: boolean;
   showReadTime?: boolean;
   className?: string;
@@ -27,10 +36,10 @@ const {
   title = "Short and clear engaging headline for a blog",
   tagline = "Latest insights",
   description = "Add a concise value statement that captures reader interest and previews content value. Focus on benefits while keeping it under two lines.",
-  posts = [],
+  posts,
   layout = 'grid',
   showExcerpts = true,
-  showCategories = true,
+  showTags = true,
   showAuthors = true,
   showReadTime = true,
   className = '',
@@ -42,15 +51,7 @@ const sectionClasses = [
   className
 ].filter(Boolean).join(' ');
 
-// Format date helper
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  });
-};
+const getPostURL = (post) => import.meta.env.BASE_URL + "/blog/" + post.id;
 ---
 
 <section class={sectionClasses}>
@@ -80,44 +81,54 @@ const formatDate = (dateString: string) => {
     {posts.length > 0 && (
       <div class="blog-posts">
         {posts.map((post, index) => (
+
           <article class={`blog-post ${layout === 'featured' && index === 0 ? 'featured-post' : ''}`}>
-            {post.image && (
+            {post.data.image && (
               <div class="post-image">
-                <a href={post.href}>
-                  <img src={post.image} alt={post.title} />
+                <a href={getPostURL(post)}>
+                  <Image 
+                    src={post.data.image}
+                    alt={post.data.title}
+                    width="100%"
+                    height="100%"
+                  />
                 </a>
               </div>
             )}
             
             <div class="post-content">
               <div class="post-meta">
-                {showCategories && post.category && (
-                  <span class="post-category">{post.category}</span>
+
+                {showTags && post.data.tags && (
+                  post.data.tags.map((tag, index) => (
+                    <span class="post-category">{tag}</span>
+                  ))
+                  
                 )}
                 
-                <time class="post-date" datetime={post.date}>
-                  {formatDate(post.date)}
+                <time class="post-date" datetime={post.data.date}>
+                  {formatDate(post.data.date)}
                 </time>
                 
-                {showReadTime && post.readTime && (
-                  <span class="post-read-time">{post.readTime}</span>
+                {showReadTime && post.data.readTime && (
+                  <span class="post-read-time">{post.data.readTime}</span>
                 )}
               </div>
               
               <h3 class="post-title">
-                <a href={post.href}>{post.title}</a>
+                <a href={getPostURL(post)}>{post.data.title}</a>
               </h3>
               
-              {showExcerpts && post.excerpt && (
-                <p class="post-excerpt">{post.excerpt}</p>
+              {showExcerpts && post.data.excerpt && (
+                <p class="post-excerpt">{post.data.excerpt}</p>
               )}
               
               <div class="post-footer">
-                {showAuthors && post.author && (
-                  <span class="post-author">By {post.author}</span>
+                {showAuthors && post.data.author && (
+                  <span class="post-author">By {post.data.author}</span>
                 )}
                 
-                <a href={post.href} class="post-link">
+                <a href={getPostURL(post)} class="post-link">
                   Read more
                   <svg class="link-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

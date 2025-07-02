@@ -1,0 +1,69 @@
+---
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, render} from 'astro:content';
+import { formatDate } from '../../components/blog/blogUtils';
+import AuthorCard from '../../components/blog/AuthorCard.astro';
+
+/**
+ * Required function for dynamic routes; deteremines the slug
+ */
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { 
+			slug: post.id
+		},
+		props: post,
+	}));
+}
+
+/**
+ * Properties used on this page
+ */
+const post = Astro.props;
+const title = post.data.title;
+const postAuthorId = post.data.author;
+const date = formatDate(post.data.date);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+interface Author {
+	id: string;
+	name: string;
+	'social-github': string;
+	'social-linkedin' : string;
+	'social-x' : string;
+}
+
+/**
+ * Get Author Data
+ */
+const authors = await getCollection('authors');
+const author = authors.find(author => author.id === postAuthorId);
+
+---
+
+<BaseLayout title={post.data.title} description={post.data.snippet}>
+	<div class="text-sm not-content block-markdown-content">
+	  <a href={import.meta.env.BASE_URL + "/"}>
+		<span>Home</span>
+      </a>&nbsp;&gt;
+	  <a href={import.meta.env.BASE_URL + "/blog/"}>
+		<span>Blogs</span>
+      </a>&nbsp;&gt;&nbsp;{post.data.title}
+	</div>
+	<AuthorCard author={author} date={date}/>
+	<Content />
+</BaseLayout>
+
+<style>
+	/* This is to align the home and blog home icons alongside the text */
+	a {
+	  display: inline-block;
+	}
+	a svg {
+	  display: inline-block;
+      vertical-align: bottom;
+	  width: 1.5em;
+}
+</style>
