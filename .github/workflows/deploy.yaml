@@ -1,10 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Branch Previews
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
+  # Trigger the workflow on every push to any branch
   push:
-    branches: [main]
+    branches: ['**']
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -15,25 +14,306 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site output
-        uses: withastro/action@v2
         with:
-            path: ./docs-infra-prototype # The root location of your Astro project inside the repository. (optional)
-            node-version: 23 # The specific version of Node that should be used to build your site. Defaults to 18. (optional)
-            package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Get branch name and determine deployment strategy
+        id: branch-info
+        run: |
+          # Get the branch name, replacing '/' with '-' for URL safety
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          SAFE_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+          
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+          echo "safe-branch=$SAFE_BRANCH_NAME" >> $GITHUB_OUTPUT
+          
+          if [ "$BRANCH_NAME" = "main" ]; then
+            echo "is-main=true" >> $GITHUB_OUTPUT
+            echo "Deploying main branch"
+          else
+            echo "is-main=false" >> $GITHUB_OUTPUT
+            echo "Deploying branch '$BRANCH_NAME' as preview"
+          fi
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          
+      - name: Install dependencies
+        run: |
+          cd docs-infra-prototype
+          pnpm install
+      
+      - name: Update Astro config for deployment
+        run: |
+          cd docs-infra-prototype
+          if [ "${{ steps.branch-info.outputs.is-main }}" = "true" ]; then
+            echo "Using existing config for main branch"
+          else
+            # Create branch-specific config
+            cat > astro.config.branch.ts << 'EOF'
+          // @ts-check
+          import { defineConfig } from "astro/config";
+          import react from "@astrojs/react";
+          import tailwindcss from "@tailwindcss/vite";
+          import mdx from "@astrojs/mdx";
+          import remarkGfm from 'remark-gfm';
+          import rehypeSlug from 'rehype-slug';
+          import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
+          export default defineConfig({
+            site: 'https://block.github.io',
+            base: '/docs-site-kickstarter/branch/${{ steps.branch-info.outputs.safe-branch }}', 
+            
+            integrations: [
+              mdx({
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+              }), 
+              react()
+            ],
+            markdown: {
+              remarkPlugins: [remarkGfm],
+              rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+              shikiConfig: {
+                themes: {
+                  light: 'github-light',
+                  dark: 'github-dark'
+                },
+                wrap: true,
+                defaultColor: 'light'
+              }
+            },
+            vite: {
+              plugins: [tailwindcss()],
+              resolve: {
+                alias: {
+                  "@": "/src",
+                },
+              },
+            },
+          });
+          EOF
+            mv astro.config.branch.ts astro.config.ts
+          fi
+      
+      - name: Build site
+        run: |
+          cd docs-infra-prototype
+          pnpm build
+      
+      - name: Checkout gh-pages branch
+        run: |
+          # Configure git
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # Fetch gh-pages branch
+          git fetch origin gh-pages:gh-pages 2>/dev/null || echo "gh-pages branch doesn't exist yet"
+          
+          # Create a temporary directory for gh-pages content
+          mkdir -p /tmp/gh-pages
+          
+          # If gh-pages branch exists, check it out to preserve existing content
+          if git show-ref --quiet refs/heads/gh-pages; then
+            git checkout gh-pages
+            cp -r . /tmp/gh-pages/
+            git checkout ${{ steps.branch-info.outputs.branch }}
+          fi
+      
+      - name: Prepare deployment content
+        run: |
+          # Start fresh with gh-pages content
+          rm -rf ./*
+          rm -rf ./.github
+          
+          # Copy existing gh-pages content if it exists
+          if [ -d "/tmp/gh-pages" ]; then
+            cp -r /tmp/gh-pages/* . 2>/dev/null || echo "No existing content to copy"
+            cp -r /tmp/gh-pages/.* . 2>/dev/null || echo "No hidden files to copy"
+          fi
+          
+          if [ "${{ steps.branch-info.outputs.is-main }}" = "true" ]; then
+            # For main branch, deploy to root
+            cp -r docs-infra-prototype/dist/* .
+            
+            # Create branch directory structure if it doesn't exist
+            mkdir -p branch
+            
+            # Create or update the branch index page
+            cat > branch/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Branch Previews - docs-site-kickstarter</title>
+              <style>
+                  body { 
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+                      margin: 0; 
+                      padding: 40px;
+                      background: #f6f8fa;
+                  }
+                  .container { 
+                      max-width: 800px; 
+                      margin: 0 auto; 
+                      background: white;
+                      padding: 40px;
+                      border-radius: 8px;
+                      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                  }
+                  .header { 
+                      border-bottom: 1px solid #e1e5e9; 
+                      padding-bottom: 20px; 
+                      margin-bottom: 30px; 
+                  }
+                  .branch-list { list-style: none; padding: 0; }
+                  .branch-item { 
+                      margin: 15px 0; 
+                      padding: 20px; 
+                      border: 1px solid #e1e5e9; 
+                      border-radius: 8px;
+                      transition: border-color 0.2s;
+                  }
+                  .branch-item:hover { border-color: #0366d6; }
+                  .branch-name { 
+                      font-weight: 600; 
+                      color: #24292e; 
+                      font-size: 16px;
+                      margin-bottom: 8px;
+                  }
+                  .branch-link { 
+                      color: #0366d6; 
+                      text-decoration: none; 
+                      font-weight: 500;
+                  }
+                  .branch-link:hover { text-decoration: underline; }
+                  .main-link { 
+                      display: inline-block; 
+                      margin-bottom: 30px; 
+                      padding: 12px 24px; 
+                      background: #0366d6; 
+                      color: white; 
+                      text-decoration: none; 
+                      border-radius: 6px;
+                      font-weight: 500;
+                      transition: background-color 0.2s;
+                  }
+                  .main-link:hover { background: #0256cc; }
+                  .empty-state {
+                      text-align: center;
+                      padding: 40px;
+                      color: #586069;
+                  }
+                  .last-updated {
+                      font-size: 14px;
+                      color: #586069;
+                      margin-top: 30px;
+                      text-align: center;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="header">
+                      <h1>Branch Previews</h1>
+                      <p>Preview deployments for all branches in the docs-site-kickstarter repository.</p>
+                      <a href="../" class="main-link">← Back to Main Site</a>
+                  </div>
+                  <ul class="branch-list" id="branchList">
+                      <li class="empty-state">Loading branch previews...</li>
+                  </ul>
+                  <div class="last-updated">
+                      Last updated: <span id="lastUpdated"></span>
+                  </div>
+              </div>
+              <script>
+                  document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+                  
+                  // Try to load branch directories
+                  fetch('.')
+                      .then(response => response.text())
+                      .then(html => {
+                          const parser = new DOMParser();
+                          const doc = parser.parseFromString(html, 'text/html');
+                          const links = doc.querySelectorAll('a[href]');
+                          const branchList = document.getElementById('branchList');
+                          const branches = [];
+                          
+                          links.forEach(link => {
+                              const href = link.getAttribute('href');
+                              if (href && href !== '../' && href.endsWith('/') && 
+                                  href !== 'index.html' && !href.includes('.')) {
+                                  const branchName = href.replace('/', '');
+                                  if (branchName !== 'branch') {
+                                      branches.push(branchName);
+                                  }
+                              }
+                          });
+                          
+                          if (branches.length > 0) {
+                              branchList.innerHTML = branches.map(branch => `
+                                  <li class="branch-item">
+                                      <div class="branch-name">${branch.replace(/-/g, '/')}</div>
+                                      <a href="${branch}/" class="branch-link">View Preview →</a>
+                                  </li>
+                              `).join('');
+                          } else {
+                              branchList.innerHTML = '<li class="empty-state">No branch previews available yet. Push to a non-main branch to create a preview.</li>';
+                          }
+                      })
+                      .catch(() => {
+                          document.getElementById('branchList').innerHTML = '<li class="empty-state">Error loading branch list.</li>';
+                      });
+              </script>
+          </body>
+          </html>
+          EOF
+          else
+            # For branch deployments, create branch-specific directory
+            mkdir -p branch/${{ steps.branch-info.outputs.safe-branch }}
+            cp -r docs-infra-prototype/dist/* branch/${{ steps.branch-info.outputs.safe-branch }}/
+          fi
+      
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: |
+          # Add all changes
+          git add .
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to deploy"
+          else
+            if [ "${{ steps.branch-info.outputs.is-main }}" = "true" ]; then
+              git commit -m "Deploy main branch to GitHub Pages"
+            else
+              git commit -m "Deploy branch preview: ${{ steps.branch-info.outputs.branch }}"
+            fi
+            
+            # Push to gh-pages
+            git push origin HEAD:gh-pages --force
+          fi
+      
+      # Output URLs for easy access
+      - name: Output deployment URLs
+        run: |
+          if [ "${{ steps.branch-info.outputs.is-main }}" = "true" ]; then
+            echo "🚀 Main site deployed to: https://block.github.io/docs-site-kickstarter/"
+            echo "📋 Branch previews available at: https://block.github.io/docs-site-kickstarter/branch/"
+          else
+            echo "🔍 Branch preview deployed to: https://block.github.io/docs-site-kickstarter/branch/${{ steps.branch-info.outputs.safe-branch }}/"
+            echo "📋 All previews available at: https://block.github.io/docs-site-kickstarter/branch/"
+          fi
