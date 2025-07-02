@@ -43,6 +43,10 @@ const { title, description, headings } = Astro.props;
   </div>
 </BaseLayout>
 
+<script>
+  document.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('visible'));
+</script>
+
 <style>
   /* Keep the core layout styles in CSS */
   .docs-layout {

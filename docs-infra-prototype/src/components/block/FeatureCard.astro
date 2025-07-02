@@ -1,0 +1,27 @@
+---
+export interface Props {
+  label: string;
+  headline: string;
+  description?: string;
+}
+const { label, headline, description } = Astro.props;
+---
+
+<div class="flex flex-col md:flex-row items-center gap-12 animate-on-scroll">
+  <div class="flex-1 space-y-4">
+    <div class="inline-block rounded-lg bg-muted px-3 py-1 text-sm">{label}</div>
+    <h2 class="text-3xl font-bold tracking-tight">{headline}</h2>
+    {description && (
+      <p class="text-muted-foreground text-lg">{description}</p>
+    )}
+    <div class="relative">
+      <slot />
+    </div>
+  </div>
+  <div class="flex-1 relative">
+    <div class="absolute -inset-4 rounded-xl bg-gradient-to-r from-foreground/10 to-foreground/5 blur-lg"></div>
+    <div class="relative rounded-xl border bg-card/80 backdrop-blur-sm p-6 shadow-lg">
+        <slot name="content" />
+    </div>
+  </div>
+</div>

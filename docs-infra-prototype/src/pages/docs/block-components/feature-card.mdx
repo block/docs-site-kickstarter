@@ -1,0 +1,61 @@
+---
+title: "FeatureCard"
+description: "A flexible card layout for feature sections, with left and right panes."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import FeatureCard from "@/components/block/FeatureCard.astro"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# FeatureCard
+
+A flexible card layout for feature sections, with left and right panes. Accepts a label, headline, description, and custom content for each pane.
+
+## Usage
+
+```tsx
+import FeatureCard from "@/components/block/FeatureCard.astro"
+
+<FeatureCard
+  label="Step 1"
+  headline="Quick Installation"
+  description="Get started in seconds with our pre-configured template. Just clone, install, and start building."
+>
+  <pre className="language-bash rounded-lg p-4 bg-card/40 backdrop-blur-sm overflow-x-auto">
+    git clone https://github.com/block/docs-site-kickstarter.git my-docs
+    cd my-docs
+    pnpm install
+    pnpm dev
+  </pre>
+  <div slot="content">
+    Right side content here.
+  </div>
+</FeatureCard>
+```
+
+Displays like:
+
+<div style="background-color: #f0f0f0; color: #000000; padding: 1rem; border-radius: 0.5rem;">
+
+<FeatureCard
+  label="Step 1"
+  headline="Quick Installation"
+  description="Get started in seconds with our pre-configured template. Just clone, install, and start building."
+>
+  ```git clone https://github.com/block/docs-site-kickstarter.git my-docs
+    cd my-docs
+    pnpm install
+    pnpm dev
+  ```
+  { <div slot="content">
+    Right side content here.
+  </div> }
+</FeatureCard>
+
+</div>
+
+</DocsLayout> 
