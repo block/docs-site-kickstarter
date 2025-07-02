@@ -1,0 +1,348 @@
+---
+title: "Blog Section"
+description: "Flexible blog section component for displaying articles, posts, and content with multiple layout options and responsive design."
+---
+
+import DocsLayout from "../../../layouts/DocsLayout.astro"
+import MDXComponents from "@/components/mdx/MDXComponents"
+import BlogSection from "@/components/block/BlogSection.astro"
+
+export const components = MDXComponents
+
+<DocsLayout title={frontmatter.title} description={frontmatter.description}>
+
+# Blog Section
+
+A flexible blog section component designed to showcase articles, posts, and content in various layouts. Perfect for documentation sites, company blogs, and content-heavy pages with responsive design and customizable display options.
+
+## Features
+
+- **Multiple Layouts**: Grid, list, and featured post layouts
+- **Responsive Design**: Adapts beautifully to all screen sizes
+- **Rich Metadata**: Support for categories, authors, dates, and read times
+- **Interactive Elements**: Hover effects and smooth transitions
+- **Flexible Content**: Customizable excerpts and post information
+- **SEO Friendly**: Proper semantic HTML and structured data
+
+## Basic Usage
+
+```tsx
+import BlogSection from "@/components/block/BlogSection.astro"
+
+const posts = [
+  {
+    title: "Getting Started with Documentation",
+    excerpt: "Learn how to create beautiful documentation sites with modern tools and best practices.",
+    date: "2024-01-15",
+    author: "Jane Smith",
+    category: "Tutorial",
+    href: "/blog/getting-started",
+    readTime: "5 min read"
+  },
+  // ... more posts
+];
+
+<BlogSection
+  title="Latest Articles"
+  tagline="From our blog"
+  description="Stay updated with the latest insights, tutorials, and best practices."
+  posts={posts}
+  layout="grid"
+  columns={3}
+/>
+```
+
+## Examples
+
+### Grid Layout
+
+<BlogSection
+  title="Latest Documentation Insights"
+  tagline="From our blog"
+  description="Discover best practices, tutorials, and insights to help you create better documentation."
+  posts={[
+    {
+      title: "Building Accessible Documentation",
+      excerpt: "Learn how to create documentation that works for everyone, including users with disabilities. We'll cover WCAG guidelines, semantic HTML, and testing strategies.",
+      date: "2024-01-20",
+      author: "Sarah Johnson",
+      category: "Accessibility",
+      href: "/blog/accessible-docs",
+      readTime: "8 min read",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=300&fit=crop&crop=center"
+    },
+    {
+      title: "Design Systems for Documentation",
+      excerpt: "Explore how to create consistent, scalable design systems that improve both user experience and development workflow.",
+      date: "2024-01-18",
+      author: "Mike Chen",
+      category: "Design",
+      href: "/blog/design-systems",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=600&h=300&fit=crop&crop=center"
+    },
+    {
+      title: "Performance Optimization Tips",
+      excerpt: "Speed up your documentation sites with these proven optimization techniques and modern web performance best practices.",
+      date: "2024-01-15",
+      author: "Alex Rodriguez",
+      category: "Performance",
+      href: "/blog/performance-tips",
+      readTime: "7 min read",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=300&fit=crop&crop=center"
+    }
+  ]}
+  layout="grid"
+  columns={3}
+/>
+
+### List Layout
+
+<BlogSection
+  title="Recent Updates"
+  tagline="What's new"
+  description="Keep up with the latest features, improvements, and announcements."
+  posts={[
+    {
+      title: "New Component Library Released",
+      excerpt: "We've just released a comprehensive component library with over 50 pre-built components for faster development.",
+      date: "2024-01-22",
+      author: "Development Team",
+      category: "Release",
+      href: "/blog/component-library",
+      readTime: "4 min read",
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=200&fit=crop&crop=center"
+    },
+    {
+      title: "Improved Search Functionality",
+      excerpt: "Our new search algorithm provides more accurate results and better performance across all documentation sites.",
+      date: "2024-01-20",
+      author: "Product Team",
+      category: "Feature",
+      href: "/blog/search-improvements",
+      readTime: "3 min read",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&crop=center"
+    }
+  ]}
+  layout="list"
+/>
+
+### Featured Layout
+
+<BlogSection
+  title="Featured Content"
+  description="Highlighted articles and important announcements from our team."
+  posts={[
+    {
+      title: "The Future of Documentation: AI-Powered Content Creation",
+      excerpt: "Explore how artificial intelligence is revolutionizing the way we create, maintain, and optimize documentation. From automated content generation to intelligent user assistance, discover the tools and techniques that are shaping the future of technical writing.",
+      date: "2024-01-25",
+      author: "Dr. Emily Watson",
+      category: "Innovation",
+      href: "/blog/ai-documentation",
+      readTime: "12 min read",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop&crop=center"
+    },
+    {
+      title: "Community Spotlight: Open Source Contributors",
+      excerpt: "Meet the amazing developers who contribute to our open source projects and help make documentation better for everyone.",
+      date: "2024-01-23",
+      author: "Community Team",
+      category: "Community",
+      href: "/blog/community-spotlight",
+      readTime: "5 min read"
+    },
+    {
+      title: "Best Practices for Technical Writing",
+      excerpt: "Essential guidelines for creating clear, concise, and effective technical documentation that users actually want to read.",
+      date: "2024-01-21",
+      author: "Writing Team",
+      category: "Writing",
+      href: "/blog/writing-best-practices",
+      readTime: "9 min read"
+    }
+  ]}
+  layout="featured"
+/>
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `title` | `string` | Default title | Main heading for the blog section |
+| `tagline` | `string` | `'Latest insights'` | Small tagline above the title |
+| `description` | `string` | Default description | Descriptive text below the title |
+| `posts` | `BlogPost[]` | `[]` | Array of blog post objects |
+| `layout` | `'grid' \| 'list' \| 'featured'` | `'grid'` | Layout style for displaying posts |
+| `columns` | `2 \| 3 \| 4` | `3` | Number of columns in grid layout |
+| `showExcerpts` | `boolean` | `true` | Whether to show post excerpts |
+| `showCategories` | `boolean` | `true` | Whether to show post categories |
+| `showAuthors` | `boolean` | `true` | Whether to show post authors |
+| `showReadTime` | `boolean` | `true` | Whether to show estimated read time |
+| `className` | `string` | `''` | Additional CSS classes |
+
+## BlogPost Interface
+
+```typescript
+interface BlogPost {
+  title: string;        // Post title (required)
+  excerpt: string;      // Post excerpt/summary (required)
+  date: string;         // Publication date in ISO format (required)
+  href: string;         // Link to full post (required)
+  author?: string;      // Post author name
+  category?: string;    // Post category
+  image?: string;       // Featured image URL
+  readTime?: string;    // Estimated read time
+}
+```
+
+## Layout Types
+
+### Grid Layout
+Perfect for showcasing multiple posts with equal visual weight:
+- Responsive grid system
+- Consistent card-based design
+- Configurable column count
+- Great for blog homepages
+
+```tsx
+<BlogSection layout="grid" columns={3} posts={posts} />
+```
+
+### List Layout
+Ideal for chronological content display:
+- Horizontal layout with image and content side-by-side
+- Emphasizes chronological order
+- Better for news feeds or updates
+- Optimized for scanning
+
+```tsx
+<BlogSection layout="list" posts={posts} />
+```
+
+### Featured Layout
+Best for highlighting important content:
+- First post gets prominent featured treatment
+- Remaining posts in standard grid
+- Perfect for mixing evergreen and timely content
+- Great for landing pages
+
+```tsx
+<BlogSection layout="featured" posts={posts} />
+```
+
+## Customization Options
+
+### Content Display
+
+Control what information is shown for each post:
+
+```tsx
+<BlogSection
+  posts={posts}
+  showExcerpts={true}
+  showCategories={true}
+  showAuthors={false}
+  showReadTime={true}
+/>
+```
+
+### Column Configuration
+
+Adjust grid layout for different content densities:
+
+```tsx
+<!-- Dense layout for many posts -->
+<BlogSection layout="grid" columns={4} posts={posts} />
+
+<!-- Spacious layout for detailed posts -->
+<BlogSection layout="grid" columns={2} posts={posts} />
+```
+
+## Custom Actions
+
+Use the slot to add custom content like CTAs or navigation:
+
+```tsx
+<BlogSection title="Latest Articles" posts={posts}>
+  <a href="/blog" class="blog-cta">
+    View All Articles →
+  </a>
+</BlogSection>
+```
+
+## Responsive Behavior
+
+- **Desktop**: Full grid/list layout with all metadata
+- **Tablet**: Adjusted column counts and spacing
+- **Mobile**: Single column layout with optimized spacing
+- **Images**: Responsive sizing with proper aspect ratios
+
+## SEO and Accessibility
+
+- **Semantic HTML**: Proper article and heading structure
+- **Schema Markup**: Rich snippets for better search results
+- **Alt Text**: Image descriptions for screen readers
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Focus Management**: Clear focus indicators
+
+## Date Formatting
+
+Dates are automatically formatted using the browser's locale:
+
+```tsx
+// Input: "2024-01-15"
+// Output: "January 15, 2024"
+```
+
+## Best Practices
+
+1. **Consistent Excerpts**: Keep excerpts to 2-3 sentences
+2. **Quality Images**: Use high-resolution, relevant images
+3. **Clear Categories**: Use consistent category naming
+4. **Read Time Accuracy**: Provide realistic reading time estimates
+5. **Mobile Testing**: Always test on mobile devices
+
+## Common Use Cases
+
+- **Documentation Blogs**: Technical articles and tutorials
+- **Company News**: Updates, announcements, and releases
+- **Resource Centers**: Guides, best practices, and insights
+- **Community Content**: User stories and case studies
+- **Product Updates**: Feature releases and improvements
+
+## Integration Examples
+
+### With Static Site Generators
+
+```tsx
+---
+// In your Astro page
+import { getCollection } from 'astro:content';
+import BlogSection from '@/components/block/BlogSection.astro';
+
+const posts = await getCollection('blog');
+const formattedPosts = posts.map(post => ({
+  title: post.data.title,
+  excerpt: post.data.excerpt,
+  date: post.data.date,
+  author: post.data.author,
+  category: post.data.category,
+  href: `/blog/${post.slug}`,
+  readTime: post.data.readTime
+}));
+---
+
+<BlogSection posts={formattedPosts} />
+```
+
+### With CMS Integration
+
+```tsx
+// Fetch from headless CMS
+const posts = await fetch('/api/posts').then(res => res.json());
+
+<BlogSection posts={posts} layout="featured" />
+```
+
+</DocsLayout>
