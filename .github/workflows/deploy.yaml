@@ -118,6 +118,10 @@ jobs:
           # Check if gh-pages branch exists and get existing branch content
           if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
             echo "Fetching existing gh-pages content..."
+            
+            # Stash any local changes to avoid conflicts
+            git stash push -m "Temporary stash before gh-pages checkout"
+            
             git fetch origin gh-pages
             git checkout gh-pages
             
@@ -128,6 +132,9 @@ jobs:
             
             # Go back to source branch
             git checkout ${{ steps.branch-info.outputs.branch }}
+            
+            # Restore stashed changes if any
+            git stash pop 2>/dev/null || echo "No stash to restore"
           fi
           
           # Prepare the gh-pages content
@@ -229,6 +236,10 @@ jobs:
           # Check if gh-pages branch exists and get existing content
           if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
             echo "Fetching existing gh-pages content..."
+            
+            # Stash any local changes to avoid conflicts
+            git stash push -m "Temporary stash before gh-pages checkout"
+            
             git fetch origin gh-pages
             git checkout gh-pages
             
@@ -237,6 +248,9 @@ jobs:
             
             # Go back to source branch
             git checkout ${{ steps.branch-info.outputs.branch }}
+            
+            # Restore stashed changes if any
+            git stash pop 2>/dev/null || echo "No stash to restore"
           fi
           
           # Prepare the gh-pages content
