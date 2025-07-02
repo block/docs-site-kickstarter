@@ -217,6 +217,11 @@ jobs:
           # Deploy to gh-pages
           git init
           git add .
+          
+          # Add .nojekyll file to disable Jekyll processing
+          touch .nojekyll
+          git add .nojekyll
+          
           git commit -m "Deploy main branch to GitHub Pages"
           git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:gh-pages
           
@@ -385,6 +390,11 @@ jobs:
           # Initialize git and push to gh-pages
           git init
           git add .
+          
+          # Add .nojekyll file to disable Jekyll processing
+          touch .nojekyll
+          git add .nojekyll
+          
           git commit -m "Deploy branch preview: ${{ steps.branch-info.outputs.branch }}"
           git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:gh-pages
           
