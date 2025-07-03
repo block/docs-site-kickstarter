@@ -15,16 +15,22 @@ export const components = MDXComponents
 
 A checklist with green checkmarks for feature lists or benefits.
 
+## Example
+
+<Checklist items={
+    ["Modern Stack with Astro & React", 
+    "Pre-configured Tailwind CSS", 
+    "Built-in Dark Mode Support"]} />
+
 ## Usage
 
 ```tsx
 import Checklist from "@/components/block/Checklist.astro"
 
-<Checklist items={["Modern Stack with Astro & React", "Pre-configured Tailwind CSS", "Built-in Dark Mode Support"]} />
+<Checklist items={
+    ["Modern Stack with Astro & React", 
+    "Pre-configured Tailwind CSS", 
+    "Built-in Dark Mode Support"]} />
 ```
-
-## Example
-
-<Checklist items={["Modern Stack with Astro & React", "Pre-configured Tailwind CSS", "Built-in Dark Mode Support"]} />
 
 </DocsLayout> 
