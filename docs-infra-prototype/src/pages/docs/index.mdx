@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import MDXComponents from "@/components/mdx/MDXComponents"
 
+{/*Magic export equired on index.mdx because we will not be passing this to Content Collections for rendering */}
 export const components = MDXComponents
 
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
