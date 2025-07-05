@@ -25,4 +25,11 @@ export const collections = {
       'social-x': z.string().optional(),
       avatar: z.string(),
     })}),
+  // Documentation
+  docs: defineCollection({
+    loader: glob({ pattern: "**/*.mdx", base: "./src/content/docs" }),
+    schema: z.object({
+      title: z.string(),
+      description: z.string(),
+    })}),
 };

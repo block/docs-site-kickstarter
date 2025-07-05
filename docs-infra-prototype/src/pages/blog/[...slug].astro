@@ -4,6 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection, render} from 'astro:content';
 import { formatDate } from '../../components/blog/blogUtils';
 import AuthorCard from '../../components/blog/AuthorCard.astro';
+import MDXComponents from '@/components/mdx/MDXComponents';
 
 /**
  * Required function for dynamic routes; deteremines the slug
@@ -43,7 +44,7 @@ const author = authors.find(author => author.id === postAuthorId);
 
 ---
 
-<BaseLayout title={post.data.title} description={post.data.snippet}>
+<BaseLayout title={post.data.title} description={post.data.excerpt}>
 	<div class="text-sm not-content block-markdown-content">
 	  <a href={import.meta.env.BASE_URL + "/"}>
 		<span>Home</span>
@@ -53,7 +54,7 @@ const author = authors.find(author => author.id === postAuthorId);
       </a>&nbsp;&gt;&nbsp;{post.data.title}
 	</div>
 	<AuthorCard author={author} date={date}/>
-	<Content />
+	<Content components={MDXComponents} />
 </BaseLayout>
 
 <style>
