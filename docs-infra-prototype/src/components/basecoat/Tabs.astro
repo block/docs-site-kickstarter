@@ -1,0 +1,53 @@
+---
+export interface Props {
+  defaultValue?: string;
+  className?: string;
+  id?: string;
+}
+
+const { defaultValue, className = '', id = `tabs-${Math.random().toString(36).substr(2, 9)}` } = Astro.props;
+---
+
+<div class={`tabs ${className}`} id={id} data-default-value={defaultValue}>
+  <slot />
+</div>
+
+<script>
+  import 'basecoat-css/tabs';
+  
+  // Initialize tabs when the component loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabsContainers = document.querySelectorAll('.tabs[data-default-value]');
+    
+    tabsContainers.forEach(container => {
+      const defaultValue = container.getAttribute('data-default-value');
+      if (defaultValue) {
+        // Set the default active tab
+        const defaultTrigger = container.querySelector(`[data-value="${defaultValue}"]`);
+        const defaultContent = container.querySelector(`[data-content-value="${defaultValue}"]`);
+        
+        if (defaultTrigger && defaultContent) {
+          // Reset all tabs
+          const allTriggers = container.querySelectorAll('[role="tab"]');
+          const allContents = container.querySelectorAll('[role="tabpanel"]');
+          
+          allTriggers.forEach(trigger => {
+            trigger.setAttribute('aria-selected', 'false');
+            trigger.setAttribute('tabindex', '-1');
+          });
+          
+          allContents.forEach(content => {
+            content.setAttribute('aria-selected', 'false');
+            content.setAttribute('hidden', '');
+          });
+          
+          // Activate default tab
+          defaultTrigger.setAttribute('aria-selected', 'true');
+          defaultTrigger.setAttribute('tabindex', '0');
+          defaultContent.setAttribute('aria-selected', 'true');
+          defaultContent.removeAttribute('hidden');
+        }
+      }
+    });
+  });
+</script>
