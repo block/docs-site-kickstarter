@@ -1,0 +1,207 @@
+---
+title: "Tabs"
+description: "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+---
+
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/basecoat"
+
+# Tabs
+
+A set of layered sections of content—known as tab panels—that are displayed one at a time. Built with accessibility in mind and powered by basecoat-css.
+
+## Usage
+
+```astro
+---
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/basecoat"
+---
+
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Make changes to your account here.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password here.
+  </TabsContent>
+</Tabs>
+```
+
+## Examples
+
+### Basic Tabs
+
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    <div className="card">
+      <header>
+        <h3>Account</h3>
+        <p>Make changes to your account here. Click save when you're done.</p>
+      </header>
+      <section>
+        <form className="form grid gap-6">
+          <div className="grid gap-3">
+            <label htmlFor="demo-tabs-account-name">Name</label>
+            <input type="text" id="demo-tabs-account-name" defaultValue="Pedro Duarte" />
+          </div>
+          <div className="grid gap-3">
+            <label htmlFor="demo-tabs-account-username">Username</label>
+            <input type="text" id="demo-tabs-account-username" defaultValue="@peduarte" />
+          </div>
+        </form>
+      </section>
+      <footer>
+        <button type="button" className="btn">Save changes</button>
+      </footer>
+    </div>
+  </TabsContent>
+  <TabsContent value="password">
+    <div className="card">
+      <header>
+        <h3>Password</h3>
+        <p>Change your password here. After saving, you'll be logged out.</p>
+      </header>
+      <section>
+        <form className="form grid gap-6">
+          <div className="grid gap-3">
+            <label htmlFor="demo-tabs-password-current">Current password</label>
+            <input type="password" id="demo-tabs-password-current" />
+          </div>
+          <div className="grid gap-3">
+            <label htmlFor="demo-tabs-password-new">New password</label>
+            <input type="password" id="demo-tabs-password-new" />
+          </div>
+        </form>
+      </section>
+      <footer>
+        <button type="button" className="btn">Save Password</button>
+      </footer>
+    </div>
+  </TabsContent>
+</Tabs>
+
+### Multiple Tab Sets
+
+You can have multiple independent tab sets on the same page:
+
+<div className="grid gap-8">
+  <Tabs defaultValue="overview" className="w-[300px]">
+    <TabsList>
+      <TabsTrigger value="overview">Overview</TabsTrigger>
+      <TabsTrigger value="analytics">Analytics</TabsTrigger>
+      <TabsTrigger value="reports">Reports</TabsTrigger>
+    </TabsList>
+    <TabsContent value="overview">
+      <p>Overview content goes here.</p>
+    </TabsContent>
+    <TabsContent value="analytics">
+      <p>Analytics dashboard content.</p>
+    </TabsContent>
+    <TabsContent value="reports">
+      <p>Reports and data visualization.</p>
+    </TabsContent>
+  </Tabs>
+
+  <Tabs defaultValue="general" className="w-[300px]">
+    <TabsList>
+      <TabsTrigger value="general">General</TabsTrigger>
+      <TabsTrigger value="security">Security</TabsTrigger>
+    </TabsList>
+    <TabsContent value="general">
+      <p>General settings content.</p>
+    </TabsContent>
+    <TabsContent value="security">
+      <p>Security settings content.</p>
+    </TabsContent>
+  </Tabs>
+</div>
+
+```astro
+<Tabs defaultValue="overview" className="w-[300px]">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports">Reports</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">
+    Overview content goes here.
+  </TabsContent>
+  <TabsContent value="analytics">
+    Analytics dashboard content.
+  </TabsContent>
+  <TabsContent value="reports">
+    Reports and data visualization.
+  </TabsContent>
+</Tabs>
+```
+
+## Component API
+
+### Tabs
+
+The root container component that manages the tab state.
+
+| Prop         | Type     | Default | Description                                    |
+|--------------|----------|---------|------------------------------------------------|
+| defaultValue | `string` | -       | The value of the tab that should be active by default |
+| className    | `string` | `""`    | Additional CSS classes to apply                |
+| id           | `string` | auto    | Unique identifier (auto-generated if not provided) |
+
+### TabsList
+
+A container for the tab triggers (buttons).
+
+| Prop      | Type     | Default | Description                     |
+|-----------|----------|---------|---------------------------------|
+| className | `string` | `""`    | Additional CSS classes to apply |
+
+### TabsTrigger
+
+The clickable tab button that activates a tab panel.
+
+| Prop      | Type      | Default | Description                                    |
+|-----------|-----------|---------|------------------------------------------------|
+| value     | `string`  | -       | **Required.** The value that identifies this tab |
+| className | `string`  | `""`    | Additional CSS classes to apply                |
+| disabled  | `boolean` | `false` | Whether the tab trigger is disabled           |
+
+### TabsContent
+
+The tab panel content that is displayed when its corresponding trigger is active.
+
+| Prop      | Type     | Default | Description                                      |
+|-----------|----------|---------|--------------------------------------------------|
+| value     | `string` | -       | **Required.** The value that identifies this panel |
+| className | `string` | `""`    | Additional CSS classes to apply                  |
+
+## Accessibility
+
+The Tabs component is built with accessibility in mind:
+
+- **Keyboard Navigation**: Use arrow keys to navigate between tabs, Enter/Space to activate
+- **ARIA Attributes**: Proper `role`, `aria-selected`, `aria-controls`, and `aria-labelledby` attributes
+- **Focus Management**: Proper focus handling and tab order
+- **Screen Reader Support**: Announces tab changes and content
+
+## Styling
+
+The component uses basecoat-css for styling. You can customize the appearance by:
+
+1. **CSS Classes**: Add custom classes via the `className` prop
+2. **CSS Variables**: Override basecoat-css custom properties
+3. **Global Styles**: Target the component classes in your global CSS
+
+```css
+/* Example custom styling */
+.tabs {
+  --tab-border-color: #e5e7eb;
+  --tab-active-color: #3b82f6;
+}
+```

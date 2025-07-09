@@ -1,0 +1,25 @@
+---
+export interface Props {
+  value: string;
+  className?: string;
+}
+
+const { value, className = '' } = Astro.props;
+
+// Generate unique IDs based on the value
+const panelId = `panel-${value}`;
+const tabId = `tab-${value}`;
+---
+
+<div 
+  role="tabpanel" 
+  id={panelId}
+  data-content-value={value}
+  aria-labelledby={tabId}
+  tabindex="-1"
+  aria-selected="false"
+  hidden
+  class={className}
+>
+  <slot />
+</div>
