@@ -1,0 +1,301 @@
+---
+title: "HeadProvider"
+description: "Dynamically inject custom HTML elements into the document head from any component."
+---
+
+import HeadProvider from "@/components/HeadProvider.astro"
+import HeadLine from "@/components/HeadLine.astro"
+
+# HeadProvider
+
+The HeadProvider system allows you to dynamically add custom HTML elements to the document `<head>` from any component or page. This is useful for adding custom meta tags, stylesheets, scripts, or other head elements that need to be included on specific pages.
+
+## Components
+
+The HeadProvider system consists of two components:
+
+- **`HeadProvider`** - Container component that processes HeadLine children
+- **`HeadLine`** - Individual head element wrapper
+
+## Basic Usage
+
+```astro
+---
+import HeadProvider from "@/components/HeadProvider.astro"
+import HeadLine from "@/components/HeadLine.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+---
+
+<HeadProvider>
+  <HeadLine>
+    <meta name="custom-tag" content="example-value">
+  </HeadLine>
+  <HeadLine>
+    <link rel="stylesheet" href="/custom-styles.css">
+  </HeadLine>
+</HeadProvider>
+
+<BaseLayout title="My Page">
+  <h1>Page Content</h1>
+</BaseLayout>
+```
+
+## HeadLine Props
+
+### `id` (optional)
+- **Type**: `string`
+- **Description**: Unique identifier to prevent duplicate head elements
+
+```astro
+<HeadLine id="google-analytics">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+</HeadLine>
+```
+
+## Common Use Cases
+
+### Custom Meta Tags
+
+```astro
+<HeadProvider>
+  <HeadLine>
+    <meta name="author" content="John Doe">
+  </HeadLine>
+  <HeadLine>
+    <meta name="keywords" content="astro, documentation, headprovider">
+  </HeadLine>
+  <HeadLine>
+    <meta property="article:published_time" content="2024-01-15T10:00:00Z">
+  </HeadLine>
+</HeadProvider>
+```
+
+### External Stylesheets
+
+```astro
+<HeadProvider>
+  <HeadLine id="google-fonts-preconnect">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  </HeadLine>
+  <HeadLine id="custom-theme">
+    <link rel="stylesheet" href="/themes/dark.css">
+  </HeadLine>
+</HeadProvider>
+```
+
+### Analytics and Tracking
+
+```astro
+<HeadProvider>
+  <HeadLine id="gtag-script">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  </HeadLine>
+  <HeadLine id="gtag-config">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+  </HeadLine>
+</HeadProvider>
+```
+
+### Inline Styles
+
+```astro
+<HeadProvider>
+  <HeadLine>
+    <style>
+      .page-specific-class {
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+    </style>
+  </HeadLine>
+</HeadProvider>
+```
+
+## Component-Based Usage
+
+Create reusable components that inject their own head elements:
+
+```astro
+---
+// src/components/AnalyticsSetup.astro
+import HeadProvider from "@/components/HeadProvider.astro"
+import HeadLine from "@/components/HeadLine.astro"
+---
+
+<HeadProvider>
+  <HeadLine id="gtag-script">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  </HeadLine>
+  <HeadLine id="gtag-config">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+  </HeadLine>
+</HeadProvider>
+```
+
+Then use it in your pages:
+
+```astro
+---
+import AnalyticsSetup from "@/components/AnalyticsSetup.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+---
+
+<AnalyticsSetup />
+
+<BaseLayout title="My Page">
+  <h1>Content</h1>
+</BaseLayout>
+```
+
+## Multiple HeadProviders
+
+You can use multiple HeadProvider components on the same page - they all contribute to the same head collection:
+
+```astro
+---
+import HeadProvider from "@/components/HeadProvider.astro"
+import HeadLine from "@/components/HeadLine.astro"
+import AnalyticsSetup from "@/components/AnalyticsSetup.astro"
+import BaseLayout from "@/layouts/BaseLayout.astro"
+---
+
+<!-- Component with its own head elements -->
+<AnalyticsSetup />
+
+<!-- Page-specific head elements -->
+<HeadProvider>
+  <HeadLine>
+    <meta name="page-type" content="blog-post">
+  </HeadLine>
+  <HeadLine>
+    <link rel="canonical" href="https://example.com/blog/my-post">
+  </HeadLine>
+</HeadProvider>
+
+<BaseLayout title="Blog Post">
+  <article>
+    <h1>My Blog Post</h1>
+  </article>
+</BaseLayout>
+```
+
+## Exported Functions
+
+The HeadProvider module exports several utility functions for advanced usage:
+
+### `getAllHeadLines()`
+Returns all accumulated head lines. Used internally by BaseLayout.
+
+```javascript
+import { getAllHeadLines } from "@/components/HeadProvider.astro"
+
+const headLines = getAllHeadLines()
+```
+
+### `markHeadAsWritten()`
+Marks the head as written to prevent further additions. Called automatically by BaseLayout.
+
+```javascript
+import { markHeadAsWritten } from "@/components/HeadProvider.astro"
+
+markHeadAsWritten()
+```
+
+### `isHeadWritten()`
+Checks if the head has been written.
+
+```javascript
+import { isHeadWritten } from "@/components/HeadProvider.astro"
+
+if (isHeadWritten()) {
+  console.log("Head has been rendered")
+}
+```
+
+### `clearHeadLines()`
+Clears all head lines and resets state. Useful for testing or SSR scenarios.
+
+```javascript
+import { clearHeadLines } from "@/components/HeadProvider.astro"
+
+clearHeadLines()
+```
+
+### `addHeadLine(html, id?)`
+Programmatically add a head line. Used internally by HeadLine component.
+
+```javascript
+import { addHeadLine } from "@/components/HeadProvider.astro"
+
+addHeadLine('<meta name="custom" content="value">', 'unique-id')
+```
+
+## Error Handling
+
+HeadProvider includes built-in error handling to prevent common mistakes:
+
+### Timing Error
+If you try to add HeadLines after BaseLayout has rendered the head, you'll get a clear error:
+
+```
+❌ HeadLine Error: Cannot add head lines after the <head> has been rendered by BaseLayout!
+
+The HeadLine with content "<meta name="too-late" content="error">..." 
+was called after BaseLayout already processed and rendered the <head> section.
+
+🔧 Fix: Make sure all HeadProvider and HeadLine components are called BEFORE BaseLayout in your component tree.
+```
+
+### Correct Order
+Always use HeadProvider **before** BaseLayout:
+
+```astro
+<!-- ✅ Correct -->
+<HeadProvider>
+  <HeadLine>...</HeadLine>
+</HeadProvider>
+<BaseLayout>...</BaseLayout>
+
+<!-- ❌ Incorrect -->
+<BaseLayout>
+  <HeadProvider>
+    <HeadLine>...</HeadLine>
+  </HeadProvider>
+</BaseLayout>
+```
+
+## Duplicate Prevention
+
+Use the `id` prop to prevent duplicate head elements:
+
+```astro
+<HeadProvider>
+  <HeadLine id="jquery">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </HeadLine>
+</HeadProvider>
+
+<!-- This won't be added again due to the same id -->
+<HeadProvider>
+  <HeadLine id="jquery">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </HeadLine>
+</HeadProvider>
+```
+
+## Integration with BaseLayout
+
+The HeadProvider system is automatically integrated with BaseLayout. No additional setup is required - just use HeadProvider components before BaseLayout and the head elements will be automatically injected into the document head.
+
+The injection happens after the standard HeadSEO component, so your custom head elements will appear after the default meta tags, title, and SEO elements.

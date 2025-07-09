@@ -1,0 +1,17 @@
+---
+import { addHeadLine } from "./HeadProvider.astro";
+
+interface Props {
+  id?: string; // Optional unique identifier to prevent duplicates
+}
+
+const { id } = Astro.props;
+
+// Get the slot content as HTML
+const slotContent = await Astro.slots.render('default');
+
+// Add this head line to the global collection
+addHeadLine(slotContent.trim(), id);
+---
+
+<!-- This component doesn't render anything visible, it just registers the head line -->

@@ -1,0 +1,74 @@
+---
+// Use globalThis for reliable cross-module state in Astro
+declare global {
+  var __astroHeadLines: (string | { html: string; id: string })[];
+  var __astroHeadWritten: boolean;
+}
+
+// Initialize global state
+if (typeof globalThis.__astroHeadLines === 'undefined') {
+  globalThis.__astroHeadLines = [];
+}
+if (typeof globalThis.__astroHeadWritten === 'undefined') {
+  globalThis.__astroHeadWritten = false;
+}
+
+// Export the public API functions
+export function getAllHeadLines(): (string | { html: string; id: string })[] {
+  // Ensure we always return an array
+  return globalThis.__astroHeadLines || [];
+}
+
+export function markHeadAsWritten(): void {
+  globalThis.__astroHeadWritten = true;
+}
+
+export function isHeadWritten(): boolean {
+  return globalThis.__astroHeadWritten;
+}
+
+export function clearHeadLines(): void {
+  globalThis.__astroHeadLines = [];
+  globalThis.__astroHeadWritten = false;
+}
+
+export function addHeadLine(html: string, id?: string): void {
+  // Ensure global arrays are initialized
+  if (typeof globalThis.__astroHeadLines === 'undefined') {
+    globalThis.__astroHeadLines = [];
+  }
+  if (typeof globalThis.__astroHeadWritten === 'undefined') {
+    globalThis.__astroHeadWritten = false;
+  }
+
+  if (globalThis.__astroHeadWritten) {
+    throw new Error(
+      `❌ HeadLine Error: Cannot add head lines after the <head> has been rendered by BaseLayout!\n\n` +
+      `The HeadLine with content "${html.substring(0, 50)}${html.length > 50 ? '...' : ''}" ` +
+      `was called after BaseLayout already processed and rendered the <head> section.\n\n` +
+      `🔧 Fix: Make sure all HeadProvider and HeadLine components are called BEFORE BaseLayout in your component tree.\n\n` +
+      `Example correct order:\n` +
+      `<HeadProvider>\n` +
+      `  <HeadLine>your content</HeadLine>\n` +
+      `</HeadProvider>\n` +
+      `<BaseLayout>...</BaseLayout>`
+    );
+  }
+
+  // Check for duplicates if id is provided
+  if (id) {
+    const exists = globalThis.__astroHeadLines.some((line: any) => 
+      typeof line === 'object' ? line.id === id : false
+    );
+    if (!exists) {
+      globalThis.__astroHeadLines.push({ html, id });
+    }
+  } else {
+    // If no id, just add the HTML string
+    globalThis.__astroHeadLines.push(html);
+  }
+}
+---
+
+<!-- Process the slot content to extract HeadLine components -->
+<slot />

@@ -2,6 +2,7 @@
 import HeadSEO from "@/components/HeadSEO.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
+import { getAllHeadLines, markHeadAsWritten } from "@/components/HeadProvider.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -11,11 +12,24 @@ interface Props {
 }
 
 const { title, description, ogImage } = Astro.props;
+
+// Get all accumulated head lines (with fallback to empty array)
+const headLines = getAllHeadLines() || [];
+
+// Mark that the head is about to be written
+markHeadAsWritten();
 ---
 
 <html lang="en">
   <head>
     <HeadSEO title={title} description={description} ogImage={ogImage} />
+    {/* For all HeadLines added to the HeadProvider by components and pages before now, add these to the HTML head */}
+    {
+      headLines.map((line) => {
+      // Handle both string and object formats (for backward compatibility)
+      const html = typeof line === 'string' ? line : line.html;
+      return <Fragment set:html={html} />;
+    })}
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
     <div class="relative flex min-h-screen flex-col">
