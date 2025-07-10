@@ -1,4 +1,7 @@
 ---
+import Accordion from './Accordion.astro';
+import AccordionContent from './AccordionContent.astro';
+
 interface FAQItem {
   question: string;
   answer: string;
@@ -10,9 +13,7 @@ interface Props {
   tagline?: string;
   description?: string;
   faqs: FAQItem[];
-  layout?: 'single' | 'two-column';
   variant?: 'default' | 'bordered' | 'minimal';
-  allowMultiple?: boolean;
   className?: string;
 }
 
@@ -21,24 +22,14 @@ const {
   tagline = "FAQ",
   description = "We've compiled the most important information to help you get the most out of your experience. Can't find what you're looking for? Contact us.",
   faqs = [],
-  layout = 'single',
   variant = 'default',
-  allowMultiple = false,
   className = '',
 } = Astro.props;
 
 const sectionClasses = [
   'faq-section',
-  `layout-${layout}`,
-  `variant-${variant}`,
   className
 ].filter(Boolean).join(' ');
-
-// Generate unique IDs for FAQ items
-const faqsWithIds = faqs.map((faq, index) => ({
-  ...faq,
-  id: faq.id || `faq-${index}`
-}));
 ---
 
 <section class={sectionClasses}>
@@ -65,68 +56,19 @@ const faqsWithIds = faqs.map((faq, index) => ({
     </div>
 
     <!-- FAQ Items -->
-    {faqsWithIds.length > 0 && (
-      <div class="faq-container">
-        {layout === 'two-column' && (
-          <div class="faq-columns">
-            <div class="faq-column">
-              {faqsWithIds.filter((_, index) => index % 2 === 0).map((faq) => (
-                <div class="faq-item" data-faq-id={faq.id}>
-                  <button class="faq-question" aria-expanded="false" aria-controls={`answer-${faq.id}`}>
-                    <span class="question-text">{faq.question}</span>
-                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div class="faq-answer" id={`answer-${faq.id}`}>
-                    <div class="answer-content">
-                      <p>{faq.answer}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div class="faq-column">
-              {faqsWithIds.filter((_, index) => index % 2 === 1).map((faq) => (
-                <div class="faq-item" data-faq-id={faq.id}>
-                  <button class="faq-question" aria-expanded="false" aria-controls={`answer-${faq.id}`}>
-                    <span class="question-text">{faq.question}</span>
-                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div class="faq-answer" id={`answer-${faq.id}`}>
-                    <div class="answer-content">
-                      <p>{faq.answer}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-        
-        {layout === 'single' && (
-          <div class="faq-list">
-            {faqsWithIds.map((faq) => (
-              <div class="faq-item" data-faq-id={faq.id}>
-                <button class="faq-question" aria-expanded="false" aria-controls={`answer-${faq.id}`}>
-                  <span class="question-text">{faq.question}</span>
-                  <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div class="faq-answer" id={`answer-${faq.id}`}>
-                  <div class="answer-content">
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    )}
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <Accordion 
+          label={faq.question}
+          variant={variant}
+          id={faq.id}
+        >
+          <AccordionContent>
+            <p>{faq.answer}</p>
+          </AccordionContent>
+        </Accordion>
+      ))}
+    </div>
     
     <!-- Custom slot for additional content -->
     <div class="faq-extra">
@@ -135,59 +77,12 @@ const faqsWithIds = faqs.map((faq, index) => ({
   </div>
 </section>
 
-<script>
-  // FAQ Accordion functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    const allowMultiple = document.querySelector('.faq-section')?.dataset.allowMultiple === 'true';
-    
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
-      
-      if (question && answer) {
-        question.addEventListener('click', () => {
-          const isExpanded = question.getAttribute('aria-expanded') === 'true';
-          
-          // Close other items if allowMultiple is false
-          if (!allowMultiple && !isExpanded) {
-            faqItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                const otherQuestion = otherItem.querySelector('.faq-question');
-                const otherAnswer = otherItem.querySelector('.faq-answer');
-                if (otherQuestion && otherAnswer) {
-                  otherQuestion.setAttribute('aria-expanded', 'false');
-                  otherAnswer.style.maxHeight = '0';
-                  otherItem.classList.remove('expanded');
-                }
-              }
-            });
-          }
-          
-          // Toggle current item
-          if (isExpanded) {
-            question.setAttribute('aria-expanded', 'false');
-            answer.style.maxHeight = '0';
-            item.classList.remove('expanded');
-          } else {
-            question.setAttribute('aria-expanded', 'true');
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            item.classList.add('expanded');
-          }
-        });
-      }
-    });
-  });
-</script>
+
 
 <style>
   .faq-section {
     background: hsl(var(--background));
     color: hsl(var(--foreground));
-  }
-  
-  .faq-section[data-allow-multiple="true"] {
-    --allow-multiple: true;
   }
   
   /* Header Styles */
@@ -201,6 +96,12 @@ const faqsWithIds = faqs.map((faq, index) => ({
     max-width: 768px;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  /* FAQ List */
+  .faq-list {
+    max-width: 768px;
+    margin: 0 auto 4rem;
   }
   
   .faq-tagline {
@@ -230,129 +131,6 @@ const faqsWithIds = faqs.map((faq, index) => ({
     margin: 0;
   }
   
-  /* FAQ Container */
-  .faq-container {
-    max-width: 768px;
-    margin: 0 auto;
-  }
-  
-  .layout-two-column .faq-container {
-    max-width: 1024px;
-  }
-  
-  .faq-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  
-  .faq-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  /* FAQ Item Styles */
-  .faq-item {
-    border-radius: 0.75rem;
-    overflow: hidden;
-    transition: all 0.2s ease;
-  }
-  
-  .variant-default .faq-item {
-    background: hsl(var(--card));
-    border: 1px solid hsl(var(--border));
-  }
-  
-  .variant-bordered .faq-item {
-    background: transparent;
-    border: 1px solid hsl(var(--border));
-  }
-  
-  .variant-minimal .faq-item {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid hsl(var(--border));
-    border-radius: 0;
-  }
-  
-  .faq-item:hover {
-    background: hsl(var(--muted) / 0.5);
-  }
-  
-  .variant-minimal .faq-item:hover {
-    background: transparent;
-  }
-  
-  /* FAQ Question */
-  .faq-question {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem;
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    color: hsl(var(--foreground));
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .variant-minimal .faq-question {
-    padding: 1rem 0;
-  }
-  
-  .faq-question:hover {
-    color: hsl(var(--primary));
-  }
-  
-  .question-text {
-    flex: 1;
-    line-height: 1.5;
-  }
-  
-  .faq-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-left: 1rem;
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-  }
-  
-  .faq-item.expanded .faq-icon {
-    transform: rotate(180deg);
-  }
-  
-  /* FAQ Answer */
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-  
-  .answer-content {
-    padding: 0 1.5rem 1.5rem;
-    color: hsl(var(--muted-foreground));
-    line-height: 1.6;
-  }
-  
-  .variant-minimal .answer-content {
-    padding: 0 0 1rem;
-  }
-  
-  .answer-content p {
-    margin: 0;
-  }
-  
   /* FAQ Extra */
   .faq-extra {
     margin-top: 4rem;
@@ -370,28 +148,6 @@ const faqsWithIds = faqs.map((faq, index) => ({
     
     .faq-description {
       font-size: 1rem;
-    }
-    
-    .faq-columns {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-    
-    .faq-question {
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-    
-    .variant-minimal .faq-question {
-      padding: 0.75rem 0;
-    }
-    
-    .answer-content {
-      padding: 0 1rem 1rem;
-    }
-    
-    .variant-minimal .answer-content {
-      padding: 0 0 0.75rem;
     }
   }
   

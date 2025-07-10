@@ -54,6 +54,7 @@ const author = authors.find(author => author.id === postAuthorId);
       </a>&nbsp;&gt;&nbsp;{post.data.title}
 	</div>
 	<AuthorCard author={author} date={date}/>
+	<h1>{post.data.title}</h1>
 	<Content components={MDXComponents} />
 </BaseLayout>
 

@@ -70,18 +70,17 @@ export const quickFaqs = [
   }
 ];
 
-# FAQ Section
 
-An interactive FAQ section component with accordion functionality, perfect for documentation sites, support pages, and product information. Features smooth animations, keyboard accessibility, and multiple layout options.
+An interactive FAQ section component with accordion functionality, perfect for documentation sites, support pages, and product information. Features smooth animations, keyboard accessibility, and clean individual accordion items.
 
 ## Features
 
-- **Interactive Accordion**: Smooth expand/collapse animations
-- **Multiple Layouts**: Single column and two-column options
+- **Interactive Accordion**: Smooth expand/collapse animations with individual accordion items
 - **Visual Variants**: Default, bordered, and minimal styles
 - **Keyboard Accessible**: Full keyboard navigation support
 - **Responsive Design**: Adapts to all screen sizes
-- **Customizable Behavior**: Allow single or multiple open items
+- **Flexible Content**: Each accordion can contain rich content through AccordionContent
+- **Independent Items**: Each FAQ creates its own accordion component
 
 ## Basic Usage
 
@@ -118,13 +117,13 @@ const faqs = [
   faqs={defaultFaqs}
 />
 
-### Two-Column Layout
+### Bordered Variant
 
 <FAQSection
   title="Technical Questions"
   tagline="Developer FAQ"
   description="Common technical questions and detailed answers for developers and technical users."
-  layout="two-column"
+  variant="bordered"
   faqs={technicalFaqs}
 />
 
@@ -152,9 +151,7 @@ const faqs = [
 | `tagline` | `string` | `'FAQ'` | Small tagline above the title |
 | `description` | `string` | Default description | Descriptive text below the title |
 | `faqs` | `FAQItem[]` | `[]` | Array of FAQ objects |
-| `layout` | `'single' \| 'two-column'` | `'single'` | Layout arrangement |
 | `variant` | `'default' \| 'bordered' \| 'minimal'` | `'default'` | Visual style variant |
-| `allowMultiple` | `boolean` | `false` | Allow multiple items to be open simultaneously |
 | `className` | `string` | `''` | Additional CSS classes |
 
 ## FAQItem Interface
@@ -165,28 +162,6 @@ interface FAQItem {
   answer: string;    // The answer text (required)
   id?: string;       // Optional unique identifier
 }
-```
-
-## Layout Options
-
-### Single Column Layout
-Best for most use cases with a clean, focused design:
-- All questions in one column
-- Easy to scan and read
-- Works well with any number of questions
-
-```tsx
-<FAQSection layout="single" faqs={faqs} />
-```
-
-### Two-Column Layout
-Great for organizing many questions or creating visual balance:
-- Questions distributed across two columns
-- Better use of horizontal space
-- Ideal for 6+ questions
-
-```tsx
-<FAQSection layout="two-column" faqs={faqs} />
 ```
 
 ## Visual Variants
@@ -212,21 +187,63 @@ Ultra-clean design with just bottom borders:
 <FAQSection variant="minimal" faqs={faqs} />
 ```
 
-## Behavior Options
+## Individual Accordion Behavior
 
-### Single Open Item (Default)
-Only one FAQ can be open at a time - opening another closes the previous:
+Each FAQ item creates its own independent accordion component with the following features:
 
-```tsx
-<FAQSection allowMultiple={false} faqs={faqs} />
-```
-
-### Multiple Open Items
-Users can open multiple FAQs simultaneously:
+- **Individual Control**: Each accordion operates independently
+- **Smooth Animations**: Built-in expand/collapse animations
+- **Keyboard Accessible**: Full keyboard navigation support
+- **Unique IDs**: Optional custom IDs for each FAQ item
 
 ```tsx
-<FAQSection allowMultiple={true} faqs={faqs} />
+const faqs = [
+  {
+    question: "How do I get started?",
+    answer: "Follow our quick start guide...",
+    id: "getting-started" // Optional custom ID
+  }
+];
+
+<FAQSection faqs={faqs} />
 ```
+
+## Underlying Accordion Components
+
+The FAQSection uses the updated Accordion architecture:
+
+- **Accordion Component**: Each FAQ creates an individual `<Accordion>` with a required `label` prop
+- **AccordionContent Component**: Each answer is wrapped in `<AccordionContent>` for proper styling
+- **Independent Operation**: Each accordion operates separately (no global state management)
+
+### Direct Accordion Usage
+
+You can also use the Accordion components directly for more control:
+
+```tsx
+import Accordion from "@/components/block/Accordion.astro"
+import AccordionContent from "@/components/block/AccordionContent.astro"
+
+<Accordion label="Custom Question" variant="bordered">
+  <AccordionContent>
+    <p>Your custom answer with <strong>rich formatting</strong>.</p>
+    <ul>
+      <li>Lists are supported</li>
+      <li>Links work too: <a href="/docs">Documentation</a></li>
+    </ul>
+  </AccordionContent>
+</Accordion>
+```
+
+### Accordion Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | Required | The accordion header text |
+| `variant` | `'default' \| 'bordered' \| 'minimal'` | `'default'` | Visual style variant |
+| `className` | `string` | `''` | Additional CSS classes |
+| `id` | `string` | Auto-generated | Unique identifier |
+| `defaultExpanded` | `boolean` | `false` | Whether to start expanded |
 
 ## Custom Content
 
@@ -253,18 +270,19 @@ Use the slot to add additional content like contact information or CTAs:
 
 ## Interactive Behavior
 
-The FAQ section includes built-in JavaScript for:
-- Smooth accordion animations
-- Keyboard event handling
-- Multiple/single open item management
-- Hover and focus states
+Each individual accordion includes built-in JavaScript for:
+- **Smooth Animations**: Expand/collapse transitions with proper height calculations
+- **Keyboard Navigation**: Full keyboard support with Tab and Enter keys
+- **Independent State**: Each accordion manages its own open/closed state
+- **Hover Effects**: Visual feedback on hover and focus states
+- **Accessibility**: Proper ARIA attributes and screen reader support
 
 ## Responsive Design
 
-- **Desktop**: Full layout with optimal spacing
-- **Tablet**: Adjusted spacing and typography
-- **Mobile**: Single column layout regardless of original layout setting
-- **Touch Friendly**: Optimized touch targets for mobile devices
+- **Desktop**: Full layout with optimal spacing and typography
+- **Tablet**: Adjusted spacing and font sizes for medium screens
+- **Mobile**: Optimized padding and touch-friendly interactions
+- **Touch Friendly**: Larger touch targets and proper spacing for mobile devices
 
 ## Styling Customization
 

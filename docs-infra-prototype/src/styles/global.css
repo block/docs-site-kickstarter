@@ -36,8 +36,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: Inter, Inter override, ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Cash Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Cash Sans Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -167,9 +168,143 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Typography - Block Content Styles */
+  h1 {
+    @apply font-sans text-5xl font-black leading-none;
+    @apply mt-8 mb-6 scroll-m-20 tracking-tight;
+  }
+
+  h2 {
+    @apply font-sans text-3xl font-semibold leading-relaxed;
+    @apply border-b pb-2 mt-8 mb-6 scroll-m-20 tracking-tight;
+  }
+
+  h3 {
+    @apply font-sans text-2xl font-semibold leading-8;
+    @apply mt-8 mb-4 scroll-m-20 tracking-tight;
+  }
+
+  h4 {
+    @apply font-sans text-xl font-semibold leading-7;
+    @apply mt-6 mb-4 scroll-m-20 tracking-tight;
+  }
+
+  h5 {
+    @apply font-sans text-lg font-medium leading-7;
+    @apply mt-6 mb-4 scroll-m-20 tracking-tight;
+  }
+
+  h6 {
+    @apply font-sans text-base font-semibold leading-6;
+    @apply mt-6 mb-4 scroll-m-20 tracking-tight;
+  }
+
+  p {
+    @apply font-sans text-base font-normal leading-6;
+    @apply [&:not(:first-child)]:mt-6;
+  }
+
+  blockquote {
+    @apply font-sans text-base font-normal leading-6 flex-1;
+    @apply mt-6 border-l-2 border-border pl-6 text-muted-foreground;
+  }
+
+  /* List styling */
+  ul {
+    @apply font-sans text-base font-normal leading-6;
+    @apply my-1 ml-6 list-disc [&>li]:mt-2;
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-size: var(--text-base-font-size, 16px);
+    font-style: normal;
+    font-weight: var(--font-weight-normal, 400);
+    line-height: var(--text-base-line-height, 24px); /* 150% */
+    display: flex;
+    width: 323px;
+    padding: 0px 0px var(--spacing-6, 24px) var(--spacing-6, 24px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2, 8px);
+  }
+
+  ol {
+    @apply font-sans text-base font-normal leading-6;
+    @apply my-1 ml-6 list-decimal [&>li]:mt-2;
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-size: var(--text-base-font-size, 16px);
+    font-style: normal;
+    font-weight: var(--font-weight-normal, 400);
+    line-height: var(--text-base-line-height, 24px); /* 150% */
+    display: flex;
+    width: 323px;
+    padding: 0px 0px var(--spacing-6, 24px) var(--spacing-6, 24px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2, 8px);
+  }
+
+  li {
+    @apply mt-2;
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    font-size: var(--text-base-font-size, 16px);
+    font-style: normal;
+    font-weight: var(--font-weight-normal, 400);
+    line-height: var(--text-base-line-height, 24px); /* 150% */
+  }
+
+  /* Other elements */
+  hr {
+    @apply my-4 md:my-8;
+  }
+
+  /* Table styling */
+  table {
+    @apply border-collapse border border-border;
+    @apply my-6;
+  }
+
+  th {
+    @apply font-sans text-base font-bold leading-6;
+    @apply border border-border py-2 px-4;
+    @apply whitespace-nowrap;
+  }
+
+  tr {
+    @apply border-border;
+  }
+
+  tr:nth-child(even) {
+    @apply bg-muted/50;
+  }
+
+  td {
+    @apply py-2 px-4;
+    @apply border border-border;
+  }
+
   /* Add styles for links in prose content */
   .prose a {
     @apply font-medium text-primary underline underline-offset-4 hover:no-underline;
+  }
+
+  /* Code block styling with proper dark mode color mapping */
+  pre {
+    font-family: "Cash Sans Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+    overflow-x: auto;
+  }
+
+  /* Remove border and rounded corners when code blocks are inside Tabs */
+  [data-radix-tabs-content] pre,
+  .tabs-content pre,
+  [role="tabpanel"] pre {
+    border: none;
+    border-radius: 0;
   }
 
   /* Enhanced code block styles with proper light/dark mode support */

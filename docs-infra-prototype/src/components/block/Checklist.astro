@@ -5,13 +5,13 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="space-y-4 text-muted-foreground">
+<ul class="pt-6">
   {items.map(item => (
-    <li class="flex items-center gap-3">
-      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <li class="flex gap-3 mt-0">
+      <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
       </svg>
-      {item}
+      <span>{item}</span>
     </li>
   ))}
 </ul> 

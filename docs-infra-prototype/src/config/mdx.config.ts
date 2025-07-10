@@ -21,6 +21,10 @@ export default defineConfig({
             markdown: {
               remarkPlugins: [remarkGfm],
               rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+              shikiConfig: {
+                theme: 'github-dark',
+                wrap: true
+              },
               extendDefaultPlugins: true
             }
           })
