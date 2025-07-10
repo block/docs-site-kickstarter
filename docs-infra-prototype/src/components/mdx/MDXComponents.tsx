@@ -94,7 +94,7 @@ const components = {
     const textContent = getTextContent(props.children);
 
     return (
-      <div className="relative group my-6">
+      <div className="relative group">
         <pre
           {...props}
         />
