@@ -1,4 +1,6 @@
 ---
+import { cn } from "@/lib/utils";
+
 export interface Props {
   value: string;
   className?: string;
@@ -19,7 +21,10 @@ const tabId = `tab-${value}`;
   tabindex="-1"
   aria-selected="false"
   hidden
-  class={className}
+  class={cn(
+    "bg-white dark:bg-gray-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 focus-visible:ring-offset-2",
+    className
+  )}
 >
   <slot />
 </div>
