@@ -440,7 +440,9 @@
 
   /* Inline code improvements with enhanced light/dark mode */
   :not(pre) > code {
-    @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium border;
+    @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono font-medium border;
+    /* Inherit font size from parent instead of using fixed text-sm */
+    font-size: 0.9em;
     /* Light mode */
     background-color: #f1f5f9;
     border-color: #e2e8f0;
