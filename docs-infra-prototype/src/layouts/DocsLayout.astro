@@ -28,6 +28,7 @@ const { title, description, headings } = Astro.props;
 
       <main class="docs-main min-w-0 py-6 px-8">
         <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-6">
+          <h1>{title}</h1>
           <slot />
         </div>
       </main>

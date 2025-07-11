@@ -10,7 +10,7 @@ export interface Props {
 const { defaultValue, className = '', id = `tabs-${Math.random().toString(36).substr(2, 9)}` } = Astro.props;
 ---
 
-<div class={cn("border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden mb-6", className)} id={id} data-default-value={defaultValue}>
+<div class={cn("border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden mb-6 mt-6", className)} id={id} data-default-value={defaultValue}>
   <slot />
 </div>
 
