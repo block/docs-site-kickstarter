@@ -7,10 +7,21 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1600px", // Increased from 1400px
+        "3xl": "1800px", // New breakpoint
       },
     },
     extend: {
+      screens: {
+        '3xl': '1800px', // New breakpoint for very wide screens
+        '4xl': '2000px', // Ultra-wide screens
+      },
+      maxWidth: {
+        '8xl': '88rem',   // 1408px
+        '9xl': '96rem',   // 1536px  
+        '10xl': '112rem', // 1792px
+        '11xl': '120rem', // 1920px
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -54,10 +65,9 @@ module.exports = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            maxWidth: 'none', // Remove max-width constraint
             a: {
               color: 'hsl(var(--primary))',
-              textDecoration: 'underline',
-              textUnderlineOffset: '0.2em',
               fontWeight: '500',
               '&:hover': {
                 color: 'hsl(var(--primary))',
@@ -68,6 +78,7 @@ module.exports = {
         },
         slate: {
           css: {
+            maxWidth: 'none', // Remove max-width constraint
             '--tw-prose-body': theme('colors.foreground'),
             '--tw-prose-headings': theme('colors.foreground'),
             '--tw-prose-lead': theme('colors.foreground'),
@@ -84,6 +95,16 @@ module.exports = {
             '--tw-prose-pre-bg': 'hsl(var(--muted))',
             '--tw-prose-th-borders': theme('colors.border'),
             '--tw-prose-td-borders': theme('colors.border'),
+          },
+        },
+        lg: {
+          css: {
+            maxWidth: 'none', // Remove max-width constraint for large prose
+          },
+        },
+        xl: {
+          css: {
+            maxWidth: 'none', // Remove max-width constraint for xl prose
           },
         },
       }),

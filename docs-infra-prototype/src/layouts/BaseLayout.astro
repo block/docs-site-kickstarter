@@ -1,7 +1,7 @@
 ---
 import HeadSEO from "@/components/HeadSEO.astro";
 import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header.astro";
+import HeaderEnhanced from "@/components/HeaderEnhanced.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -159,7 +159,7 @@ const baseUrl = import.meta.env.BASE_URL;
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
     <div class="relative flex min-h-screen flex-col">
-      <Header />
+      <HeaderEnhanced />
       <div class="flex-1">
         <slot />
       </div>
