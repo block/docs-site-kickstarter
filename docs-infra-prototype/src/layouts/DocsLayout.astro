@@ -8,9 +8,17 @@ interface Props {
   title: string;
   description?: string;
   headings?: MarkdownHeading[];
+  maxWidth?: 'default' | 'wide' | 'full';
 }
 
-const { title, description, headings } = Astro.props;
+const { title, description, headings, maxWidth = 'wide' } = Astro.props;
+
+// Width configurations
+const widthClasses = {
+  default: 'max-w-7xl', // 1280px
+  wide: 'max-w-[1800px]', // 1800px (new default)
+  full: 'max-w-none' // No max width
+};
 ---
 
 <BaseLayout title={title} description={description}>
@@ -19,15 +27,15 @@ const { title, description, headings } = Astro.props;
     <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
 
     <!-- Main Content -->
-    <div class="docs-layout relative mx-auto min-h-[calc(100vh-64px)]">
+    <div class={`docs-layout relative mx-auto min-h-[calc(100vh-64px)] ${widthClasses[maxWidth]}`}>
       <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-4">
+        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
           <DocsSidebar currentPath={Astro.url.pathname} />
         </div>
       </nav>
 
-      <main class="docs-main min-w-0 py-6 px-8">
-        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-6">
+      <main class="docs-main min-w-0 py-8 px-10">
+        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
           <h1>{title}</h1>
           <slot />
         </div>
@@ -35,7 +43,7 @@ const { title, description, headings } = Astro.props;
 
       {headings && headings.length > 0 && (
         <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-          <div class="sticky top-16 h-fit py-6 px-4">
+          <div class="sticky top-16 h-fit py-6 px-6">
             <TableOfContents headings={headings} />
           </div>
         </aside>
@@ -49,47 +57,153 @@ const { title, description, headings } = Astro.props;
 </script>
 
 <style>
-  /* Keep the core layout styles in CSS */
+  /* Enhanced layout with better spacing and wider content */
   .docs-layout {
     display: grid;
-    grid-template-columns: 240px minmax(0, 2.5fr) 240px;
-    gap: 1rem;
-    max-width: 1600px;
+    grid-template-columns: 280px minmax(0, 2.5fr) 280px;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
   }
 
-  /* Hide scrollbar but keep functionality */
+  /* Wide layout (default) - Enhanced proportions */
+  .max-w-\[1800px\] .docs-layout {
+    grid-template-columns: 320px minmax(0, 3fr) 320px;
+  }
+
+  /* Full width layout */
+  .max-w-none .docs-layout {
+    grid-template-columns: 360px minmax(0, 4fr) 360px;
+  }
+
+  /* Enhanced scrollbar styling */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-thumb {
     background-color: #94a3b8;
-    border-radius: 3px;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
   }
 
   ::-webkit-scrollbar-track {
     background-color: transparent;
   }
 
-  @media (max-width: 1024px) {
+  /* Responsive breakpoints with improved spacing */
+  @media (max-width: 1400px) {
     .docs-layout {
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
     }
     .docs-toc {
       display: none;
+    }
+    .docs-main {
+      padding: 1.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .docs-layout {
+      grid-template-columns: 260px 1fr;
+    }
+    .docs-main {
+      padding: 1.5rem 1.5rem;
     }
   }
 
   @media (max-width: 768px) {
     .docs-layout {
       grid-template-columns: 1fr;
+      padding: 0 1rem;
     }
     .docs-sidebar {
       display: none;
     }
     .docs-main {
-      padding-left: 1rem;
-      padding-right: 1rem;
+      padding: 1rem;
+    }
+  }
+
+  /* Enhanced prose styling for wider content */
+  .prose {
+    max-width: none;
+  }
+
+  .prose h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .prose h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Better spacing for wide layouts */
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose p {
+      font-size: 1.125rem;
+    }
+  }
+
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Enhanced code block styling for wider content */
+  .prose pre {
+    font-size: 0.875rem;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  @media (min-width: 768px) {
+    .prose pre {
+      font-size: 1rem;
     }
   }
 
@@ -98,8 +212,12 @@ const { title, description, headings } = Astro.props;
     ::-webkit-scrollbar-thumb {
       background-color: #4b5563;
     }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #6b7280;
+    }
   }
 
+  /* Background grid pattern */
   .bg-grid-slate-200\/20 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
   }
