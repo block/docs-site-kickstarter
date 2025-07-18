@@ -1,0 +1,349 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ComponentsSidebar from '@/components/docs/ComponentsSidebar.astro';
+import TableOfContents from "@/components/docs/TableOfContents.astro";
+
+const title = "Components";
+const description = "Reusable UI components and layouts for building documentation sites.";
+
+// Mock headings for table of contents
+const headings = [
+  { depth: 2, slug: "component-categories", text: "Component Categories" },
+  { depth: 3, slug: "layout-components", text: "Layout Components" },
+  { depth: 3, slug: "block-components", text: "Block Components" },
+  { depth: 3, slug: "ui-components", text: "UI Components" },
+  { depth: 2, slug: "usage", text: "Usage" },
+  { depth: 2, slug: "getting-started", text: "Getting Started" }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="relative min-h-[calc(100vh-4rem)]">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+
+    <!-- Main Content -->
+    <div class="docs-layout relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px]">
+      <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
+          <ComponentsSidebar currentPath={Astro.url.pathname} />
+        </div>
+      </nav>
+
+      <main class="docs-main min-w-0 py-8 px-10">
+        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
+          <h1>{title}</h1>
+
+          <p>Welcome to the components section! Here you'll find all the reusable UI components and layouts available in the Docs Site Kickstarter.</p>
+
+          <h2 id="component-categories">Component Categories</h2>
+
+          <div class="grid gap-8 mt-8">
+            <div class="border rounded-lg p-6 bg-card/50">
+              <h3 id="layout-components" class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                Layout Components
+              </h3>
+              <p class="text-muted-foreground mb-4">Flexible layout components for organizing content and building page structures.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="/docs-site-kickstarter/components/bento-grid" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Bento Grid</div>
+                  <div class="text-sm text-muted-foreground">Flexible grid system for showcasing features</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/header-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Header Section</div>
+                  <div class="text-sm text-muted-foreground">Versatile header component for page introductions</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/feature-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Feature Section</div>
+                  <div class="text-sm text-muted-foreground">Highlight features and key information</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/footer" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Footer</div>
+                  <div class="text-sm text-muted-foreground">Comprehensive footer with navigation and social links</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/cta-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">CTA Section</div>
+                  <div class="text-sm text-muted-foreground">Call-to-action components for conversions</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/blog-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Blog Section</div>
+                  <div class="text-sm text-muted-foreground">Display articles and posts</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/faq-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">FAQ Section</div>
+                  <div class="text-sm text-muted-foreground">Interactive FAQ with accordion functionality</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/logo-section" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Logo Section</div>
+                  <div class="text-sm text-muted-foreground">Showcase company logos and build trust</div>
+                </a>
+              </div>
+            </div>
+
+            <div class="border rounded-lg p-6 bg-card/50">
+              <h3 id="block-components" class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                Block Components
+              </h3>
+              <p class="text-muted-foreground mb-4">Custom Block-specific components designed for documentation and marketing sites.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="/docs-site-kickstarter/components/accordion" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Accordion</div>
+                  <div class="text-sm text-muted-foreground">Collapsible content sections</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/tabs" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Tabs</div>
+                  <div class="text-sm text-muted-foreground">Tabbed content organization</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/hero" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Hero</div>
+                  <div class="text-sm text-muted-foreground">Hero sections for landing pages</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/feature-card" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">FeatureCard</div>
+                  <div class="text-sm text-muted-foreground">Feature highlight cards</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/checklist" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Checklist</div>
+                  <div class="text-sm text-muted-foreground">Interactive checklists</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/call-to-action" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">CallToAction</div>
+                  <div class="text-sm text-muted-foreground">Action-oriented components</div>
+                </a>
+              </div>
+            </div>
+
+            <div class="border rounded-lg p-6 bg-card/50">
+              <h3 id="ui-components" class="text-xl font-semibold mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                UI Components
+              </h3>
+              <p class="text-muted-foreground mb-4">shadcn/ui based components for consistent user interface elements.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="/docs-site-kickstarter/components/button" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Button</div>
+                  <div class="text-sm text-muted-foreground">Button component with variants</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/card-group" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Card Group</div>
+                  <div class="text-sm text-muted-foreground">Grouped card layouts</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/code-snippet" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Code Snippet</div>
+                  <div class="text-sm text-muted-foreground">Syntax highlighted code blocks</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/code-group" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Code Group</div>
+                  <div class="text-sm text-muted-foreground">Grouped code examples</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/divider" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Divider</div>
+                  <div class="text-sm text-muted-foreground">Section dividers</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/inline-code" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Inline Code</div>
+                  <div class="text-sm text-muted-foreground">Inline code formatting</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/sidebar" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Sidebar</div>
+                  <div class="text-sm text-muted-foreground">Navigation sidebar component</div>
+                </a>
+                <a href="/docs-site-kickstarter/components/table" class="block p-3 rounded-md hover:bg-accent/50 transition-colors">
+                  <div class="font-medium">Table</div>
+                  <div class="text-sm text-muted-foreground">Data tables with styling</div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <h2 id="usage">Usage</h2>
+
+          <p>All components are designed to be:</p>
+          <ul>
+            <li><strong>Reusable</strong> - Drop into any page or layout</li>
+            <li><strong>Customizable</strong> - Styled with Tailwind CSS</li>
+            <li><strong>Accessible</strong> - Built with accessibility in mind</li>
+            <li><strong>Responsive</strong> - Work on all screen sizes</li>
+          </ul>
+
+          <h2 id="getting-started">Getting Started</h2>
+
+          <p>Browse the components above to see examples, usage instructions, and customization options for each component.</p>
+        </div>
+      </main>
+
+      {headings && headings.length > 0 && (
+        <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+          <div class="sticky top-16 h-fit py-6 px-6">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Enhanced layout with better spacing and wider content */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 3fr) 320px;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  /* Enhanced scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  /* Responsive breakpoints with improved spacing */
+  @media (max-width: 1400px) {
+    .docs-layout {
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
+    }
+    .docs-toc {
+      display: none;
+    }
+    .docs-main {
+      padding: 1.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .docs-layout {
+      grid-template-columns: 260px 1fr;
+    }
+    .docs-main {
+      padding: 1.5rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .docs-layout {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
+    .docs-sidebar {
+      display: none;
+    }
+    .docs-main {
+      padding: 1rem;
+    }
+  }
+
+  /* Enhanced prose styling for wider content */
+  .prose {
+    max-width: none;
+  }
+
+  .prose h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .prose h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Better spacing for wide layouts */
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose p {
+      font-size: 1.125rem;
+    }
+  }
+
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Enhanced code block styling for wider content */
+  .prose pre {
+    font-size: 0.875rem;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  @media (min-width: 768px) {
+    .prose pre {
+      font-size: 1rem;
+    }
+  }
+
+  /* Dark mode scrollbar */
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+      background-color: #4b5563;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #6b7280;
+    }
+  }
+
+  /* Background grid pattern */
+  .bg-grid-slate-200\/20 {
+    background-color: transparent;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-grid-slate-200\/20 {
+      background-color: transparent;
+    }
+  }
+</style>

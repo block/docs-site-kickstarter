@@ -14,7 +14,7 @@ const navigationItems = [
   },
   {
     title: "Components", 
-    href: "/docs/layouts",
+    href: "/components",
     description: "Reusable UI components and layouts"
   },
   {
@@ -34,10 +34,13 @@ function isActive(href: string, currentPath: string): boolean {
   if (href === '/docs' && currentPath.startsWith('/docs-site-kickstarter/docs')) {
     return true;
   }
+  if (href === '/components' && currentPath.startsWith('/docs-site-kickstarter/components')) {
+    return true;
+  }
   if (href === '/blog' && currentPath.startsWith('/docs-site-kickstarter/blog')) {
     return true;
   }
-  if (href === '/docs/layouts' && currentPath.includes('/docs/layouts')) {
+  if (href === '/docs/examples' && currentPath.includes('/docs/examples')) {
     return true;
   }
   return false;
