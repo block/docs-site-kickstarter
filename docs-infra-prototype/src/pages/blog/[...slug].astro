@@ -5,6 +5,8 @@ import { getCollection, render} from 'astro:content';
 import { formatDate } from '../../components/blog/blogUtils';
 import AuthorCard from '../../components/blog/AuthorCard.astro';
 import MDXComponents from '@/components/mdx/MDXComponents';
+import { Breadcrumbs } from "astro-breadcrumbs";
+import "../../styles/breadcrumbs.css";
 
 /**
  * Required function for dynamic routes; deteremines the slug
@@ -45,27 +47,30 @@ const author = authors.find(author => author.id === postAuthorId);
 ---
 
 <BaseLayout title={post.data.title} description={post.data.excerpt}>
-	<div class="text-sm not-content block-markdown-content">
-	  <a href={import.meta.env.BASE_URL + "/"}>
-		<span>Home</span>
-      </a>&nbsp;&gt;
-	  <a href={import.meta.env.BASE_URL + "/blog/"}>
-		<span>Blogs</span>
-      </a>&nbsp;&gt;&nbsp;{post.data.title}
+	<!-- Replace the old breadcrumb navigation with the new component -->
+	<div class="mb-6">
+		<Breadcrumbs 
+			indexText="Home"
+			mainBemClass="c-breadcrumbs"
+			ariaLabel="Breadcrumb navigation"
+			linkTextFormat="capitalized"
+			excludeCurrentPage={false}
+		>
+			<span slot="separator"> > </span>
+			<span slot="index">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="breadcrumb-home-icon">
+					<path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+				</svg>
+				Home
+			</span>
+		</Breadcrumbs>
 	</div>
+	
 	<AuthorCard author={author} date={date}/>
 	<h1>{post.data.title}</h1>
 	<Content components={MDXComponents} />
 </BaseLayout>
 
 <style>
-	/* This is to align the home and blog home icons alongside the text */
-	a {
-	  display: inline-block;
-	}
-	a svg {
-	  display: inline-block;
-      vertical-align: bottom;
-	  width: 1.5em;
-}
+	/* Removed old breadcrumb styles as they're no longer needed */
 </style>
