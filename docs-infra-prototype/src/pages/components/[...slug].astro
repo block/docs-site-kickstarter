@@ -1,0 +1,270 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection, render} from 'astro:content';
+import MDXComponents from '@/components/mdx/MDXComponents';
+import ComponentsSidebar from '@/components/docs/ComponentsSidebar.astro';
+import TableOfContents from "@/components/docs/TableOfContents.astro";
+
+/**
+ * Magic required function for dynamic routes; deteremines the slug
+ */
+export async function getStaticPaths() {
+	const docs = await getCollection('docs');
+	
+	// Filter for component pages only
+	const componentPaths = [
+		'layouts/bento-grid',
+		'layouts/header-section', 
+		'layouts/feature-section',
+		'layouts/footer',
+		'layouts/cta-section',
+		'layouts/blog-section',
+		'layouts/faq-section',
+		'layouts/logo-section',
+		'block-components/accordion',
+		'block-components/tabs',
+		'block-components/hero',
+		'block-components/feature-card',
+		'block-components/checklist',
+		'block-components/call-to-action',
+		'components/button',
+		'components/card-group',
+		'components/code-snippet',
+		'components/code-group',
+		'components/divider',
+		'components/inline-code',
+		'components/sidebar',
+		'components/table'
+	];
+	
+	const componentDocs = docs.filter(doc => 
+		componentPaths.some(path => doc.id === path)
+	);
+	
+	return componentDocs.map((doc) => {
+		// Map the component paths to simpler slugs
+		let slug = doc.id;
+		
+		// Remove prefixes for cleaner URLs
+		if (slug.startsWith('layouts/')) {
+			slug = slug.replace('layouts/', '');
+		}
+		if (slug.startsWith('block-components/')) {
+			slug = slug.replace('block-components/', '');
+		}
+		if (slug.startsWith('components/')) {
+			slug = slug.replace('components/', '');
+		}
+		
+		return {
+			params: { 
+				slug: slug
+			},
+			props: doc,
+		};
+	});
+}
+
+/**
+ * Properties used on this page
+ */
+const doc = Astro.props;
+const title = doc.data.title;
+const description = doc.data.description;
+const { Content, headings, remarkPluginFrontmatter } = await render(doc);
+
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="relative min-h-[calc(100vh-4rem)]">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+
+    <!-- Main Content -->
+    <div class="docs-layout relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px]">
+      <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
+          <ComponentsSidebar currentPath={Astro.url.pathname} />
+        </div>
+      </nav>
+
+      <main class="docs-main min-w-0 py-8 px-10">
+        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
+          <h1>{title}</h1>
+          <Content components={MDXComponents} />
+        </div>
+      </main>
+
+      {headings && headings.length > 0 && (
+        <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+          <div class="sticky top-16 h-fit py-6 px-6">
+            <TableOfContents headings={headings} />
+          </div>
+        </aside>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Enhanced layout with better spacing and wider content */
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 320px minmax(0, 3fr) 320px;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  /* Enhanced scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #94a3b8;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #64748b;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  /* Responsive breakpoints with improved spacing */
+  @media (max-width: 1400px) {
+    .docs-layout {
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
+    }
+    .docs-toc {
+      display: none;
+    }
+    .docs-main {
+      padding: 1.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .docs-layout {
+      grid-template-columns: 260px 1fr;
+    }
+    .docs-main {
+      padding: 1.5rem 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .docs-layout {
+      grid-template-columns: 1fr;
+      padding: 0 1rem;
+    }
+    .docs-sidebar {
+      display: none;
+    }
+    .docs-main {
+      padding: 1rem;
+    }
+  }
+
+  /* Enhanced prose styling for wider content */
+  .prose {
+    max-width: none;
+  }
+
+  .prose h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 768px) {
+    .prose h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .prose h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  /* Better spacing for wide layouts */
+  .prose p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .prose p {
+      font-size: 1.125rem;
+    }
+  }
+
+  .prose ul, .prose ol {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Enhanced code block styling for wider content */
+  .prose pre {
+    font-size: 0.875rem;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  @media (min-width: 768px) {
+    .prose pre {
+      font-size: 1rem;
+    }
+  }
+
+  /* Dark mode scrollbar */
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+      background-color: #4b5563;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #6b7280;
+    }
+  }
+
+  /* Background grid pattern */
+  .bg-grid-slate-200\/20 {
+    background-color: transparent;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-grid-slate-200\/20 {
+      background-color: transparent;
+    }
+  }
+</style>
