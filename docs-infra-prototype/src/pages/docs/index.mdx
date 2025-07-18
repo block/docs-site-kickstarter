@@ -7,57 +7,317 @@ import DocsLayout from "../../layouts/DocsLayout.astro"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import MDXComponents from "@/components/mdx/MDXComponents"
+import Hero from "@/components/block/Hero.astro"
+import FeatureCard from "@/components/block/FeatureCard.astro"
+import Checklist from "@/components/block/Checklist.astro"
+import CallToAction from "@/components/block/CallToAction.astro"
+import BentoGrid from "@/components/block/BentoGrid.astro"
+import BentoItem from "@/components/block/BentoItem.astro"
 
 {/*Magic export equired on index.mdx because we will not be passing this to Content Collections for rendering */}
 export const components = MDXComponents
 
 <DocsLayout title={frontmatter.title} description={frontmatter.description}>
 
-This template provides a minimal setup to get started with your documentation.
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-  <Card className="p-6">
-    <h3 class="text-xl font-semibold mb-2">Quick Start</h3>
-    <p class="text-muted-foreground mb-4">
-      Get started quickly with our template using pnpm.
+{/* Hero Section */}
+<div class="not-prose mb-16">
+  <div class="text-center max-w-4xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      Documentation Infrastructure by Block
+    </div>
+    <h1 class="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+      Build Beautiful Docs
+    </h1>
+    <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+      Create stunning documentation sites for your Block projects with our modern template. 
+      Built with Astro, Tailwind CSS, and shadcn/ui components.
     </p>
-    <Button variant="outline" asChild>
-      <a href="/docs/installation">Read Installation Guide</a>
-    </Button>
-  </Card>
-  <Card className="p-6">
-    <h3 class="text-xl font-semibold mb-2">Components</h3>
-    <p class="text-muted-foreground mb-4">
-      Explore our collection of ready-to-use components.
-    </p>
-    <Button variant="outline" asChild>
-      <a href="/docs/components/button">View Components</a>
-    </Button>
-  </Card>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" asChild>
+        <a href="/docs-site-kickstarter/docs/installation" class="flex items-center gap-2 no-underline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 7h10v10"/>
+            <path d="M7 17 17 7"/>
+          </svg>
+          Get Started
+        </a>
+      </Button>
+      <Button variant="outline" size="lg" asChild>
+        <a href="/docs-site-kickstarter/components" class="flex items-center gap-2 no-underline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="7" height="7" x="3" y="3" rx="1"/>
+            <rect width="7" height="7" x="14" y="3" rx="1"/>
+            <rect width="7" height="7" x="14" y="14" rx="1"/>
+            <rect width="7" height="7" x="3" y="14" rx="1"/>
+          </svg>
+          View Components
+        </a>
+      </Button>
+    </div>
+  </div>
 </div>
 
-## Introduction
+{/* Quick Start Cards */}
+<div class="not-prose mb-16">
+  <h2 class="text-3xl font-bold text-center mb-8">Quick Start Options</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <Card className="p-6 border-2 hover:border-primary/50 transition-colors group">
+      <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-blue-600 dark:text-blue-400">
+          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+          <circle cx="12" cy="13" r="3"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Installation</h3>
+      <p class="text-muted-foreground mb-4">
+        Get up and running in minutes with our streamlined setup process.
+      </p>
+      <Button variant="outline" size="sm" asChild>
+        <a href="/docs-site-kickstarter/docs/installation" class="no-underline">Start Here →</a>
+      </Button>
+    </Card>
+    
+    <Card className="p-6 border-2 hover:border-primary/50 transition-colors group">
+      <div class="w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-purple-600 dark:text-purple-400">
+          <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.78 0l-8-4a2 2 0 0 1-1.11-1.79V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+          <path d="M2.32 6.16l10 5.5 10-5.5"/>
+          <path d="M12 22.76V12.16"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Components</h3>
+      <p class="text-muted-foreground mb-4">
+        Explore our collection of ready-to-use, accessible components.
+      </p>
+      <Button variant="outline" size="sm" asChild>
+        <a href="/docs-site-kickstarter/components" class="no-underline">Browse All →</a>
+      </Button>
+    </Card>
+    
+    <Card className="p-6 border-2 hover:border-primary/50 transition-colors group">
+      <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-green-600 dark:text-green-400">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10,9 9,9 8,9"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2">Configuration</h3>
+      <p class="text-muted-foreground mb-4">
+        Customize and configure your documentation site to match your brand.
+      </p>
+      <Button variant="outline" size="sm" asChild>
+        <a href="/docs-site-kickstarter/docs/configuration" class="no-underline">Configure →</a>
+      </Button>
+    </Card>
+  </div>
+</div>
 
-Build your own Block documentation site using Astro and shadcn/ui.
+{/* Feature Highlights */}
+<div class="not-prose mb-16">
+  <h2 class="text-3xl font-bold text-center mb-12">Why Choose Block Docs Template?</h2>
+  <BentoGrid>
+    <BentoItem 
+      title="⚡ Lightning Fast"
+      description="Built with Astro for optimal performance and SEO"
+      className="md:col-span-2"
+    >
+      <div class="flex items-center justify-center h-32 bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg">
+        <div class="text-4xl">🚀</div>
+      </div>
+    </BentoItem>
+    
+    <BentoItem 
+      title="🎨 Beautiful Design"
+      description="Modern UI with shadcn/ui components and Tailwind CSS"
+    >
+      <div class="flex items-center justify-center h-32 bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
+        <div class="text-4xl">✨</div>
+      </div>
+    </BentoItem>
+    
+    <BentoItem 
+      title="📱 Fully Responsive"
+      description="Works perfectly on all devices and screen sizes"
+    >
+      <div class="flex items-center justify-center h-32 bg-gradient-to-br from-green-100 to-teal-100 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg">
+        <div class="text-4xl">📱</div>
+      </div>
+    </BentoItem>
+    
+    <BentoItem 
+      title="🌙 Dark Mode"
+      description="Automatic dark mode support with smooth transitions"
+      className="md:col-span-2"
+    >
+      <div class="flex items-center justify-center h-32 bg-gradient-to-br from-slate-100 to-gray-100 dark:from-slate-900/20 dark:to-gray-900/20 rounded-lg">
+        <div class="text-4xl">🌙</div>
+      </div>
+    </BentoItem>
+    
+    <BentoItem 
+      title="🔧 Highly Customizable"
+      description="Easy to customize and extend with your own components"
+      className="md:col-span-3"
+    >
+      <div class="flex items-center justify-center h-32 bg-gradient-to-br from-pink-100 to-rose-100 dark:from-pink-900/20 dark:to-rose-900/20 rounded-lg">
+        <div class="text-4xl">🛠️</div>
+      </div>
+    </BentoItem>
+  </BentoGrid>
+</div>
 
 ## Key Features
 
-- **Built with Astro** - Fast, modern static site generator
-- **Styled with Tailwind CSS** - Utility-first CSS framework
-- **UI components from shadcn/ui** - High-quality, accessible components
-- **Dark mode support** - Automatic and manual dark mode
-- **Full-text search** (coming soon) - Easy content discovery
-- **Documentation-specific components** - Purpose-built for documentation
-- **MDX support** - Use React components in Markdown
-- **TypeScript** - Full type safety and autocompletion
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+  <div class="space-y-6">
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Built with Astro</h3>
+        <p class="text-muted-foreground">Fast, modern static site generator with excellent performance and SEO optimization</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Styled with Tailwind CSS</h3>
+        <p class="text-muted-foreground">Utility-first CSS framework for rapid UI development and consistent design</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">shadcn/ui Components</h3>
+        <p class="text-muted-foreground">High-quality, accessible components with beautiful design out of the box</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Dark Mode Support</h3>
+        <p class="text-muted-foreground">Automatic and manual dark mode with smooth transitions and proper contrast</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="space-y-6">
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Documentation Components</h3>
+        <p class="text-muted-foreground">Purpose-built components specifically designed for documentation sites</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">MDX Support</h3>
+        <p class="text-muted-foreground">Use React components directly in your Markdown content for rich, interactive docs</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">TypeScript Ready</h3>
+        <p class="text-muted-foreground">Full type safety and excellent developer experience with TypeScript support</p>
+      </div>
+    </div>
+    
+    <div class="flex items-start gap-4">
+      <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-primary">
+          <polyline points="20,6 9,17 4,12"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="font-semibold text-lg mb-2">Search & Navigation</h3>
+        <p class="text-muted-foreground">Easy content discovery with built-in search and intuitive navigation</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 ## Getting Started
 
-1. **Installation**: Start by following our [installation guide](/docs/installation)
-2. **Configuration**: Learn how to [configure](/docs/configuration) the template
-3. **Components**: Explore available [components](/docs/components/button)
+Ready to build your documentation site? Follow these simple steps:
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+  <div class="text-center">
+    <div class="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+      1
+    </div>
+    <h3 class="font-semibold mb-2">Install</h3>
+    <p class="text-sm text-muted-foreground mb-4">Start by following our installation guide to set up your project</p>
+    <Button variant="outline" size="sm" asChild>
+      <a href="/docs-site-kickstarter/docs/installation" class="no-underline">Install Now</a>
+    </Button>
+  </div>
+  
+  <div class="text-center">
+    <div class="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+      2
+    </div>
+    <h3 class="font-semibold mb-2">Configure</h3>
+    <p class="text-sm text-muted-foreground mb-4">Learn how to configure the template to match your needs</p>
+    <Button variant="outline" size="sm" asChild>
+      <a href="/docs-site-kickstarter/docs/configuration" class="no-underline">Configure</a>
+    </Button>
+  </div>
+  
+  <div class="text-center">
+    <div class="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+      3
+    </div>
+    <h3 class="font-semibold mb-2">Customize</h3>
+    <p class="text-sm text-muted-foreground mb-4">Explore available components and customize your site</p>
+    <Button variant="outline" size="sm" asChild>
+      <a href="/docs-site-kickstarter/components" class="no-underline">View Components</a>
+    </Button>
+  </div>
+</div>
 
 ## Project Structure
+
+Understanding the project structure will help you get started quickly:
 
 ```
 .
@@ -75,16 +335,45 @@ Build your own Block documentation site using Astro and shadcn/ui.
 
 This template is designed to be easily customizable. You can:
 
-- Modify the theme using Tailwind CSS
-- Add new components from shadcn/ui
-- Create custom documentation components
-- Extend the MDX configuration
+- **Modify the theme** using Tailwind CSS variables
+- **Add new components** from shadcn/ui or create your own
+- **Create custom documentation components** for specific use cases
+- **Extend the MDX configuration** to add new features
 
-Check out our [configuration guide](/docs/configuration) for more details.
+Check out our [configuration guide](/docs-site-kickstarter/docs/configuration) for detailed customization instructions.
+
+{/* Call to Action */}
+<div class="not-prose my-16">
+  <div class="text-center bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl p-8 md:p-12">
+    <h2 class="text-3xl font-bold mb-4">Ready to Build Amazing Docs?</h2>
+    <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+      Join the Block community and start creating beautiful documentation sites that your users will love.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button size="lg" asChild>
+        <a href="/docs-site-kickstarter/docs/installation" class="flex items-center gap-2 no-underline">
+          Get Started Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 7h10v10"/>
+            <path d="M7 17 17 7"/>
+          </svg>
+        </a>
+      </Button>
+      <Button variant="outline" size="lg" asChild>
+        <a href="https://github.com/block/docs-site-kickstarter" target="_blank" class="flex items-center gap-2 no-underline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View on GitHub
+        </a>
+      </Button>
+    </div>
+  </div>
+</div>
 
 ## Community and Support
 
-- **GitHub**: [Report issues](https://github.com/AREA44/astro-shadcn-ui-template/issues)
+- **GitHub**: [Report issues and contribute](https://github.com/block/docs-site-kickstarter)
 - **Discord**: Join our community (coming soon)
 - **Twitter**: Follow us for updates (coming soon)
 
