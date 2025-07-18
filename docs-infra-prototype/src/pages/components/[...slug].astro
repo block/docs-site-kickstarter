@@ -26,9 +26,7 @@ export async function getStaticPaths() {
 		'block-components/accordion',
 		'block-components/tabs',
 		'block-components/hero',
-		'block-components/feature-card',
 		'block-components/checklist',
-		'block-components/call-to-action',
 		'components/button',
 		'components/card-group',
 		'components/code-snippet',
@@ -101,7 +99,7 @@ const { Content, headings, remarkPluginFrontmatter } = await render(doc);
               linkTextFormat="capitalized"
               excludeCurrentPage={false}
             >
-              <span slot="separator"> > </span>
+              <span slot="separator">&nbsp;>&nbsp;</span>
               <span slot="index">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="breadcrumb-home-icon">
                   <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
