@@ -4,6 +4,8 @@ import { getCollection, render} from 'astro:content';
 import MDXComponents from '@/components/mdx/MDXComponents';
 import ComponentsSidebar from '@/components/docs/ComponentsSidebar.astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
+import { Breadcrumbs } from "astro-breadcrumbs";
+import "../../styles/breadcrumbs.css";
 
 /**
  * Magic required function for dynamic routes; deteremines the slug
@@ -90,6 +92,25 @@ const { Content, headings, remarkPluginFrontmatter } = await render(doc);
 
       <main class="docs-main min-w-0 py-8 px-10">
         <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
+          <!-- Breadcrumbs -->
+          <div class="mb-6 -mt-2">
+            <Breadcrumbs 
+              indexText="Home"
+              mainBemClass="c-breadcrumbs"
+              ariaLabel="Breadcrumb navigation"
+              linkTextFormat="capitalized"
+              excludeCurrentPage={false}
+            >
+              <span slot="separator"> > </span>
+              <span slot="index">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="breadcrumb-home-icon">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Home
+              </span>
+            </Breadcrumbs>
+          </div>
+          
           <h1>{title}</h1>
           <Content components={MDXComponents} />
         </div>
