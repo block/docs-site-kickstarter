@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx";
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import { linkChecker } from './integrations/link-checker';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,7 +20,15 @@ export default defineConfig({
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
       //extendDefaultPlugins: true
     }), 
-    react()
+    react(),
+    linkChecker({
+      failOnError: true,           // Fail build on broken links
+      checkExternal: false,        // Set to true to check external links  
+      exclude: ['#', 'mailto:', 'tel:', 'example.com'],
+      timeout: 5000,              // Timeout for external requests
+      verbose: false,             // Show warnings even when build succeeds
+      logFile: 'link-check-results.json'  // Save results to a JSON file
+    })
   ],
   markdown: {
     remarkPlugins: [remarkGfm],
