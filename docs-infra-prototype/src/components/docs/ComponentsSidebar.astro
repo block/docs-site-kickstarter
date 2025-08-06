@@ -5,35 +5,35 @@ const sidebarNav = [
     items: [
       {
         title: "Bento Grid",
-        href: "/docs-site-kickstarter/components/bento-grid",
+        href: "/components/bento-grid",
       },
       {
         title: "Header Section",
-        href: "/docs-site-kickstarter/components/header-section",
+        href: "/components/header-section",
       },
       {
         title: "Feature Section",
-        href: "/docs-site-kickstarter/components/feature-section",
+        href: "/components/feature-section",
       },
       {
         title: "Footer",
-        href: "/docs-site-kickstarter/components/footer",
+        href: "/components/footer",
       },
       {
         title: "CTA Section",
-        href: "/docs-site-kickstarter/components/cta-section",
+        href: "/components/cta-section",
       },
       {
         title: "Blog Section",
-        href: "/docs-site-kickstarter/components/blog-section",
+        href: "/components/blog-section",
       },
       {
         title: "FAQ Section",
-        href: "/docs-site-kickstarter/components/faq-section",
+        href: "/components/faq-section",
       },
       {
         title: "Logo Section",
-        href: "/docs-site-kickstarter/components/logo-section",
+        href: "/components/logo-section",
       },
     ],
   },
@@ -42,19 +42,19 @@ const sidebarNav = [
     items: [
       {
         title: "Accordion",
-        href: "/docs-site-kickstarter/components/accordion",
+        href: "/components/accordion",
       },
       {
         title: "Tabs",
-        href: "/docs-site-kickstarter/components/tabs",
+        href: "/components/tabs",
       },
       {
         title: "Hero",
-        href: "/docs-site-kickstarter/components/hero",
+        href: "/components/hero",
       },
       {
         title: "Checklist",
-        href: "/docs-site-kickstarter/components/checklist",
+        href: "/components/checklist",
       },
     ],
   },
@@ -63,35 +63,35 @@ const sidebarNav = [
     items: [
       {
         title: "Button",
-        href: "/docs-site-kickstarter/components/button",
+        href: "/components/button",
       },
       {
         title: "Card Group",
-        href: "/docs-site-kickstarter/components/card-group",
+        href: "/components/card-group",
       },
       {
         title: "Code Snippet",
-        href: "/docs-site-kickstarter/components/code-snippet",
+        href: "/components/code-snippet",
       },
       {
         title: "Code Group",
-        href: "/docs-site-kickstarter/components/code-group",
+        href: "/components/code-group",
       },
       {
         title: "Divider",
-        href: "/docs-site-kickstarter/components/divider",
+        href: "/components/divider",
       },
       {
         title: "Inline Code",
-        href: "/docs-site-kickstarter/components/inline-code",
+        href: "/components/inline-code",
       },
       {
         title: "Sidebar",
-        href: "/docs-site-kickstarter/components/sidebar",
+        href: "/components/sidebar",
       },
       {
         title: "Table",
-        href: "/docs-site-kickstarter/components/table",
+        href: "/components/table",
       },
     ],
   },
@@ -107,9 +107,9 @@ const { currentPath } = Astro.props;
 function normalizePath(path: string): string {
   // Remove trailing slash unless it's the root path
   path = path === '/' ? path : path.replace(/\/$/, '');
-  // If path doesn't start with /docs-site-kickstarter, add it
-  if (!path.startsWith('/docs-site-kickstarter')) {
-    path = `/docs-site-kickstarter${path}`;
+  // If path doesn't start with , add it
+  if (!path.startsWith('')) {
+    path = `${path}`;
   }
   return path;
 }
