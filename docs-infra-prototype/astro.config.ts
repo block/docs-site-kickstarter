@@ -11,7 +11,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 export default defineConfig({
   
   site: 'https://block.github.io',
-  base: '/docs-site-kickstarter', 
+  base: '/', 
   
   integrations: [
     mdx({

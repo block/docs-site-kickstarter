@@ -5,19 +5,19 @@ const sidebarNav = [
     items: [
       {
         title: "Introduction",
-        href: "/docs-site-kickstarter/docs",
+        href: "/docs",
       },
       {
         title: "Installation",
-        href: "/docs-site-kickstarter/docs/installation",
+        href: "/docs/installation",
       },
       {
         title: "Configuration",
-        href: "/docs-site-kickstarter/docs/configuration",
+        href: "/docs/configuration",
       },
       {
         title: "Deploy your Doc Site",
-        href: "/docs-site-kickstarter/docs/deployment",
+        href: "/docs/deployment",
       },
     ],
   },
@@ -26,15 +26,15 @@ const sidebarNav = [
     items: [
       {
         title: "Create a Page",
-        href: "/docs-site-kickstarter/docs/create-content/create-page",
+        href: "/docs/create-page",
       },
       {
         title: "Create a Doc Page",
-        href: "/docs-site-kickstarter/docs/create-content/create-doc",
+        href: "/docs/create-doc",
       },
       {
         title: "Create a Blog Post",
-        href: "/docs-site-kickstarter/docs/create-content/create-blog",
+        href: "/docs/create-blog",
       },
     ],
   },
@@ -42,24 +42,20 @@ const sidebarNav = [
     title: "Layouts",
     items: [
       {
-        title: "Overview",
-        href: "/docs-site-kickstarter/docs/layouts",
-      },
-      {
         title: "Documentation Layout",
-        href: "/docs-site-kickstarter/docs/layouts/documentation",
+        href: "/docs/documentation-layout",
       },
       {
         title: "API Reference Layout",
-        href: "/docs-site-kickstarter/docs/layouts/api",
+        href: "/docs/api-reference-layout",
       },
       {
         title: "Tutorial Layout",
-        href: "/docs-site-kickstarter/docs/layouts/tutorial",
+        href: "/docs/tutorial-layout",
       },
       {
         title: "Landing Layout",
-        href: "/docs-site-kickstarter/docs/layouts/landing",
+        href: "/docs/landing-layout",
       },
     ],
   },
@@ -68,15 +64,15 @@ const sidebarNav = [
     items: [
       {
         title: "Typography",
-        href: "/docs-site-kickstarter/docs/styling/typography",
+        href: "/docs/typography-styling",
       },
       {
         title: "Icons",
-        href: "/docs-site-kickstarter/docs/styling/icons",
+        href: "/docs/icons-styling",
       },
       {
         title: "Theme Customization",
-        href: "/docs-site-kickstarter/docs/styling/theme-customization",
+        href: "/docs/theme-customization",
       },
     ],
   },
@@ -92,10 +88,6 @@ const { currentPath } = Astro.props;
 function normalizePath(path: string): string {
   // Remove trailing slash unless it's the root path
   path = path === '/' ? path : path.replace(/\/$/, '');
-  // If path doesn't start with /docs-site-kickstarter, add it
-  if (!path.startsWith('/docs-site-kickstarter')) {
-    path = `/docs-site-kickstarter${path}`;
-  }
   return path;
 }
 
