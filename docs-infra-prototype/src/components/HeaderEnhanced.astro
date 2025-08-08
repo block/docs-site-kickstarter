@@ -9,38 +9,38 @@ const currentPath = Astro.url.pathname;
 const navigationItems = [
   {
     title: "Documentation",
-    href: "/docs",
+    href: "/docs-site-kickstarter/docs",
     description: "Complete guides and API reference"
   },
   {
     title: "Components", 
-    href: "/components",
+    href: "/docs-site-kickstarter/components",
     description: "Reusable UI components and layouts"
   },
   {
     title: "Examples",
-    href: "/examples",
+    href: "/docs-site-kickstarter/examples",
     description: "Real-world implementation examples"
   },
   {
     title: "Blog",
-    href: "/blog", 
+    href: "/docs-site-kickstarter/blog", 
     description: "Latest updates and tutorials"
   }
 ];
 
 // Check if current path matches navigation item
 function isActive(href: string, currentPath: string): boolean {
-  if (href === '/docs' && currentPath.startsWith('/docs')) {
+  if (href === '/docs-site-kickstarter/docs' && currentPath.startsWith('/docs-site-kickstarter/docs')) {
     return true;
   }
-  if (href === '/components' && currentPath.startsWith('/components')) {
+  if (href === '/docs-site-kickstarter/components' && currentPath.startsWith('/docs-site-kickstarter/components')) {
     return true;
   }
-  if (href === '/blog' && currentPath.startsWith('/blog')) {
+  if (href === '/docs-site-kickstarter/blog' && currentPath.startsWith('/docs-site-kickstarter/blog')) {
     return true;
   }
-  if (href === '/examples' && currentPath.startsWith('/examples')) {
+  if (href === '/docs-site-kickstarter/examples' && currentPath.startsWith('/docs-site-kickstarter/examples')) {
     return true;
   }
   return false;
@@ -54,7 +54,7 @@ function isActive(href: string, currentPath: string): boolean {
       <MobileNav currentPath={currentPath} />
       
       <!-- Logo/Brand -->
-      <a href="/" class="brand-link">
+      <a href="/docs-site-kickstarter/" class="brand-link">
         <div class="brand-content">
           <div class="brand-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
