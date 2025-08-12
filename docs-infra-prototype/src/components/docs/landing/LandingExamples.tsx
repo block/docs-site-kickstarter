@@ -23,11 +23,11 @@ export function MinimalLanding() {
           description="Everything you need to build and deploy your app"
           primaryAction={{
             text: "Get Started",
-            href: "/docs/getting-started"
+            href: "javascript:void(null);"
           }}
           secondaryAction={{
             text: "View on GitHub",
-            href: "https://github.com/example/repo"
+            href: "javascript:void(null);"
           }}
         />
         
@@ -64,11 +64,11 @@ export function FullLanding() {
           description="A complete solution for creating beautiful documentation sites with built-in search, versioning, and more."
           primaryAction={{
             text: "Get Started",
-            href: "/docs/getting-started"
+            href: "javascript:void(null);"
           }}
           secondaryAction={{
             text: "Learn More",
-            href: "/docs/features"
+            href: "javascript:void(null);"
           }}
         />
         
@@ -117,22 +117,22 @@ export function FullLanding() {
               {
                 title: "Installation",
                 description: "Step-by-step guide to install and configure your documentation site",
-                href: "/docs/installation"
+                href: "javascript:void(null);"
               },
               {
                 title: "Components",
                 description: "Explore our library of pre-built components",
-                href: "/docs/components"
+                href: "javascript:void(null);"
               },
               {
                 title: "Markdown Guide",
                 description: "Learn how to write documentation using Markdown and MDX",
-                href: "/docs/markdown"
+                href: "javascript:void(null);"
               },
               {
                 title: "API Reference",
                 description: "Complete API documentation for all features",
-                href: "/docs/api"
+                href: "javascript:void(null);"
               }
             ]}
           />
