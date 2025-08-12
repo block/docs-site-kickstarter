@@ -51,7 +51,8 @@ const sectionClasses = [
   className
 ].filter(Boolean).join(' ');
 
-const getPostURL = (post) => import.meta.env.BASE_URL + "/blog/" + post.id;
+// Set the postURL only if the post exists in Content Collections and has an ID; else set it to NO-OP; this is used in examples docs
+const getPostURL = (post) => post.id === null ? import.meta.env.BASE_URL + "/blog/" + post.id : "javascript:void(null);";
 ---
 
 <section class={sectionClasses}>
