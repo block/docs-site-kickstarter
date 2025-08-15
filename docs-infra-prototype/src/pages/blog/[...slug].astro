@@ -9,13 +9,13 @@ import { Breadcrumbs } from "astro-breadcrumbs";
 import "../../styles/breadcrumbs.css";
 
 /**
- * Required function for dynamic routes; deteremines the slug
+ * Magic required function for dynamic routes; deteremines the slug
  */
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
 		params: { 
-			slug: post.id
+			slug: post.data.slug
 		},
 		props: post,
 	}));

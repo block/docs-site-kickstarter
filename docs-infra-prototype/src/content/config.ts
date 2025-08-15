@@ -9,6 +9,7 @@ export const collections = {
       title: z.string(),
       author: z.string(),
       date: z.coerce.date(),
+      slug: z.string(),
       excerpt: z.string().optional(),
       image: z.string().optional(),
       tags: z.array(z.string()).optional(),
