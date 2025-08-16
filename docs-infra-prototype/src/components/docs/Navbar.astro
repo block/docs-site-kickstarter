@@ -1,0 +1,55 @@
+---
+export interface NavItem {
+  title: string;
+  href: string;
+}
+
+export interface NavGroup {
+  title: string;
+  items: NavItem[];
+}
+
+export interface Props {
+  sidebarNav: NavGroup[];
+}
+
+const { sidebarNav } = Astro.props;
+
+// Normalize paths for comparison
+function normalizePath(path: string): string {
+  // Remove trailing slash unless it's the root path
+  path = path === '/' ? path : path.replace(/\/$/, '');
+  return path;
+}
+
+// Get current path directly from Astro.url
+const currentPath = Astro.url.pathname;
+const normalizedCurrentPath = normalizePath(currentPath);
+---
+
+<div class="w-full">
+  {sidebarNav.map((group) => (
+    <div class="pb-4">
+      <h4 class="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
+        {group.title}
+      </h4>
+      {group.items?.length && (
+        <div class="grid grid-flow-row auto-rows-max text-sm">
+          {group.items.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "flex w-full items-center rounded-md p-2 hover:underline",
+                {
+                  "bg-accent": normalizedCurrentPath === item.href,
+                },
+              ]}
+            >
+              {item.title}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
