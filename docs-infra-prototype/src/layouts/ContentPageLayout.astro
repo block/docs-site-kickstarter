@@ -1,7 +1,27 @@
 ---
+
+/**
+ * This is a base layout for all content pages backed by Markdown. It accepts a named 
+ * slot "navbar", and the main slot is typically filled with Markdown content. Typical usage 
+ * may look like like:
+ * 
+ * <ContentPageLayout title={title} 
+ *   description={description} 
+ *   headings={headings} 
+ *   maxWidth="wide">
+ *   
+ *   <ComponentsNavbar slot="navbar" />
+ *   <Content components={MDXComponents} />
+ * 
+ * </ContentPageLayout>
+ * 
+ * If the "navbar" slot is omitted, the left sidebar will not be present. If the 
+ * "headings" are not passed, the right sidebar will not be present.
+ */
+
+
 import BaseLayout from "./BaseLayout.astro";
 import type { MarkdownHeading } from 'astro';
-import DocsSidebar from "@/components/docs/DocsSidebar.astro";
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import "../styles/breadcrumbs.css";
@@ -10,14 +30,14 @@ interface Props {
   title: string;
   description?: string;
   headings?: MarkdownHeading[];
-  maxWidth?: 'default' | 'wide' | 'full';
+  maxWidth?: 'medium' | 'wide' | 'full'; // "wide" default
 }
 
 const { title, description, headings, maxWidth = 'wide' } = Astro.props;
 
 // Width configurations
 const widthClasses = {
-  default: 'max-w-7xl', // 1280px
+  medium: 'max-w-7xl', // 1280px
   wide: 'max-w-[1800px]', // 1800px (new default)
   full: 'max-w-none' // No max width
 };
@@ -29,12 +49,14 @@ const widthClasses = {
     <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
 
     <!-- Main Content -->
-    <div class={`docs-layout relative mx-auto min-h-[calc(100vh-64px)] ${widthClasses[maxWidth]}`}>
-      <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
-          <DocsSidebar currentPath={Astro.url.pathname} />
-        </div>
-      </nav>
+    <div class={`docs-layout relative mx-auto min-h-[calc(100vh-64px)] ${widthClasses[maxWidth]} ${!Astro.slots.has('navbar') ? 'no-navbar' : ''}`}>
+      {Astro.slots.has('navbar') && (
+        <nav class="docs-navbar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+          <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
+            <slot name="navbar" />
+          </div>
+        </nav>
+      )}
 
       <main class="docs-main min-w-0 py-8 px-10">
         <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
@@ -86,14 +108,27 @@ const widthClasses = {
     padding: 0 1.5rem;
   }
 
+  /* Layout without sidebar */
+  .docs-layout.no-navbar {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+
   /* Wide layout (default) - Enhanced proportions */
   .max-w-\[1800px\] .docs-layout {
     grid-template-columns: 320px minmax(0, 3fr) 320px;
   }
 
+  .max-w-\[1800px\] .docs-layout.no-navbar {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+
   /* Full width layout */
   .max-w-none .docs-layout {
     grid-template-columns: 360px minmax(0, 4fr) 360px;
+  }
+
+  .max-w-none .docs-layout.no-navbar {
+    grid-template-columns: minmax(0, 1fr) 360px;
   }
 
   /* Enhanced scrollbar styling */
@@ -120,6 +155,9 @@ const widthClasses = {
       grid-template-columns: 280px 1fr;
       gap: 1rem;
     }
+    .docs-layout.no-navbar {
+      grid-template-columns: 1fr;
+    }
     .docs-toc {
       display: none;
     }
@@ -132,6 +170,9 @@ const widthClasses = {
     .docs-layout {
       grid-template-columns: 260px 1fr;
     }
+    .docs-layout.no-navbar {
+      grid-template-columns: 1fr;
+    }
     .docs-main {
       padding: 1.5rem 1.5rem;
     }
@@ -142,7 +183,10 @@ const widthClasses = {
       grid-template-columns: 1fr;
       padding: 0 1rem;
     }
-    .docs-sidebar {
+    .docs-layout.no-navbar {
+      grid-template-columns: 1fr;
+    }
+    .docs-navbar {
       display: none;
     }
     .docs-main {

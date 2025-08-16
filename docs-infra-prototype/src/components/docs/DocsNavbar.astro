@@ -78,11 +78,7 @@ const sidebarNav = [
   },
 ]
 
-type Props = {
-  currentPath?: string;
-}
-
-const { currentPath } = Astro.props;
+export type Props = {};
 
 // Normalize paths for comparison
 function normalizePath(path: string): string {
@@ -91,7 +87,9 @@ function normalizePath(path: string): string {
   return path;
 }
 
-const normalizedCurrentPath = normalizePath(currentPath || '');
+// Get current path directly from Astro.url
+const currentPath = Astro.url.pathname;
+const normalizedCurrentPath = normalizePath(currentPath);
 ---
 
 <div class="w-full">

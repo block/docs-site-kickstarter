@@ -1,15 +1,19 @@
 ---
-
-import DocsLayout from "@/layouts/DocsLayout.astro";
+import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
+import DocsNavbar from "@/components/docs/DocsNavbar.astro";
 import { getCollection, render} from 'astro:content';
 import MDXComponents from '@/components/mdx/MDXComponents';
 
 /**
- * Magic required function for dynamic routes; deteremines the slug
+ * Magic required function for dynamic routes; determines the slug
  */
 export async function getStaticPaths() {
 	const docs = await getCollection('docs');
-	return docs.map((doc) => ({
+
+	// Filter for component pages that have a slug in their frontmatter
+	const docDocs = docs.filter(doc => doc.data.slug);
+
+	return docDocs.map((doc) => ({
 		params: { 
 			slug: doc.data.slug || doc.id
 		},
@@ -27,8 +31,10 @@ const { Content, headings, remarkPluginFrontmatter } = await render(doc);
 
 ---
 
-<DocsLayout title={title} description={doc.data.description} headings={headings}>
-
-	<Content components={MDXComponents} />
-
-</DocsLayout>
+<ContentPageLayout title={title} 
+  description={description} 
+  headings={headings} 
+  maxWidth="wide">
+  <DocsNavbar slot="navbar" />
+  <Content components={MDXComponents} />
+</ContentPageLayout>
