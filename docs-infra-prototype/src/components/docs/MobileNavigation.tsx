@@ -1,7 +1,6 @@
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 interface MobileNavProps {
   children: React.ReactNode
