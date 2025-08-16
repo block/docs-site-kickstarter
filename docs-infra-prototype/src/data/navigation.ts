@@ -6,19 +6,19 @@ export const docsNavigation: NavGroup[] = [
     items: [
       {
         title: "Introduction",
-        href: "/docs-site-kickstarter/docs",
+        href: "/docs",
       },
       {
         title: "Installation",
-        href: "/docs-site-kickstarter/docs/installation",
+        href: "/docs/installation",
       },
       {
         title: "Configuration",
-        href: "/docs-site-kickstarter/docs/configuration",
+        href: "/docs/configuration",
       },
       {
         title: "Deploy your Doc Site",
-        href: "/docs-site-kickstarter/docs/deployment",
+        href: "/docs/deployment",
       },
     ],
   },
@@ -27,15 +27,15 @@ export const docsNavigation: NavGroup[] = [
     items: [
       {
         title: "Create a Page",
-        href: "/docs-site-kickstarter/docs/create-page",
+        href: "/docs/create-page",
       },
       {
         title: "Create a Doc Page",
-        href: "/docs-site-kickstarter/docs/create-doc",
+        href: "/docs/create-doc",
       },
       {
         title: "Create a Blog Post",
-        href: "/docs-site-kickstarter/docs/create-blog",
+        href: "/docs/create-blog",
       },
     ],
   },
@@ -44,19 +44,15 @@ export const docsNavigation: NavGroup[] = [
     items: [
       {
         title: "Documentation Layout",
-        href: "/docs-site-kickstarter/docs/documentation-layout",
-      },
-      {
-        title: "API Reference Layout",
-        href: "/docs-site-kickstarter/docs/api-reference-layout",
+        href: "/docs/documentation-layout",
       },
       {
         title: "Tutorial Layout",
-        href: "/docs-site-kickstarter/docs/tutorial-layout",
+        href: "/docs/tutorial-layout",
       },
       {
         title: "Landing Layout",
-        href: "/docs-site-kickstarter/docs/landing-layout",
+        href: "/docs/landing-layout",
       },
     ],
   },
@@ -65,15 +61,15 @@ export const docsNavigation: NavGroup[] = [
     items: [
       {
         title: "Typography",
-        href: "/docs-site-kickstarter/docs/typography-styling",
+        href: "/docs/typography-styling",
       },
       {
         title: "Icons",
-        href: "/docs-site-kickstarter/docs/icons-styling",
+        href: "/docs/icons-styling",
       },
       {
         title: "Theme Customization",
-        href: "/docs-site-kickstarter/docs/theme-customization",
+        href: "/docs/theme-customization",
       },
     ],
   },
@@ -85,35 +81,35 @@ export const componentsNavigation: NavGroup[] = [
     items: [
       {
         title: "Bento Grid",
-        href: "/docs-site-kickstarter/components/bento-grid",
+        href: "/components/bento-grid",
       },
       {
         title: "Header Section",
-        href: "/docs-site-kickstarter/components/header-section",
+        href: "/components/header-section",
       },
       {
         title: "Feature Section",
-        href: "/docs-site-kickstarter/components/feature-section",
+        href: "/components/feature-section",
       },
       {
         title: "Footer",
-        href: "/docs-site-kickstarter/components/footer",
+        href: "/components/footer",
       },
       {
         title: "CTA Section",
-        href: "/docs-site-kickstarter/components/cta-section",
+        href: "/components/cta-section",
       },
       {
         title: "Blog Section",
-        href: "/docs-site-kickstarter/components/blog-section",
+        href: "/components/blog-section",
       },
       {
         title: "FAQ Section",
-        href: "/docs-site-kickstarter/components/faq-section",
+        href: "/components/faq-section",
       },
       {
         title: "Logo Section",
-        href: "/docs-site-kickstarter/components/logo-section",
+        href: "/components/logo-section",
       },
     ],
   },
@@ -122,19 +118,19 @@ export const componentsNavigation: NavGroup[] = [
     items: [
       {
         title: "Accordion",
-        href: "/docs-site-kickstarter/components/accordion",
+        href: "/components/accordion",
       },
       {
         title: "Tabs",
-        href: "/docs-site-kickstarter/components/tabs",
+        href: "/components/tabs",
       },
       {
         title: "Hero",
-        href: "/docs-site-kickstarter/components/hero",
+        href: "/components/hero",
       },
       {
         title: "Checklist",
-        href: "/docs-site-kickstarter/components/checklist",
+        href: "/components/checklist",
       },
     ],
   },
@@ -143,31 +139,31 @@ export const componentsNavigation: NavGroup[] = [
     items: [
       {
         title: "Button",
-        href: "/docs-site-kickstarter/components/button",
+        href: "/components/button",
       },
       {
         title: "Card Group",
-        href: "/docs-site-kickstarter/components/card-group",
+        href: "/components/card-group",
       },
       {
         title: "Code Snippet",
-        href: "/docs-site-kickstarter/components/code-snippet",
+        href: "/components/code-snippet",
       },
       {
         title: "Divider",
-        href: "/docs-site-kickstarter/components/divider",
+        href: "/components/divider",
       },
       {
         title: "Inline Code",
-        href: "/docs-site-kickstarter/components/inline-code",
+        href: "/components/inline-code",
       },
       {
         title: "Sidebar",
-        href: "/docs-site-kickstarter/components/sidebar",
+        href: "/components/sidebar",
       },
       {
         title: "Table",
-        href: "/docs-site-kickstarter/components/table",
+        href: "/components/table",
       },
     ],
   },

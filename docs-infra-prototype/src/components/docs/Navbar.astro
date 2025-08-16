@@ -15,16 +15,11 @@ export interface Props {
 
 const { sidebarNav } = Astro.props;
 
-// Normalize paths for comparison
-function normalizePath(path: string): string {
-  // Remove trailing slash unless it's the root path
-  path = path === '/' ? path : path.replace(/\/$/, '');
-  return path;
-}
+// Get the base URL from Astro config
+const baseUrl = import.meta.env.BASE_URL;
 
 // Get current path directly from Astro.url
 const currentPath = Astro.url.pathname;
-const normalizedCurrentPath = normalizePath(currentPath);
 ---
 
 <div class="w-full">
@@ -35,19 +30,22 @@ const normalizedCurrentPath = normalizePath(currentPath);
       </h4>
       {group.items?.length && (
         <div class="grid grid-flow-row auto-rows-max text-sm">
-          {group.items.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                "flex w-full items-center rounded-md p-2 hover:underline",
-                {
-                  "bg-accent": normalizedCurrentPath === item.href,
-                },
-              ]}
-            >
-              {item.title}
-            </a>
-          ))}
+          {group.items.map((item) => {
+            const fullHref = baseUrl + item.href.slice(1);
+            return (
+              <a
+                href={fullHref}
+                class:list={[
+                  "flex w-full items-center rounded-md p-2 hover:underline",
+                  {
+                    "bg-accent": currentPath === fullHref,
+                  },
+                ]}
+              >
+                {item.title}
+              </a>
+            );
+          })}
         </div>
       )}
     </div>
