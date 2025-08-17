@@ -1,7 +1,6 @@
 /* Custom styles for astro-breadcrumbs to match the site design */
 
 .c-breadcrumbs {
-  font-size: 0.875rem;
   color: hsl(var(--muted-foreground));
   margin-bottom: 1.5rem;
   width: 100%;
@@ -28,6 +27,9 @@
 }
 
 .c-breadcrumbs__crumb {
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
   display: inline-flex !important;
   align-items: center !important;
   gap: 0 !important;
@@ -40,6 +42,7 @@
 .c-breadcrumbs__link {
   color: hsl(var(--muted-foreground));
   text-decoration: none;
+  font-weight: 600;
   transition: color 0.2s ease;
   display: inline-flex !important;
   align-items: center !important;
@@ -63,6 +66,8 @@
 
 .c-breadcrumbs__separator {
   color: hsl(var(--muted-foreground));
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 0.875rem;
   font-weight: 500;
   opacity: 0.7;
@@ -76,8 +81,8 @@
 
 /* Home icon styling */
 .breadcrumb-home-icon {
-  width: 16px !important;
-  height: 16px !important;
+  width: 30px !important;
+  height: 30px !important;
   margin: 0 0.375rem 0 0 !important;
   color: inherit !important;
   flex-shrink: 0 !important;

@@ -24,6 +24,8 @@ import BaseLayout from "./BaseLayout.astro";
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
+import { Icon } from 'astro-icon/components';
+import { ChevronRight } from "@lucide/astro"
 import "../styles/breadcrumbs.css";
 
 interface Props {
@@ -65,7 +67,7 @@ const widthClasses = {
           
           {/** Breadcrumbs */}
           {showBreadcrumbs && (
-            <div class="mb-6 -mt-2">
+            <div class="mb-6 mt-2">
               <Breadcrumbs 
                 indexText="Home"
                 mainBemClass="c-breadcrumbs"
@@ -73,12 +75,9 @@ const widthClasses = {
                 linkTextFormat="capitalized"
                 excludeCurrentPage={false}
               >
-                <span slot="separator">&nbsp;>&nbsp;</span>
+                <span slot="separator">&nbsp;<ChevronRight />&nbsp;</span>
                 <span slot="index">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="breadcrumb-home-icon">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                  </svg>
-                  Home
+                  <Icon name="home" width={20} height={20}/>
                 </span>
               </Breadcrumbs>
             </div>

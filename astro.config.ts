@@ -7,14 +7,16 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { linkChecker } from './integrations/link-checker';
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
   
   site: 'https://block.github.io',
-  base: '/docs-site-kickstarter/', 
+  base: '/docs-site-kickstarter', 
   
   integrations: [
+    icon(),
     mdx({
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],

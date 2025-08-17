@@ -27,8 +27,9 @@ export function getUrlRelativeToBase(url:string):string{
   // Remove trailing slash from baseUrl if it exists
   const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   
-  // Ensure url starts with a slash
-  const normalizedUrl = url.startsWith('/') ? url : '/' + url;
+  // Remove leading slash from url if it exists, then add exactly one
+  const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+  const normalizedUrl = '/' + cleanUrl;
   
   const fullUrl = normalizedBaseUrl + normalizedUrl;
   return fullUrl;

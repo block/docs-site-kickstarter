@@ -2,10 +2,12 @@
 
 import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import { getCollection, render} from 'astro:content';
-import { formatDate } from '../../components/blog/blogUtils';
-import AuthorCard from '../../components/blog/AuthorCard.astro';
+import { formatDate } from '@/components/blog/blogUtils';
+import AuthorCard from '@/components/blog/AuthorCard.astro';
 import MDXComponents from '@/components/mdx/MDXComponents';
-import "../../styles/breadcrumbs.css";
+import "@/styles/breadcrumbs.css";
+import { Image } from "astro:assets";
+import { getUrlRelativeToBase } from "@/lib/utils";
 
 /**
  * Magic required function for dynamic routes; deteremines the slug
@@ -49,7 +51,27 @@ const author = authors.find(author => author.id === postAuthorId);
 <ContentPageLayout title={title} 
   description={description} 
   headings={headings} 
-  maxWidth="wide">
-	<AuthorCard author={author} date={date}/>
+  maxWidth="wide"
+	showTitleAsH1={false}>
+
+	<div class="flex flex-col lg:flex-row gap-6 mb-2 border rounded-md bg-muted">
+		
+		<div class="flex-1 ml-6 lg:ml-6 ml-0 p-4 lg:p-0">
+			<h1 class="pb-0 mb-0 text-muted-background">{title}</h1>
+			<p class="italic mt-1 pb-0 text-sm">
+				Published on <b>{date}</b>
+			</p>
+      <AuthorCard author={author}/>
+	  </div>
+		<div class="flex-none order-last lg:order-none lg:max-w-xs">
+			<Image 
+				src={getUrlRelativeToBase(post.data.image)}
+				alt={post.data.title}
+				width={800}
+				height={600}
+				class="w-full object-cover rounded-b-md lg:rounded-bl-none lg:rounded-tr-md"
+			/>
+		</div>
+	</div>
   <Content components={MDXComponents} />
 </ContentPageLayout>
