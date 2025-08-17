@@ -1,4 +1,6 @@
 ---
+import { getUrlRelativeToBase } from '@/lib/utils';
+
 export interface NavItem {
   title: string;
   href: string;
@@ -31,7 +33,7 @@ const currentPath = Astro.url.pathname;
       {group.items?.length && (
         <div class="grid grid-flow-row auto-rows-max text-sm">
           {group.items.map((item) => {
-            const fullHref = baseUrl + item.href.slice(1);
+            const fullHref = getUrlRelativeToBase(item.href.slice(1));
             return (
               <a
                 href={fullHref}

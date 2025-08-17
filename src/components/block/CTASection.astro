@@ -1,12 +1,17 @@
 ---
+import { getUrlRelativeToBase } from '@/lib/utils';
+
 interface Props {
   title?: string;
   tagline?: string;
+  taglineIcon?: any;
   description?: string;
   primaryButtonText?: string;
   primaryButtonHref?: string;
+  primaryButtonIcon?: any;
   secondaryButtonText?: string;
   secondaryButtonHref?: string;
+  secondaryButtonIcon?: any;
   variant?: 'default' | 'dark' | 'gradient' | 'bordered';
   layout?: 'centered' | 'split';
   className?: string;
@@ -15,15 +20,23 @@ interface Props {
 const { 
   title = "Action-driving headline that creates urgency",
   tagline = "Call to action",
+  taglineIcon,
   description = "Add one or two compelling sentences that reinforce your main value proposition and overcome final objections. End with a clear reason to act now.",
-  primaryButtonText = "Get started",
+  primaryButtonText,
   primaryButtonHref = "#",
+  primaryButtonIcon,
   secondaryButtonText,
-  secondaryButtonHref,
+  secondaryButtonHref = "#",
+  secondaryButtonIcon,
   variant = 'default',
   layout = 'centered',
   className = '',
 } = Astro.props;
+
+// Get the icon components
+const PrimaryIconComponent = primaryButtonIcon;
+const SecondaryIconComponent = secondaryButtonIcon;
+const TaglineIconComponent = taglineIcon;
 
 const sectionClasses = [
   'cta-section',
@@ -31,22 +44,27 @@ const sectionClasses = [
   `layout-${layout}`,
   className
 ].filter(Boolean).join(' ');
+
+const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent";
 ---
 
 <section class={sectionClasses}>
-  <div class="container mx-auto px-6 py-16 lg:py-24">
+  <div class="container mx-auto px-6 py-8">
     {layout === 'centered' && (
       <div class="cta-centered-content">
         {tagline && (
           <div class="cta-tagline">
+            {TaglineIconComponent && (
+              <div class="cta-tagline-icon"><TaglineIconComponent /></div>
+            )}
             {tagline}
           </div>
         )}
         
         {title && (
-          <h2 class="cta-title">
+          <h1 class={titleClasses}>
             {title}
-          </h2>
+          </h1>
         )}
         
         {description && (
@@ -57,16 +75,19 @@ const sectionClasses = [
         
         <div class="cta-actions">
           {primaryButtonText && (
-            <a href={primaryButtonHref} class="cta-button primary">
+            <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
+              {PrimaryIconComponent && (
+                <PrimaryIconComponent />
+              )}
               {primaryButtonText}
-              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
             </a>
           )}
           
           {secondaryButtonText && (
-            <a href={secondaryButtonHref} class="cta-button secondary">
+            <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
+              {SecondaryIconComponent && (
+                <SecondaryIconComponent />
+              )}
               {secondaryButtonText}
             </a>
           )}
@@ -80,18 +101,25 @@ const sectionClasses = [
     )}
     
     {layout === 'split' && (
-      <div class="cta-split-content">
-        <div class="cta-text-content">
-          {tagline && (
-            <div class="cta-tagline">
-              {tagline}
-            </div>
+      <div class="cta-centered-content">
+      { tagline && (
+        <div class="cta-tagline">
+          {TaglineIconComponent && (
+            <div class="cta-tagline-icon"><TaglineIconComponent /></div>
           )}
+          {tagline}
+        </div>
+      )}
+      </div>
+
+      <div class="cta-split-content pt-4">
+
+        <div class="cta-text-content">
           
           {title && (
-            <h2 class="cta-title">
+            <h1 class={titleClasses}>
               {title}
-            </h2>
+            </h1>
           )}
           
           {description && (
@@ -103,16 +131,19 @@ const sectionClasses = [
         
         <div class="cta-actions">
           {primaryButtonText && (
-            <a href={primaryButtonHref} class="cta-button primary">
+            <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
+              {PrimaryIconComponent && (
+                <PrimaryIconComponent />
+              )}
               {primaryButtonText}
-              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
             </a>
           )}
           
           {secondaryButtonText && (
-            <a href={secondaryButtonHref} class="cta-button secondary">
+            <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
+              {SecondaryIconComponent && (
+                <SecondaryIconComponent />
+              )}
               {secondaryButtonText}
             </a>
           )}
@@ -193,9 +224,13 @@ const sectionClasses = [
     font-size: 0.875rem;
     font-weight: 500;
     background: hsl(var(--muted));
-    color: hsl(var(--muted-foreground));
+    color: hsl(var(--foreground));
     border: 1px solid hsl(var(--border));
     width: fit-content;
+  }
+
+  .cta-tagline .cta-tagline-icon {
+    padding-right: .5rem;
   }
   
   .variant-dark .cta-tagline {
@@ -214,18 +249,17 @@ const sectionClasses = [
     align-self: center;
   }
   
+  /
   .cta-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin: 0;
+
   }
   
   .cta-description {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     line-height: 1.6;
     opacity: 0.9;
     margin: 0;
+    color: var(--color-muted-foreground);
   }
   
   /* Actions */
@@ -277,6 +311,7 @@ const sectionClasses = [
   
   .cta-button.secondary:hover {
     background: hsl(var(--muted));
+    transform: translateY(-1px);
   }
   
   /* Variant-specific button styles */
@@ -324,7 +359,15 @@ const sectionClasses = [
     transition: transform 0.2s ease;
   }
   
-  .cta-button:hover .button-icon {
+  /* Target both class and SVG elements */
+  .cta-button svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .cta-button:hover .button-icon,
+  .cta-button:hover svg {
     transform: translateX(2px);
   }
   

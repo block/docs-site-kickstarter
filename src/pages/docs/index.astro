@@ -1,9 +1,10 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import DocsNavbar from '@/components/docs/DocsNavbar.astro';
-import TableOfContents from "@/components/docs/TableOfContents.astro";
+import CTASection from '@/components/block/CTASection.astro';
+import { ArrowRight, Blocks, Layers } from '@lucide/astro';
 
-const title = "Block Documentation Templates";
+const title = "Build Beautiful Docs";
 const description = "Build your own Block documentation site.";
 
 // Headings for table of contents
@@ -16,64 +17,27 @@ const headings = [
 ];
 ---
 
-<BaseLayout title={title} description={description}>
-  <div class="relative min-h-[calc(100vh-4rem)]">
-    <!-- Background Pattern -->
-    <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+<ContentPageLayout title={title} 
+  description={description} 
+  headings={headings} 
+  maxWidth="wide"
+  showTitleAsH1={false}
+  showBreadcrumbs={false}>
 
-    <!-- Main Content -->
-    <div class="docs-layout relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px]">
-      <nav class="docs-sidebar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-        <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
-          <DocsNavbar />
-        </div>
-      </nav>
-
-      <main class="docs-main min-w-0 py-8 px-10">
-        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
-    {/* Hero Section */}
-    <div class="not-prose mb-12">
-      <div class="text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-          </svg>
-          Documentation Infrastructure by Block
-        </div>
-        
-        <h1 class="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-          {title}
-        </h1>
-        
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-primary">
-          Build Beautiful Docs
-        </h2>
-        
-        <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
-          Create stunning documentation sites for your Block projects with our modern template. 
-          Built with Astro, Tailwind CSS, and shadcn/ui components for the best developer experience.
-        </p>
-        
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/docs-site-kickstarter/docs/installation" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors no-underline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-              <path d="M7 7h10v10"/>
-              <path d="M7 17 17 7"/>
-            </svg>
-            Get Started
-          </a>
-          <a href="/docs-site-kickstarter/components" class="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border bg-background hover:bg-accent transition-colors no-underline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-              <rect width="7" height="7" x="3" y="3" rx="1"/>
-              <rect width="7" height="7" x="14" y="3" rx="1"/>
-              <rect width="7" height="7" x="14" y="14" rx="1"/>
-              <rect width="7" height="7" x="3" y="14" rx="1"/>
-            </svg>
-            View Components
-          </a>
-        </div>
-      </div>
-    </div>
+  <DocsNavbar slot="navbar" />
+    
+  <CTASection
+    title={title}
+    tagline="Documentation Infrastructure by Block Open Source"
+    taglineIcon={Layers}
+    description="Create stunning documentation sites for your Block projects with our modern template. Built with Astro, Tailwind CSS, and shadcn/ui components for the best developer experience."
+    primaryButtonText="Get Started"
+    primaryButtonHref="/docs/installation"
+    primaryButtonIcon={ArrowRight}
+    secondaryButtonText="Components"
+    secondaryButtonHref="/components"
+    secondaryButtonIcon={Blocks}
+  />
 
     <h2 id="key-features" class="text-3xl font-bold mb-8">Key Features</h2>
 
@@ -328,19 +292,8 @@ const headings = [
         <span class="text-sm text-muted-foreground">Coming soon</span>
       </div>
     </div>
-        </div>
-      </main>
 
-      {headings && headings.length > 0 && (
-        <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-          <div class="sticky top-16 h-fit py-6 px-6">
-            <TableOfContents headings={headings} />
-          </div>
-        </aside>
-      )}
-    </div>
-  </div>
-</BaseLayout>
+</ContentPageLayout>
 
 <style>
   /* Enhanced layout with better spacing and wider content */

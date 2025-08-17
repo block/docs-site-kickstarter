@@ -56,27 +56,7 @@ const getPostURL = (post) => post.data.slug != null ? import.meta.env.BASE_URL +
 ---
 
 <section class={sectionClasses}>
-  <div class="container mx-auto px-6 py-16 lg:py-24">
-    <!-- Section Header -->
-    <div class="blog-header">
-      {tagline && (
-        <div class="blog-tagline">
-          {tagline}
-        </div>
-      )}
-      
-      {title && (
-        <h2 class="blog-title">
-          {title}
-        </h2>
-      )}
-      
-      {description && (
-        <p class="blog-description">
-          {description}
-        </p>
-      )}
-    </div>
+  <div class="container mx-auto px-6 py-8">
 
     <!-- Blog Posts -->
     {posts.length > 0 && (
@@ -84,12 +64,12 @@ const getPostURL = (post) => post.data.slug != null ? import.meta.env.BASE_URL +
         {posts.map((post, index) => (
 
           <article class={`blog-post ${layout === 'featured' && index === 0 ? 'featured-post' : ''}`}>
-            {post.data.image && (
+            {post.image && (
               <div class="post-image">
                 <a href={getPostURL(post)}>
                   <Image 
-                    src={import.meta.env.BASE_URL + post.data.image}
-                    alt={post.data.title}
+                    src={import.meta.env.BASE_URL + post.image}
+                    alt={post.title}
                     width="100%"
                     height="100%"
                   />

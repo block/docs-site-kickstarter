@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import CTASection from "@/components/block/CTASection.astro";
+import { Layers, FileSearch, Images } from "@lucide/astro";
 
-const title = "Examples";
+const title = "Examples Gallery";
 const description = "Showcase of documentation sites built using this project's templates, components, and design system.";
 
 // Example sites data - replace with real examples
@@ -90,47 +92,19 @@ const exampleSites = [
     <div class="relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px] py-8 px-6">
       <main class="min-w-0">
         <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
-          {/* Hero Section */}
-          <div class="not-prose mb-16">
-            <div class="text-center max-w-4xl mx-auto">
-              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect width="18" height="18" x="3" y="3" rx="2"/>
-                  <circle cx="9" cy="9" r="2"/>
-                  <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                </svg>
-                Documentation Showcase
-              </div>
-              
-              <h1 class="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                Examples Gallery
-              </h1>
-              
-              <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Explore real-world documentation sites built with this project's templates, components, and design system. 
-                See how Block teams create exceptional user experiences across different product areas.
-              </p>
-              
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/docs-site-kickstarter/docs/installation" class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors no-underline">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-                    <path d="M7 7h10v10"/>
-                    <path d="M7 17 17 7"/>
-                  </svg>
-                  Start Building
-                </a>
-                <a href="/docs-site-kickstarter/components" class="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border bg-background hover:bg-accent transition-colors no-underline">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-                    <rect width="7" height="7" x="3" y="3" rx="1"/>
-                    <rect width="7" height="7" x="14" y="3" rx="1"/>
-                    <rect width="7" height="7" x="14" y="14" rx="1"/>
-                    <rect width="7" height="7" x="3" y="14" rx="1"/>
-                  </svg>
-                  Browse Components
-                </a>
-              </div>
-            </div>
-          </div>
+          
+    <CTASection
+      title={title}
+      tagline="Documentation Showcase"
+      taglineIcon={Images}
+      description="Explore real-world documentation sites built with this project's templates, components, and design system. See how Block teams create exceptional user experiences across different product areas."
+      primaryButtonText="Documentation"
+      primaryButtonHref="/docs"
+      primaryButtonIcon={Layers}
+      secondaryButtonText="Browse Gallery"
+      secondaryButtonHref="#gallery"
+      secondaryButtonIcon={FileSearch}
+    />
 
           {/* Stats Section */}
           <div class="not-prose mb-16">
@@ -160,6 +134,7 @@ const exampleSites = [
         </div>
 
         {/* Examples Gallery - Inspired by Figma shadcn Gallery Pro Block */}
+        <a name="gallery" />
         <div class="bg-background/80 backdrop-blur-sm rounded-lg p-8 mt-8">
           <div class="max-w-[1280px] mx-auto">
             {/* Section Header */}
