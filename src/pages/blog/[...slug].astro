@@ -28,6 +28,7 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const title = post.data.title;
 const description = post.data.description;
+const imageFilename = post.data.image;
 const postAuthorId = post.data.author;
 const date = formatDate(post.data.date);
 const { Content, headings, remarkPluginFrontmatter } = await render(post);
@@ -46,6 +47,12 @@ interface Author {
 const authors = await getCollection('authors');
 const author = authors.find(author => author.id === postAuthorId);
 
+const imageDir = '/src/assets/blog/';
+const imagePath = imageDir + imageFilename;
+console.log(imagePath);
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/blog/*.{jpeg,jpg,png,gif}') // Must take a String literal otherwise we'd reuse imageDir here
+if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist`);
+
 ---
 
 <ContentPageLayout title={title} 
@@ -63,15 +70,17 @@ const author = authors.find(author => author.id === postAuthorId);
 			</p>
       <AuthorCard author={author}/>
 	  </div>
+		{post.data.image && (
 		<div class="flex-none order-last lg:order-none lg:max-w-xs">
 			<Image 
-				src={getUrlRelativeToBase(post.data.image)}
+				src={images[imagePath]()}
 				alt={post.data.title}
 				width={800}
 				height={600}
 				class="w-full object-cover rounded-b-md lg:rounded-bl-none lg:rounded-tr-md"
 			/>
 		</div>
+		)}
 	</div>
   <Content components={MDXComponents} />
 </ContentPageLayout>

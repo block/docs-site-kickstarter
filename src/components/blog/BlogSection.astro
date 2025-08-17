@@ -54,6 +54,9 @@ const sectionClasses = [
   className
 ].filter(Boolean).join(' ');
 
+const imagePath = '/src/assets/blog/';
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/blog/*.{jpeg,jpg,png,gif}') // Must take a String literal otherwise we'd reuse imageDir here
+
 // Set the postURL only if the post exists in Content Collections and has an ID; else set it to NO-OP; this is used in examples docs
 const getPostURL = (post) => post.data.slug != null ? getUrlRelativeToBase("blog/" + post.data.slug) : "javascript:void(null);";
 ---
@@ -64,15 +67,13 @@ const getPostURL = (post) => post.data.slug != null ? getUrlRelativeToBase("blog
     <!-- Blog Posts -->
     {posts.length > 0 && (
       <div class="blog-posts">
-        {console.log(posts)}
         {posts.map((post, index) => (
-
           <article class={`blog-post ${layout === 'featured' && index === 0 ? 'featured-post' : ''}`}>
             {post.data.image && (
               <div class="post-image">
                 <a href={getPostURL(post)}>
                   <Image 
-                    src={getUrlRelativeToBase(post.data.image)}
+                    src={images[imagePath + post.data.image]()}
                     alt={post.data.title}
                     width={800}
                     height={600}
