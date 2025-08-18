@@ -1,7 +1,7 @@
 ---
-import { buttonVariants } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle.astro";
 import MobileNav from "@/components/docs/MobileNav.astro";
+import { getUrlRelativeToBase } from "@/lib/utils";
 
 const currentPath = Astro.url.pathname;
 
@@ -9,38 +9,38 @@ const currentPath = Astro.url.pathname;
 const navigationItems = [
   {
     title: "Documentation",
-    href: "/docs-site-kickstarter/docs",
+    href: "/docs",
     description: "Complete guides and API reference"
   },
   {
     title: "Components", 
-    href: "/docs-site-kickstarter/components",
+    href: "/components",
     description: "Reusable UI components and layouts"
   },
   {
     title: "Examples",
-    href: "/docs-site-kickstarter/examples",
+    href: "/examples",
     description: "Real-world implementation examples"
   },
   {
     title: "Blog",
-    href: "/docs-site-kickstarter/blog", 
+    href: "/blog", 
     description: "Latest updates and tutorials"
   }
 ];
 
 // Check if current path matches navigation item
 function isActive(href: string, currentPath: string): boolean {
-  if (href === '/docs-site-kickstarter/docs' && currentPath.startsWith('/docs-site-kickstarter/docs')) {
+  if (href === '/docs' && currentPath.startsWith('/docs')) {
     return true;
   }
-  if (href === '/docs-site-kickstarter/components' && currentPath.startsWith('/docs-site-kickstarter/components')) {
+  if (href === '/components' && currentPath.startsWith('/components')) {
     return true;
   }
-  if (href === '/docs-site-kickstarter/blog' && currentPath.startsWith('/docs-site-kickstarter/blog')) {
+  if (href === '/blog' && currentPath.startsWith('/blog')) {
     return true;
   }
-  if (href === '/docs-site-kickstarter/examples' && currentPath.startsWith('/docs-site-kickstarter/examples')) {
+  if (href === '/examples' && currentPath.startsWith('/examples')) {
     return true;
   }
   return false;
@@ -54,7 +54,7 @@ function isActive(href: string, currentPath: string): boolean {
       <MobileNav currentPath={currentPath} />
       
       <!-- Logo/Brand -->
-      <a href="/docs-site-kickstarter/" class="brand-link">
+      <a href="/" class="brand-link">
         <div class="brand-content">
           <div class="brand-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +73,7 @@ function isActive(href: string, currentPath: string): boolean {
       <nav class="desktop-nav">
         {navigationItems.map((item) => (
           <a
-            href={item.href}
+            href={getUrlRelativeToBase(item.href)}
             class={`nav-link ${isActive(item.href, currentPath) ? 'nav-link-active' : ''}`}
             title={item.description}
           >
