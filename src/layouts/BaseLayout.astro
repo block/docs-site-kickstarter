@@ -1,8 +1,9 @@
 ---
 import HeadSEO from "@/components/HeadSEO.astro";
 import Footer from "@/components/Footer.astro";
-import HeaderEnhanced from "@/components/HeaderEnhanced.astro";
-import "../styles/global.css";
+import Header from "@/components/Header.astro";
+import "@/styles/global.css";
+import { getUrlRelativeToBase } from "@/lib/utils";
 
 interface Props {
   title?: string | undefined;
@@ -11,7 +12,6 @@ interface Props {
 }
 
 const { title, description, ogImage } = Astro.props;
-const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -23,7 +23,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Light - 300 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Light.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Light.woff2')}') format('woff2');
         font-weight: 300;
         font-style: normal;
         font-display: swap;
@@ -31,7 +31,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-LightItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-LightItl.woff2')}') format('woff2');
         font-weight: 300;
         font-style: italic;
         font-display: swap;
@@ -40,7 +40,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Regular - 400 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Regular.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Regular.woff2')}') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
@@ -48,7 +48,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-RegularItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-RegularItl.woff2')}') format('woff2');
         font-weight: 400;
         font-style: italic;
         font-display: swap;
@@ -57,7 +57,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Medium - 500 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Medium.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Medium.woff2')}') format('woff2');
         font-weight: 500;
         font-style: normal;
         font-display: swap;
@@ -65,7 +65,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-MediumItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-MediumItl.woff2')}') format('woff2');
         font-weight: 500;
         font-style: italic;
         font-display: swap;
@@ -74,7 +74,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Semibold - 600 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Semibold.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Semibold.woff2')}') format('woff2');
         font-weight: 600;
         font-style: normal;
         font-display: swap;
@@ -82,7 +82,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-SemiboldItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-SemiboldItl.woff2')}') format('woff2');
         font-weight: 600;
         font-style: italic;
         font-display: swap;
@@ -91,7 +91,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Bold - 700 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Bold.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Bold.woff2')}') format('woff2');
         font-weight: 700;
         font-style: normal;
         font-display: swap;
@@ -99,7 +99,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-BoldItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-BoldItl.woff2')}') format('woff2');
         font-weight: 700;
         font-style: italic;
         font-display: swap;
@@ -108,7 +108,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Extra Black - 800 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Extblack.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Extblack.woff2')}') format('woff2');
         font-weight: 800;
         font-style: normal;
         font-display: swap;
@@ -116,7 +116,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-ExtblackItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-ExtblackItl.woff2')}') format('woff2');
         font-weight: 800;
         font-style: italic;
         font-display: swap;
@@ -125,7 +125,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Black - 900 */
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-Black.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-Black.woff2')}') format('woff2');
         font-weight: 900;
         font-style: normal;
         font-display: swap;
@@ -133,7 +133,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans';
-        src: url('${baseUrl}fonts/CashSans-BlackItl.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSans-BlackItl.woff2')}') format('woff2');
         font-weight: 900;
         font-style: italic;
         font-display: swap;
@@ -142,7 +142,7 @@ const baseUrl = import.meta.env.BASE_URL;
       /* Cash Sans Mono for code blocks */
       @font-face {
         font-family: 'Cash Sans Mono';
-        src: url('${baseUrl}fonts/CashSansMono-Regular.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSansMono-Regular.woff2')}') format('woff2');
         font-weight: 400;
         font-style: normal;
         font-display: swap;
@@ -150,7 +150,7 @@ const baseUrl = import.meta.env.BASE_URL;
 
       @font-face {
         font-family: 'Cash Sans Mono';
-        src: url('${baseUrl}fonts/CashSansMono-Medium.woff2') format('woff2');
+        src: url('${getUrlRelativeToBase('/fonts/CashSansMono-Medium.woff2')}') format('woff2');
         font-weight: 500;
         font-style: normal;
         font-display: swap;
@@ -159,7 +159,7 @@ const baseUrl = import.meta.env.BASE_URL;
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
     <div class="relative flex min-h-screen flex-col">
-      <HeaderEnhanced />
+      <Header />
       <div class="flex-1">
         <slot />
       </div>
