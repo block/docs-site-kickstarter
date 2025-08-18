@@ -4,7 +4,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import BlogSection from "@/components/blog/BlogSection.astro"
 import { getCollection } from "astro:content";
 import CTASection from '@/components/block/CTASection.astro';
-import { Newspaper } from '@lucide/astro';
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -20,7 +19,7 @@ const description = "All the news that's fit to read from the Block Open Source 
   <CTASection
     title={title}
     tagline={tagline}
-    taglineIcon={Newspaper}
+    taglineIconName="newspaper"
     description={description}
   />
 

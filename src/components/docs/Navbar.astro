@@ -4,6 +4,7 @@ import { getUrlRelativeToBase } from '@/lib/utils';
 export interface NavItem {
   title: string;
   href: string;
+  iconName?: string; 
 }
 
 export interface NavGroup {
@@ -16,9 +17,6 @@ export interface Props {
 }
 
 const { sidebarNav } = Astro.props;
-
-// Get the base URL from Astro config
-const baseUrl = import.meta.env.BASE_URL;
 
 // Get current path directly from Astro.url
 const currentPath = Astro.url.pathname;

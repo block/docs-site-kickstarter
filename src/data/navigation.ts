@@ -1,5 +1,34 @@
 import type { NavGroup } from "@/components/docs/Navbar.astro";
 
+// Navigation items configuration
+export const mainNavigation: NavGroup[] = [
+  {
+    title: "Main Navigation",
+    items: [ 
+      {
+        title: "Documentation",
+        href: "/docs",
+        iconName: "layers",
+      },
+      {
+        title: "Components", 
+        href: "/components",
+        iconName: "blocks"
+      },
+      {
+        title: "Examples",
+        href: "/examples",
+        iconName: "images",
+      },
+      {
+        title: "Blog",
+        href: "/blog",
+        iconName: "newspaper"
+      }
+    ],
+  }
+];
+
 export const docsNavigation: NavGroup[] = [
   {
     title: "Getting Started",

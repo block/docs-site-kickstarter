@@ -2,7 +2,6 @@
 import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import DocsNavbar from '@/components/docs/DocsNavbar.astro';
 import CTASection from '@/components/block/CTASection.astro';
-import { ArrowRight, Blocks, Layers } from '@lucide/astro';
 
 const title = "Build Beautiful Docs";
 const description = "Build your own Block documentation site.";
@@ -29,14 +28,14 @@ const headings = [
   <CTASection
     title={title}
     tagline="Documentation Infrastructure by Block Open Source"
-    taglineIcon={Layers}
+    taglineIconName="layers"
     description="Create stunning documentation sites for your Block projects with our modern template. Built with Astro, Tailwind CSS, and shadcn/ui components for the best developer experience."
     primaryButtonText="Get Started"
     primaryButtonHref="/docs/installation"
-    primaryButtonIcon={ArrowRight}
+    primaryButtonIconName="arrow-right"
     secondaryButtonText="Components"
     secondaryButtonHref="/components"
-    secondaryButtonIcon={Blocks}
+    secondaryButtonIconName="blocks"
   />
 
     <h2 id="key-features" class="text-3xl font-bold mb-8">Key Features</h2>

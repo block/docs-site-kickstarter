@@ -1,33 +1,11 @@
 ---
 import ThemeToggle from "@/components/ThemeToggle.astro";
 import MobileNav from "@/components/docs/MobileNav.astro";
+import Brand from '@/components/Brand.astro';
 import { getUrlRelativeToBase } from "@/lib/utils";
+import { mainNavigation } from "@/data/navigation";
 
 const currentPath = Astro.url.pathname;
-
-// Navigation items configuration
-const navigationItems = [
-  {
-    title: "Documentation",
-    href: "/docs",
-    description: "Complete guides and API reference"
-  },
-  {
-    title: "Components", 
-    href: "/components",
-    description: "Reusable UI components and layouts"
-  },
-  {
-    title: "Examples",
-    href: "/examples",
-    description: "Real-world implementation examples"
-  },
-  {
-    title: "Blog",
-    href: "/blog", 
-    description: "Latest updates and tutorials"
-  }
-];
 
 // Check if current path matches navigation item
 function isActive(href: string, currentPath: string): boolean {
@@ -53,29 +31,14 @@ function isActive(href: string, currentPath: string): boolean {
     <div class="header-left">
       <MobileNav currentPath={currentPath} />
       
-      <!-- Logo/Brand -->
-      <a href="/" class="brand-link">
-        <div class="brand-content">
-          <div class="brand-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 6V4C4 2.89543 4.89543 2 6 2H18C19.1046 2 20 2.89543 20 4V6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M4 6H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M8 14H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="16" cy="8" r="2" fill="currentColor"/>
-            </svg>
-          </div>
-          <span class="brand-text">Docs Kickstarter</span>
-        </div>
-      </a>
+      <Brand />
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav">
-        {navigationItems.map((item) => (
+        {mainNavigation[0].items.map((item) => (
           <a
             href={getUrlRelativeToBase(item.href)}
             class={`nav-link ${isActive(item.href, currentPath) ? 'nav-link-active' : ''}`}
-            title={item.description}
           >
             {item.title}
           </a>
@@ -143,45 +106,6 @@ function isActive(href: string, currentPath: string): boolean {
     display: flex;
     align-items: center;
     gap: 1rem;
-  }
-
-  /* Brand Styling */
-  .brand-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
-    transition: opacity 0.2s ease;
-  }
-
-  .brand-link:hover {
-    opacity: 0.8;
-  }
-
-  .brand-content {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .brand-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    color: hsl(var(--primary));
-    transition: color 0.2s ease;
-  }
-
-  .brand-link:hover .brand-icon {
-    color: hsl(var(--accent));
-  }
-
-  .brand-text {
-    font-weight: 700;
-    font-size: 1.125rem;
-    color: hsl(var(--foreground));
   }
 
   /* Desktop Navigation */

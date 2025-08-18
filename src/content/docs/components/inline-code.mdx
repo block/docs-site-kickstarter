@@ -2,10 +2,10 @@
 title: "Inline Code"
 description: "Display code snippets within text content."
 slug: "inline-code"
+
 ---
 
-import { Terminal } from "@lucide/astro"
-
+import { Icon } from 'astro-icon/components';
 
 Inline code components are used to highlight code, commands, or technical terms within regular text content.
 
@@ -80,7 +80,7 @@ Add icons to inline code:
 
 <p className="flex items-center gap-2">
   Run <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold inline-flex items-center gap-1">
-    <Terminal className="h-3 w-3" /> npm start
+    <Icon name="chevron-right" className="h-3 w-3" /> npm start
   </code> to start the development server
 </p>
 

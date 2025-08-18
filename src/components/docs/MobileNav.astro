@@ -1,14 +1,68 @@
 ---
 import { MobileNavigation } from "./MobileNavigation";
 import DocsNavbar from "./DocsNavbar.astro";
+import { mainNavigation } from "@/data/navigation";
+import { getUrlRelativeToBase } from "@/lib/utils";
+import Brand from "../Brand.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   currentPath: string;
 }
 
 const { currentPath } = Astro.props;
+
+// Check if current path matches navigation item
+function isActive(href: string, currentPath: string): boolean {
+  if (href === '/docs' && currentPath.startsWith(getUrlRelativeToBase('/docs'))) {
+    return true;
+  }
+  if (href === '/components' && currentPath.startsWith(getUrlRelativeToBase('/components'))) {
+    return true;
+  }
+  if (href === '/blog' && currentPath.startsWith(getUrlRelativeToBase('/blog'))) {
+    return true;
+  }
+  if (href === '/examples' && currentPath.startsWith(getUrlRelativeToBase('/examples'))) {
+    return true;
+  }
+  return false;
+}
 ---
 
 <MobileNavigation client:load currentPath={currentPath}>
+  <!-- Main Navigation Links -->
+  <div class="mb-8 pb-6 border-b border-border">
+    <Brand />
+    <div class="pt-4 flex flex-col gap-2">
+      {mainNavigation[0].items.map((item) => (
+        <a
+          href={getUrlRelativeToBase(item.href)}
+          class={`flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground no-underline rounded-md transition-all duration-200 hover:text-foreground hover:bg-muted/50 ${
+            isActive(item.href, currentPath) 
+              ? 'text-foreground bg-muted font-semibold nav-active' 
+              : ''
+          }`}
+        >
+          {item.iconName && (
+            <Icon name={item.iconName} class="nav-icon transition-transform duration-200" />
+          )}  
+          {item.title}
+        </a>
+      ))}
+    </div>
+  </div>
+  
+  <!-- Docs Navigation -->
   <DocsNavbar />
 </MobileNavigation>
+
+<style>
+  a:hover .nav-icon {
+    transform: translateX(4px);
+  }
+  
+  a.nav-active:hover .nav-icon {
+    transform: translateX(0);
+  }
+</style>

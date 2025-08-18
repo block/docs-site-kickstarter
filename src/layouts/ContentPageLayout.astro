@@ -25,7 +25,6 @@ import type { MarkdownHeading } from 'astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
 import { Icon } from 'astro-icon/components';
-import { ChevronRight } from "@lucide/astro"
 import "../styles/breadcrumbs.css";
 
 interface Props {
@@ -75,7 +74,7 @@ const widthClasses = {
                 linkTextFormat="capitalized"
                 excludeCurrentPage={false}
               >
-                <span slot="separator">&nbsp;<ChevronRight />&nbsp;</span>
+                <span slot="separator">&nbsp;<Icon name="chevron-right" />&nbsp;</span>
                 <span slot="index">
                   <Icon name="home" width={20} height={20}/>
                 </span>

@@ -3,7 +3,6 @@ import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import ComponentsNavbar from '@/components/docs/ComponentsNavbar.astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import CTASection from '@/components/block/CTASection.astro';
-import { FileSearch, Blocks } from '@lucide/astro';
 
 const title = "Reusable Components";
 const description = "Reusable UI components and layouts for building documentation sites.";
@@ -31,11 +30,11 @@ const headings = [
   <CTASection
     title={title}
     tagline="Component Library"
-    taglineIcon={Blocks}
+    taglineIconName="blocks"
     description="Discover our collection of production-ready components designed for Block documentation sites. Copy, paste, and customize to build amazing user experiences."
     primaryButtonText="Browse Components"
     primaryButtonHref="#component-categories"
-    primaryButtonIcon={FileSearch}
+    primaryButtonIconName="file-search"
   />
 
       <main class="docs-main min-w-0 py-8 px-10">

@@ -1,17 +1,18 @@
 ---
 import { getUrlRelativeToBase } from '@/lib/utils';
+import { Icon } from "astro-icon/components";
 
 interface Props {
   title?: string;
   tagline?: string;
-  taglineIcon?: any;
+  taglineIconName?: any;
   description?: string;
   primaryButtonText?: string;
   primaryButtonHref?: string;
-  primaryButtonIcon?: any;
+  primaryButtonIconName?: any;
   secondaryButtonText?: string;
   secondaryButtonHref?: string;
-  secondaryButtonIcon?: any;
+  secondaryButtonIconName?: any;
   variant?: 'default' | 'dark' | 'gradient' | 'bordered';
   layout?: 'centered' | 'split';
   className?: string;
@@ -20,23 +21,18 @@ interface Props {
 const { 
   title = "Action-driving headline that creates urgency",
   tagline = "Call to action",
-  taglineIcon,
+  taglineIconName,
   description = "Add one or two compelling sentences that reinforce your main value proposition and overcome final objections. End with a clear reason to act now.",
   primaryButtonText,
   primaryButtonHref = "#",
-  primaryButtonIcon,
+  primaryButtonIconName,
   secondaryButtonText,
   secondaryButtonHref = "#",
-  secondaryButtonIcon,
+  secondaryButtonIconName,
   variant = 'default',
   layout = 'centered',
   className = '',
 } = Astro.props;
-
-// Get the icon components
-const PrimaryIconComponent = primaryButtonIcon;
-const SecondaryIconComponent = secondaryButtonIcon;
-const TaglineIconComponent = taglineIcon;
 
 const sectionClasses = [
   'cta-section',
@@ -54,8 +50,8 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
       <div class="cta-centered-content">
         {tagline && (
           <div class="cta-tagline">
-            {TaglineIconComponent && (
-              <div class="cta-tagline-icon"><TaglineIconComponent /></div>
+            {taglineIconName && (
+              <div class="cta-tagline-icon"><Icon name={taglineIconName} /></div>
             )}
             {tagline}
           </div>
@@ -76,8 +72,8 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
         <div class="cta-actions">
           {primaryButtonText && (
             <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
-              {PrimaryIconComponent && (
-                <PrimaryIconComponent />
+              {primaryButtonIconName && (
+                <Icon name={primaryButtonIconName} />
               )}
               {primaryButtonText}
             </a>
@@ -85,8 +81,8 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
           
           {secondaryButtonText && (
             <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
-              {SecondaryIconComponent && (
-                <SecondaryIconComponent />
+              {secondaryButtonIconName && (
+                <Icon name={secondaryButtonIconName} />
               )}
               {secondaryButtonText}
             </a>
@@ -104,9 +100,9 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
       <div class="cta-centered-content">
       { tagline && (
         <div class="cta-tagline">
-          {TaglineIconComponent && (
-            <div class="cta-tagline-icon"><TaglineIconComponent /></div>
-          )}
+          {taglineIconName && (
+              <div class="cta-tagline-icon"><Icon name={taglineIconName} /></div>
+            )}
           {tagline}
         </div>
       )}
@@ -132,8 +128,8 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
         <div class="cta-actions">
           {primaryButtonText && (
             <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
-              {PrimaryIconComponent && (
-                <PrimaryIconComponent />
+              {primaryButtonIconName && (
+                <Icon name={primaryButtonIconName} />
               )}
               {primaryButtonText}
             </a>
@@ -141,8 +137,8 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
           
           {secondaryButtonText && (
             <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
-              {SecondaryIconComponent && (
-                <SecondaryIconComponent />
+              {secondaryButtonIconName && (
+                <Icon name={secondaryButtonIconName} />
               )}
               {secondaryButtonText}
             </a>
