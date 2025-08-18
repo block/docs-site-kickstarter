@@ -31,16 +31,16 @@ const navigationItems = [
 
 // Check if current path matches navigation item
 function isActive(href: string, currentPath: string): boolean {
-  if (href === '/docs' && currentPath.startsWith('/docs')) {
+  if (href === '/docs' && currentPath.startsWith(getUrlRelativeToBase('/docs'))) {
     return true;
   }
-  if (href === '/components' && currentPath.startsWith('/components')) {
+  if (href === '/components' && currentPath.startsWith(getUrlRelativeToBase('/components'))) {
     return true;
   }
-  if (href === '/blog' && currentPath.startsWith('/blog')) {
+  if (href === '/blog' && currentPath.startsWith(getUrlRelativeToBase('/blog'))) {
     return true;
   }
-  if (href === '/examples' && currentPath.startsWith('/examples')) {
+  if (href === '/examples' && currentPath.startsWith(getUrlRelativeToBase('/examples'))) {
     return true;
   }
   return false;
