@@ -174,6 +174,10 @@ export const componentsNavigation: NavGroup[] = [
         title: "Checklist",
         href: "/components/checklist",
       },
+      {
+        title: "GitHub Stats",
+        href: "/components/github-stats",
+      },
     ],
   },
   {
@@ -206,15 +210,6 @@ export const componentsNavigation: NavGroup[] = [
       {
         title: "Table",
         href: "/components/table",
-      },
-    ],
-  },
-  {
-    title: "GitHub Components",
-    items: [
-      {
-        title: "Stars",
-        href: "/components/github-stars",
       },
     ],
   },
