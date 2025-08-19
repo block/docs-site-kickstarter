@@ -1,5 +1,5 @@
 ---
-import { keyContributions, type KeyContribution } from './key-contributions';
+import { keyContributions} from './key-contributions';
 
 interface Props {}
 
@@ -12,21 +12,19 @@ const { } = Astro.props;
     <h3>Key Contributions</h3>
     <div id="contributions" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 py-6 md:py-8">
         {keyContributions.map((key) => (
-            <div class="flex flex-col text-left p-4 md:p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-                <h3 class="text-lg md:text-xl font-semibold mb-3">
-                  <a
-                    href={key.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 no-underline hover:underline"
-                  >
+            <a
+                href={key.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex flex-col text-left p-4 md:p-6 rounded-lg border border-gray-200 dark:border-gray-700 no-underline transition-colors duration-200 hover:bg-accent cursor-pointer"
+            >
+                <h3 class="text-lg md:text-xl font-semibold mb-3 mt-0 pt-0">
                     {key.name}
-                  </a>
                 </h3>
-                <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {key.description}
+                <p class="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-relaxed mt-0">
+                    {key.description}
                 </p>
-            </div>
+            </a>
         ))}
     </div>
 </section>
