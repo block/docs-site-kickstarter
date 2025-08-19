@@ -7,11 +7,13 @@ import Image from "astro/components/Image.astro";
 import goose from '@/icons/block-open-source/goose.svg';
 import Icon from "@/components/block/Icon.astro";
 import GitHubStats from "@/components/block/GitHubStats.astro"
+import OpenSourceContributions from "@/components/blockopensource/OpenSourceContributions.astro";
 
 const pageTitle = "Block - Open Source";
 const title = "Our Vision for Open Source";
 const tagline = "Block Open Source";
 const description = "At Block, we believe open source is at the heart of innovation and community empowerment. Our vision is to nurture a diverse and vibrant open source ecosystem that removes barriers to technology and fosters economic opportunities for all.";
+
 ---
 
 <ContentPageLayout title={pageTitle}
@@ -178,5 +180,6 @@ const description = "At Block, we believe open source is at the heart of innovat
 
 <ExploreProjects />
 
+<OpenSourceContributions />
 
 </ContentPageLayout>
