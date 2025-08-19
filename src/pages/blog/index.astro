@@ -11,6 +11,7 @@ const posts = (await getCollection("blog")).sort(
 
 const title = "Blog";
 const tagline = "Extra, Extra!"
+const taglineIconName = "newspaper";
 const description = "All the news that's fit to read from the Block Open Source team";
 ---
 
@@ -19,7 +20,7 @@ const description = "All the news that's fit to read from the Block Open Source 
   <CTASection
     title={title}
     tagline={tagline}
-    taglineIconName="newspaper"
+    taglineIconName={taglineIconName}
     description={description}
   />
 
