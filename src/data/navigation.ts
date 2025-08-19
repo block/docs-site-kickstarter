@@ -24,6 +24,10 @@ export const mainNavigation: NavGroup[] = [
         title: "Blog",
         href: "/blog",
         iconName: "newspaper"
+      },
+      {
+        title: "Open Source",
+        href: "/block-open-source",
       }
     ],
   }
