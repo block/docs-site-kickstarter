@@ -12,7 +12,7 @@
  * 3) You can pass along classes or other attributes as shown above.
  */
 const { name, ...attrs } = Astro.props;
-const icons = import.meta.glob('/src/icons/*.svg', { eager: true });
+const icons = import.meta.glob('/src/icons/**/*.svg', { eager: true });
 const mod = icons[`/src/icons/${name}.svg`];
 if (!mod) throw new Error(`Icon ${name} not found`);
 const Svg = mod.default;
