@@ -18,6 +18,22 @@ const { repo,
 // Determine the identifier to use based on type
 const identifier = type === "followers" ? account : repo;
 
+// Generate the appropriate GitHub URL based on type
+const getGitHubUrl = (type: string, identifier: string) => {
+  switch (type) {
+    case "stars":
+      return `https://github.com/${identifier}/stargazers`;
+    case "forks":
+      return `https://github.com/${identifier}/forks`;
+    case "followers":
+      return `https://github.com/${identifier}?tab=followers`;
+    default:
+      return `https://github.com/${identifier}`;
+  }
+};
+
+const githubUrl = identifier ? getGitHubUrl(type, identifier) : "#";
+
 // Size-based classes
 const sizeClasses = {
   sm: {
@@ -76,11 +92,16 @@ const buttonText = getButtonText(type);
   </div>
   
   <!-- Right section: Count -->
-  <div class={`flex items-center ${currentSize.padding} bg-black text-white`}>
+  <a 
+    href={githubUrl} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class={`flex items-center ${currentSize.padding} bg-black text-white hover:bg-gray-800 transition-colors no-underline`}
+  >
     <span class={`${currentSize.text} stat-count`}>
       ...
     </span>
-  </div>
+  </a>
 </div>
 
 <script>
