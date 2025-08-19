@@ -209,4 +209,13 @@ export const componentsNavigation: NavGroup[] = [
       },
     ],
   },
+  {
+    title: "GitHub Components",
+    items: [
+      {
+        title: "Stars",
+        href: "/components/github-stars",
+      },
+    ],
+  },
 ];

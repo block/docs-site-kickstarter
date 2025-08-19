@@ -1,0 +1,53 @@
+---
+title: "GitHub Stars"
+description: "A widget that displays the number of stars a GitHub repository has"
+slug: "github-stars"
+---
+
+import GitHubStars from "@/components/github/GitHubStars.astro"
+
+A widget that displays the number of stars a GitHub repository has.
+
+## Example
+
+<GitHubStars 
+  repo="block/goose"/>
+<div class="p-2" />
+```tsx
+import GitHubStars from "@/components/github/GitHubStars.astro"
+```
+<div class="p-2" />
+```tsx
+<GitHubStars 
+  repo="block/goose"/>
+```
+
+## Sizes
+
+The GitHub Stars component supports different sizes:
+```tsx
+<GitHubStars size="lg" />
+<GitHubStars size="default" />
+<GitHubStars size="sm" />
+```
+
+### Default Size
+
+<GitHubStars 
+  repo="block/goose"/>
+
+### Large
+
+<GitHubStars repo="block/goose" size="lg" />
+
+### Small 
+<GitHubStars repo="block/goose" size="sm" />
+
+## Properties
+
+The GitHub Stars component accepts the following props:
+
+| Prop      | Type                                                                                 | Default     | Description                               |
+|-----------|--------------------------------------------------------------------------------------|-------------|-------------------------------------------|
+| size      | `"default" | "sm" | "lg" | "icon"`                                               | `"default"` | The size of the button                    |
+| repo   | `string`                                                                            | None     | Required; the name of the repository to get GitHub stars for, e.g. "block/goose"    |
