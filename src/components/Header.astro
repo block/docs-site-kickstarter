@@ -12,17 +12,17 @@ const currentPath = Astro.url.pathname;
 <header class="header-wrapper">
   <div class="header-container">
     <!-- Left Section: Logo + Navigation -->
-    <div class="header-left">
+    <div class="header-left whitespace-nowrap">
       <MobileNav />
       
       <Brand />
 
       <!-- Desktop Navigation -->
-      <nav class="desktop-nav">
+      <nav class="desktop-nav whitespace-nowrap">
         {mainNavigation[0].items.map((item) => (
           <a
             href={getUrlRelativeToBase(item.href)}
-            class={`nav-link ${isActivePage(item.href, currentPath) ? 'nav-link-active' : ''}`}
+            class={`nav-link whitespace-nowrap ${isActivePage(item.href, currentPath) ? 'nav-link-active' : ''}`}
           >
             {item.title}
           </a>
@@ -31,14 +31,14 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Right Section: Actions -->
-    <div class="header-right">
+    <div class="header-right whitespace-nowrap">
       <!-- External Links -->
-      <div class="external-links">
+      <div class="external-links whitespace-nowrap">
         <a
           href="https://github.com/block/docs-site-kickstarter"
           target="_blank"
           rel="noreferrer"
-          class="external-link"
+          class="external-link whitespace-nowrap"
           title="View on GitHub"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">

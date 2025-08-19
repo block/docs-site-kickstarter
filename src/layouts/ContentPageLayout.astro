@@ -33,17 +33,9 @@ interface Props {
   headings?: MarkdownHeading[];
   showTitleAsH1?: boolean;
   showBreadcrumbs?: boolean;
-  maxWidth?: 'medium' | 'wide' | 'full'; // "wide" default
 }
 
-const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = true, maxWidth = 'wide' } = Astro.props;
-
-// Width configurations
-const widthClasses = {
-  medium: 'max-w-7xl', // 1280px
-  wide: 'max-w-[1800px]', // 1800px (new default)
-  full: 'max-w-none' // No max width
-};
+const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = true } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -52,17 +44,34 @@ const widthClasses = {
     <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
 
     <!-- Main Content -->
-    <div class={`docs-layout relative mx-auto min-h-[calc(100vh-64px)] ${widthClasses[maxWidth]} ${!Astro.slots.has('navbar') ? 'no-navbar' : ''}`}>
+    <div class={`
+      relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px] px-6
+      grid gap-6
+      
+      ${Astro.slots.has('navbar') && headings && headings.length > 0
+        ? 'xl:grid-cols-[280px_minmax(0,1fr)_280px] max-xl:grid-cols-[280px_minmax(0,1fr)] max-lg:grid-cols-[minmax(0,1fr)]' 
+        : Astro.slots.has('navbar') && (!headings || headings.length === 0)
+        ? 'grid-cols-[280px_minmax(0,1fr)] max-lg:grid-cols-[minmax(0,1fr)]'
+        : headings && headings.length > 0
+        ? 'xl:grid-cols-[minmax(0,1fr)_280px] max-xl:grid-cols-[minmax(0,1fr)]'
+        : 'grid-cols-[minmax(0,1fr)]'
+      }
+      
+      max-md:px-4
+      
+      2xl:gap-6
+      xl:gap-4
+    `}>
       {Astro.slots.has('navbar') && (
-        <nav class="docs-navbar relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
-          <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6">
+        <nav class="relative border-r border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm hidden lg:block">
+          <div class="sticky top-16 h-[calc(100vh-64px)] overflow-y-auto py-6 px-6 scrollbar-thin scrollbar-thumb-slate-400 hover:scrollbar-thumb-slate-500 scrollbar-track-transparent">
             <slot name="navbar" />
           </div>
         </nav>
       )}
 
-      <main class="docs-main min-w-0 py-8 px-10">
-        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8">
+      <main class="min-w-0 py-8 px-10 xl:px-6 lg:px-6 md:px-4">
+        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8 md:p-4 mx-auto" style="max-width: min(100%, 100ch);">
           
           {/** Breadcrumbs */}
           {showBreadcrumbs && (
@@ -84,14 +93,14 @@ const widthClasses = {
           
           {/** h1 with the page title */}
           {showTitleAsH1 && (
-            <h1>{title}</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">{title}</h1>
           )}
           <slot />
         </div>
       </main>
 
       {headings && headings.length > 0 && (
-        <aside class="docs-toc relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm">
+        <aside class="relative border-l border-slate-200 dark:border-slate-700 bg-background/80 backdrop-blur-sm hidden xl:block">
           <div class="sticky top-16 h-fit py-6 px-6">
             <TableOfContents headings={headings} />
           </div>
@@ -106,189 +115,7 @@ const widthClasses = {
 </script>
 
 <style>
-  /* Enhanced layout with better spacing and wider content */
-  .docs-layout {
-    display: grid;
-    grid-template-columns: 280px minmax(0, 2.5fr) 280px;
-    gap: 1.5rem;
-    padding: 0 1.5rem;
-  }
-
-  /* Layout without sidebar */
-  .docs-layout.no-navbar {
-    grid-template-columns: minmax(0, 1fr) 280px;
-  }
-
-  /* Wide layout (default) - Enhanced proportions */
-  .max-w-\[1800px\] .docs-layout {
-    grid-template-columns: 320px minmax(0, 3fr) 320px;
-  }
-
-  .max-w-\[1800px\] .docs-layout.no-navbar {
-    grid-template-columns: minmax(0, 1fr) 320px;
-  }
-
-  /* Full width layout */
-  .max-w-none .docs-layout {
-    grid-template-columns: 360px minmax(0, 4fr) 360px;
-  }
-
-  .max-w-none .docs-layout.no-navbar {
-    grid-template-columns: minmax(0, 1fr) 360px;
-  }
-
-  /* Enhanced scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #94a3b8;
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #64748b;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  /* Responsive breakpoints with improved spacing */
-  @media (max-width: 1400px) {
-    .docs-layout {
-      grid-template-columns: 280px 1fr;
-      gap: 1rem;
-    }
-    .docs-layout.no-navbar {
-      grid-template-columns: 1fr;
-    }
-    .docs-toc {
-      display: none;
-    }
-    .docs-main {
-      padding: 1.5rem 2rem;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .docs-layout {
-      grid-template-columns: 260px 1fr;
-    }
-    .docs-layout.no-navbar {
-      grid-template-columns: 1fr;
-    }
-    .docs-main {
-      padding: 1.5rem 1.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .docs-layout {
-      grid-template-columns: 1fr;
-      padding: 0 1rem;
-    }
-    .docs-layout.no-navbar {
-      grid-template-columns: 1fr;
-    }
-    .docs-navbar {
-      display: none;
-    }
-    .docs-main {
-      padding: 1rem;
-    }
-  }
-
-  /* Enhanced prose styling for wider content */
-  .prose {
-    max-width: none;
-  }
-
-  .prose h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    line-height: 1.2;
-  }
-
-  @media (min-width: 768px) {
-    .prose h1 {
-      font-size: 3rem;
-    }
-  }
-
-  .prose h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .prose h2 {
-      font-size: 1.875rem;
-    }
-  }
-
-  .prose h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    .prose h3 {
-      font-size: 1.5rem;
-    }
-  }
-
-  /* Better spacing for wide layouts */
-  .prose p {
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .prose p {
-      font-size: 1.125rem;
-    }
-  }
-
-  .prose ul, .prose ol {
-    margin-bottom: 1.5rem;
-  }
-
-  .prose li {
-    margin-bottom: 0.5rem;
-  }
-
-  /* Enhanced code block styling for wider content */
-  .prose pre {
-    font-size: 0.875rem;
-    max-width: 100%;
-    overflow-x: auto;
-  }
-
-  @media (min-width: 768px) {
-    .prose pre {
-      font-size: 1rem;
-    }
-  }
-
-  /* Dark mode scrollbar */
-  @media (prefers-color-scheme: dark) {
-    ::-webkit-scrollbar-thumb {
-      background-color: #4b5563;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #6b7280;
-    }
-  }
-
-  /* Background grid pattern */
+  /* Background grid pattern - keeping this as it's complex SVG data URLs */
   .bg-grid-slate-200\/20 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
   }
