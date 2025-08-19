@@ -1,12 +1,34 @@
 ---
 // src/pages/about.astro
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import CTASection from '@/components/block/CTASection.astro';
 
-const title = "Block - Open Source";
+const pageTitle = "Block - Open Source";
+const title = "Our Vision for Open Source";
+const tagline = "Block Open Source";
+const description = "At Block, we believe open source is at the heart of innovation and community empowerment. Our vision is to nurture a diverse and vibrant open source ecosystem that removes barriers to technology and fosters economic opportunities for all.";
 ---
 
-<BaseLayout title={title}>
+<BaseLayout title={pageTitle}>
 
+  <CTASection
+    title={title}
+    tagline={tagline}
+    description={description}
+  >
+    <div class="text-muted-foreground text-lg">
+
+        By collaborating in the open, we create higher quality software, hardware, 
+        and protocols through relentless collective examination, and also ensure our systems, 
+        hardware, and protocols evolve to meet real-world needs.
+
+        We are committed to building solutions that serve our customers, while enriching the 
+        broader developer community with open, accessible tools. Our open source strategy 
+        emphasizes transparency, collaboration, and shared progress—because building together 
+        empowers everyone.
+
+    </div>
+  </CTASection>
 
 
 </BaseLayout>
