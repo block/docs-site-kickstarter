@@ -44,14 +44,16 @@ const sectionClasses = [
 const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent";
 ---
 
-<section class={sectionClasses}>
+<section class={`relative overflow-hidden ${sectionClasses}`}>
   <div class="container mx-auto px-6 py-8">
     {layout === 'centered' && (
-      <div class="cta-centered-content">
+      <div class="flex flex-col items-center text-center max-w-3xl mx-auto gap-8">
         {tagline && (
-          <div class="cta-tagline">
+          <div class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-muted text-foreground border border-border w-fit">
             {taglineIconName && (
-              <div class="cta-tagline-icon"><Icon name={taglineIconName} /></div>
+              <div class="pr-2">
+                <Icon name={taglineIconName} class="w-4 h-4"/>
+              </div>
             )}
             {tagline}
           </div>
@@ -64,32 +66,32 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
         )}
         
         {description && (
-          <p class="cta-description">
+          <p class="text-xl leading-relaxed opacity-90 m-0 text-muted-foreground">
             {description}
           </p>
         )}
         
-        <div class="cta-actions">
+        <div class="flex gap-4 items-center flex-wrap justify-center">
           {primaryButtonText && (
-            <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
+            <a href={getUrlRelativeToBase(primaryButtonHref)} class="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold no-underline transition-all duration-200 whitespace-nowrap bg-primary text-primary-foreground border border-primary shadow-sm hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-md">
               {primaryButtonIconName && (
-                <Icon name={primaryButtonIconName} />
+                <Icon name={primaryButtonIconName} class="w-4 h-4" />
               )}
               {primaryButtonText}
             </a>
           )}
           
           {secondaryButtonText && (
-            <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
+            <a href={getUrlRelativeToBase(secondaryButtonHref)} class="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold no-underline transition-all duration-200 whitespace-nowrap bg-transparent text-foreground border border-border hover:bg-muted hover:-translate-y-0.5">
               {secondaryButtonIconName && (
-                <Icon name={secondaryButtonIconName} />
+                <Icon name={secondaryButtonIconName} class="w-4 h-4" />
               )}
               {secondaryButtonText}
             </a>
           )}
           
           <!-- Custom slot for additional actions -->
-          <div class="cta-custom-actions">
+          <div class="flex gap-4 items-center">
             <slot />
           </div>
         </div>
@@ -97,59 +99,61 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
     )}
     
     {layout === 'split' && (
-      <div class="cta-centered-content">
-      { tagline && (
-        <div class="cta-tagline">
-          {taglineIconName && (
-              <div class="cta-tagline-icon"><Icon name={taglineIconName} /></div>
+      <>
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto gap-8">
+          {tagline && (
+            <div class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-muted text-foreground border border-border w-fit">
+              {taglineIconName && (
+                <div class="pr-2"><Icon name={taglineIconName} /></div>
+              )}
+              {tagline}
+            </div>
+          )}
+        </div>
+
+        <div class="flex justify-between items-center gap-16 max-w-7xl mx-auto pt-4 lg:flex-row flex-col lg:text-left text-center lg:gap-16 gap-8">
+          <div class="lg:flex-[3] flex flex-col gap-6">
+            {title && (
+              <h1 class={titleClasses}>
+                {title}
+              </h1>
             )}
-          {tagline}
-        </div>
-      )}
-      </div>
-
-      <div class="cta-split-content pt-4">
-
-        <div class="cta-text-content">
+            
+            {description && (
+              <p class="text-xl leading-relaxed opacity-90 m-0 text-muted-foreground">
+                {description}
+              </p>
+            )}
+          </div>
           
-          {title && (
-            <h1 class={titleClasses}>
-              {title}
-            </h1>
-          )}
-          
-          {description && (
-            <p class="cta-description">
-              {description}
-            </p>
-          )}
-        </div>
-        
-        <div class="cta-actions">
-          {primaryButtonText && (
-            <a href={getUrlRelativeToBase(primaryButtonHref)} class="cta-button primary">
-              {primaryButtonIconName && (
-                <Icon name={primaryButtonIconName} />
+          <div class="flex flex-col gap-6 lg:items-start items-center">
+            <div class="flex gap-4 items-center flex-wrap lg:justify-start justify-center">
+              {primaryButtonText && (
+                <a href={getUrlRelativeToBase(primaryButtonHref)} class="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold no-underline transition-all duration-200 whitespace-nowrap bg-primary text-primary-foreground border border-primary shadow-sm hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-md">
+                  {primaryButtonIconName && (
+                    <Icon name={primaryButtonIconName} />
+                  )}
+                  {primaryButtonText}
+                </a>
               )}
-              {primaryButtonText}
-            </a>
-          )}
-          
-          {secondaryButtonText && (
-            <a href={getUrlRelativeToBase(secondaryButtonHref)} class="cta-button secondary">
-              {secondaryButtonIconName && (
-                <Icon name={secondaryButtonIconName} />
+              
+              {secondaryButtonText && (
+                <a href={getUrlRelativeToBase(secondaryButtonHref)} class="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-semibold no-underline transition-all duration-200 whitespace-nowrap bg-transparent text-foreground border border-border hover:bg-muted hover:-translate-y-0.5">
+                  {secondaryButtonIconName && (
+                    <Icon name={secondaryButtonIconName} />
+                  )}
+                  {secondaryButtonText}
+                </a>
               )}
-              {secondaryButtonText}
-            </a>
-          )}
-          
-          <!-- Custom slot for additional actions -->
-          <div class="cta-custom-actions">
-            <slot />
+            </div>
+            
+            <!-- Custom slot for additional actions -->
+            <div class="flex gap-4 items-center lg:justify-start justify-center">
+              <slot />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )}
   </div>
 </section>
@@ -184,247 +188,10 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
     margin: 2rem 0;
   }
   
-  /* Layout Styles */
-  .cta-centered-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 768px;
-    margin: 0 auto;
-    gap: 2rem;
-  }
-  
-  .cta-split-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4rem;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-  
-  .cta-text-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  /* Typography */
-  .cta-tagline {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    background: hsl(var(--muted));
-    color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border));
-    width: fit-content;
-  }
-
-  .cta-tagline .cta-tagline-icon {
-    padding-right: .5rem;
-  }
-  
-  .variant-dark .cta-tagline {
-    background: hsl(var(--background) / 0.1);
-    color: hsl(var(--background) / 0.8);
-    border-color: hsl(var(--background) / 0.2);
-  }
-  
-  .variant-gradient .cta-tagline {
-    background: hsl(var(--primary-foreground) / 0.1);
-    color: hsl(var(--primary-foreground) / 0.9);
-    border-color: hsl(var(--primary-foreground) / 0.2);
-  }
-  
-  .cta-centered-content .cta-tagline {
-    align-self: center;
-  }
-  
-  .cta-title {
-
-  }
-  
-  .cta-description {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin: 0;
-    color: var(--color-muted-foreground);
-  }
-  
-  /* Actions */
-  .cta-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .cta-centered-content .cta-actions {
-    justify-content: center;
-  }
-  
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-  
-  .cta-button.primary {
-    background: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
-    border: 1px solid hsl(var(--primary));
-    box-shadow: 
-      0 1px 2px -1px rgba(0, 0, 0, 0.1),
-      0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .cta-button.primary:hover {
-    background: hsl(var(--primary) / 0.9);
-    transform: translateY(-1px);
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
-  
-  .cta-button.secondary {
-    background: transparent;
-    color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border));
-  }
-  
-  .cta-button.secondary:hover {
-    background: hsl(var(--muted));
-    transform: translateY(-1px);
-  }
-  
   /* Variant-specific button styles */
-  .variant-dark .cta-button.primary {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    border-color: hsl(var(--background));
-  }
-  
-  .variant-dark .cta-button.primary:hover {
-    background: hsl(var(--background) / 0.9);
-  }
-  
-  .variant-dark .cta-button.secondary {
-    color: hsl(var(--background));
-    border-color: hsl(var(--background) / 0.3);
-  }
-  
-  .variant-dark .cta-button.secondary:hover {
-    background: hsl(var(--background) / 0.1);
-  }
-  
-  .variant-gradient .cta-button.primary {
-    background: hsl(var(--primary-foreground));
-    color: hsl(var(--primary));
-    border-color: hsl(var(--primary-foreground));
-  }
-  
-  .variant-gradient .cta-button.primary:hover {
-    background: hsl(var(--primary-foreground) / 0.9);
-  }
-  
-  .variant-gradient .cta-button.secondary {
-    color: hsl(var(--primary-foreground));
-    border-color: hsl(var(--primary-foreground) / 0.3);
-  }
-  
-  .variant-gradient .cta-button.secondary:hover {
-    background: hsl(var(--primary-foreground) / 0.1);
-  }
-  
-  .button-icon {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s ease;
-  }
-  
-  /* Target both class and SVG elements */
-  .cta-button svg {
-    width: 1rem;
-    height: 1rem;
-    transition: transform 0.2s ease;
-  }
-  
-  .cta-button:hover .button-icon,
-  .cta-button:hover svg {
+  /* Hover effects for icons */
+  a:hover svg {
     transform: translateX(2px);
-  }
-  
-  .cta-custom-actions {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .cta-split-content {
-      flex-direction: column;
-      text-align: center;
-      gap: 2rem;
-    }
-    
-    .cta-text-content {
-      align-items: center;
-    }
-    
-    .cta-tagline {
-      align-self: center;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .cta-title {
-      font-size: 2rem;
-    }
-    
-    .cta-description {
-      font-size: 1rem;
-    }
-    
-    .cta-actions {
-      flex-direction: column;
-      width: 100%;
-    }
-    
-    .cta-button {
-      width: 100%;
-      justify-content: center;
-    }
-    
-    .cta-custom-actions {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-  
-  @media (max-width: 640px) {
-    .cta-title {
-      font-size: 1.75rem;
-    }
-    
-    .cta-section .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
   }
   
   /* Global slot content styling */
