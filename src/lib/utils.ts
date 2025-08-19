@@ -4,9 +4,13 @@ import { twMerge } from "tailwind-merge";
 // Get the base URL from Astro config
 const baseUrl = import.meta.env.BASE_URL;
 
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+// Check if the href is in the current path
+export function isActivePage(href: string, currentPath: string): boolean {
+  return currentPath.startsWith(getUrlRelativeToBase(href));
 }
 
 /**

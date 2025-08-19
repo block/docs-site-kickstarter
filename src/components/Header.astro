@@ -4,32 +4,16 @@ import MobileNav from "@/components/docs/MobileNav.astro";
 import Brand from '@/components/Brand.astro';
 import { getUrlRelativeToBase } from "@/lib/utils";
 import { mainNavigation } from "@/data/navigation";
+import { isActivePage } from '@/lib/utils';
 
 const currentPath = Astro.url.pathname;
-
-// Check if current path matches navigation item
-function isActive(href: string, currentPath: string): boolean {
-  if (href === '/docs' && currentPath.startsWith(getUrlRelativeToBase('/docs'))) {
-    return true;
-  }
-  if (href === '/components' && currentPath.startsWith(getUrlRelativeToBase('/components'))) {
-    return true;
-  }
-  if (href === '/blog' && currentPath.startsWith(getUrlRelativeToBase('/blog'))) {
-    return true;
-  }
-  if (href === '/examples' && currentPath.startsWith(getUrlRelativeToBase('/examples'))) {
-    return true;
-  }
-  return false;
-}
 ---
 
 <header class="header-wrapper">
   <div class="header-container">
     <!-- Left Section: Logo + Navigation -->
     <div class="header-left">
-      <MobileNav currentPath={currentPath} />
+      <MobileNav />
       
       <Brand />
 
@@ -38,7 +22,7 @@ function isActive(href: string, currentPath: string): boolean {
         {mainNavigation[0].items.map((item) => (
           <a
             href={getUrlRelativeToBase(item.href)}
-            class={`nav-link ${isActive(item.href, currentPath) ? 'nav-link-active' : ''}`}
+            class={`nav-link ${isActivePage(item.href, currentPath) ? 'nav-link-active' : ''}`}
           >
             {item.title}
           </a>

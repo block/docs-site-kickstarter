@@ -106,6 +106,15 @@ export const docsNavigation: NavGroup[] = [
 
 export const componentsNavigation: NavGroup[] = [
   {
+    title: "Reusable Components",
+    items: [
+      {
+        title: "Introduction",
+        href: "/components",
+      },
+    ],
+  },
+  {
     title: "Layout Components",
     items: [
       {

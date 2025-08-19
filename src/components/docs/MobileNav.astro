@@ -6,29 +6,11 @@ import { mainNavigation } from "@/data/navigation";
 import { getUrlRelativeToBase } from "@/lib/utils";
 import Brand from "../Brand.astro";
 import Icon from '@/components/block/Icon.astro';
+import { isActivePage } from "@/lib/utils";
 
-interface Props {
-  currentPath: string;
-}
+const { } = Astro.props;
 
-const { currentPath } = Astro.props;
-
-// Check if current path matches navigation item
-function isActive(href: string, currentPath: string): boolean {
-  if (href === '/docs' && currentPath.startsWith(getUrlRelativeToBase('/docs'))) {
-    return true;
-  }
-  if (href === '/components' && currentPath.startsWith(getUrlRelativeToBase('/components'))) {
-    return true;
-  }
-  if (href === '/blog' && currentPath.startsWith(getUrlRelativeToBase('/blog'))) {
-    return true;
-  }
-  if (href === '/examples' && currentPath.startsWith(getUrlRelativeToBase('/examples'))) {
-    return true;
-  }
-  return false;
-}
+const currentPath = Astro.url.pathname;
 
 // Determine which navbar to show based on current path
 const showDocsNavbar = currentPath.startsWith(getUrlRelativeToBase('/docs'));
@@ -44,7 +26,7 @@ const showComponentsNavbar = currentPath.startsWith(getUrlRelativeToBase('/compo
         <a
           href={getUrlRelativeToBase(item.href)}
           class={`flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground no-underline rounded-md transition-all duration-200 hover:text-foreground hover:bg-muted/50 ${
-            isActive(item.href, currentPath) 
+            isActivePage(item.href, currentPath) 
               ? 'text-foreground bg-muted font-semibold nav-active' 
               : ''
           }`}
