@@ -20,10 +20,6 @@ const copyrightText = footerBlockOSData.copyright || `© ${currentYear} ${footer
             <img src={footerBlockOSData.logo} alt="" />
           </div>
         )}
-        <div>
-          <h3 class="company-name">{footerBlockOSData.companyName}</h3>
-          <p class="company-description">{footerBlockOSData.description}</p>
-        </div>
       </div>
       
       {footerBlockOSData.sections.length > 0 && (
@@ -92,8 +88,8 @@ const copyrightText = footerBlockOSData.copyright || `© ${currentYear} ${footer
   }
   
   .footer-logo img {
-    height: 2rem;
-    width: auto;
+    height: 96px;
+    width: 96px;
   }
   
   .company-name {
