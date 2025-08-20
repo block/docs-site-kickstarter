@@ -1,4 +1,4 @@
-import type { GitHubOrgs, GitHubOrg} from "./ExploreProjects.astro";
+import type { GitHubOrg} from "./ExploreProjects.astro";
 
 export const githubOrganizations: GitHubOrg[] = [
   {
