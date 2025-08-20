@@ -158,6 +158,31 @@ const { title, description, ogImage } = Astro.props;
     `}></style>
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
+    <script is:inline>
+      // Force light mode - remove dark class and ignore user preferences
+      document.documentElement.classList.remove('dark');
+      
+      // Override any existing theme preference
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('theme', 'light');
+      }
+      
+      // Prevent dark mode from being applied
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            if (document.documentElement.classList.contains('dark')) {
+              document.documentElement.classList.remove('dark');
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    </script>
     <div class="relative flex min-h-screen flex-col">
       <Header />
       <div class="flex-1">
