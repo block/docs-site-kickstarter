@@ -49,7 +49,7 @@ export const footerBlockOSData: FooterBlockOSData = {
     {
       title: "Social",
       links: [
-        { title: "X", href: "https://twitter.com/block", external: true, icon: "block-open-source/x-twitter" },
+        { title: "X (Twitter)", href: "https://twitter.com/block", external: true, icon: "block-open-source/x-twitter" },
         { title: "GitHub", href: "https://github.com/block", external: true, icon: "octicon-github" },
         { title: "LinkedIn", href: "https://linkedin.com/company/block", external: true, icon: "block-open-source/linkedin" },
       ]
