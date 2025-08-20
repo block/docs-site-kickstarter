@@ -3,18 +3,21 @@
 interface Props {
   isDark?: boolean,
   className?: string;
+  hasDefaultInnerStyles? : boolean;
 }
 
 const { 
   isDark = false,
   className = '',
+  hasDefaultInnerStyles = true,
  } = Astro.props;
 
 
 const sectionClasses = [
-  "border rounded-lg pt-0 p-8 shadow-lg", 
+  "border shadow-lg rounded-lg",
+  hasDefaultInnerStyles && "pt-0 p-8", 
   className,
-  isDark ? "bg-foreground text-background" : "bg-background text-foreground",
+  hasDefaultInnerStyles && (isDark ? "bg-foreground text-background" : "bg-background text-foreground"),
 ].filter(Boolean).join(' ');
 ---
 
