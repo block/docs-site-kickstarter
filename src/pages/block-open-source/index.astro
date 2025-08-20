@@ -2,12 +2,10 @@
 import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import CTASection from '@/components/block/CTASection.astro';
 import ExploreProjects from "@/components/blockopensource/ExploreProjects.astro";
-import { Card, CardTitle, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
 import ContentSection from "@/components/block/ContentSection.astro";
 import FeaturedProjects from "@/components/blockopensource/FeaturedProjects.astro";
-import Icon from "@/components/block/Icon.astro";
-import GitHubStats from "@/components/block/GitHubStats.astro"
 import OpenSourceContributions from "@/components/blockopensource/OpenSourceContributions.astro";
+import Participate from "@/components/blockopensource/Participate.astro";
 
 const pageTitle = "Block - Open Source";
 const title = "Our Vision for Open Source";
@@ -43,16 +41,16 @@ const description = "At Block, we believe open source is at the heart of innovat
 
   <FeaturedProjects />
 
-<ContentSection>
+  <ContentSection>
 
-  <ExploreProjects />
+    <ExploreProjects />
 
-</ContentSection>
+  </ContentSection>
 
-<div class="p-4"/>
+  <div class="p-4"/>
 
-<OpenSourceContributions />
+  <OpenSourceContributions />
 
-<div class="p-4"/>
+  <Participate />
 
 </ContentPageLayout>
