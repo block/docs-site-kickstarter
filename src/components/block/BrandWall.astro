@@ -1,0 +1,50 @@
+---
+
+import Icon from '@/components/block/Icon.astro';
+
+interface Props {
+  title: string;
+  brands: Brand[];
+}
+
+const {
+  title,
+  brands,
+ } = Astro.props;
+
+export interface Brand {
+  name: string;
+  href: string;
+  iconName: string;
+}
+
+---
+<section>
+  <h2>{title}</h2>
+  <p>
+    <slot />
+  </p>
+  <div id="projects" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 py-6 md:py-8">
+    {brands.map((brand) => (
+      <a 
+        href={brand.href} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="group flex flex-col items-center text-center p-3 sm:p-4 md:p-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 no-underline"
+      >
+        <div class="mb-2 sm:mb-3 md:mb-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 flex items-center justify-center">
+          <Icon 
+            name={brand.iconName} 
+            class="w-full h-full text-black dark:text-white transition-transform duration-200 group-hover:scale-110"
+          />
+        </div>
+        <span class="text-sm sm:text-base md:text-lg font-medium leading-tight">
+          {brand.name}
+        </span>
+      </a>
+    ))}
+  </div>
+  <p>
+    <slot name="closing"/>
+  </p>
+</section>

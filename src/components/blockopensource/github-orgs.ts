@@ -1,6 +1,6 @@
-import type { GitHubOrg} from "./ExploreProjects.astro";
+import type { Brand } from "@/components/block/BrandWall.astro";
 
-export const githubOrganizations: GitHubOrg[] = [
+export const githubOrganizations: Brand[] = [
   {
     name: "Block",
     href: "https://github.com/block",

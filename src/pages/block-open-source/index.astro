@@ -2,6 +2,7 @@
 import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import CTASection from '@/components/block/CTASection.astro';
 import ExploreProjects from "@/components/blockopensource/ExploreProjects.astro";
+import Foundations from "@/components/blockopensource/Foundations.astro";
 import ContentSection from "@/components/block/ContentSection.astro";
 import FeaturedProjects from "@/components/blockopensource/FeaturedProjects.astro";
 import OpenSourceContributions from "@/components/blockopensource/OpenSourceContributions.astro";
@@ -62,5 +63,11 @@ const description = "At Block, we believe open source is at the heart of innovat
   <div class="p-4"/>
 
   <GovernanceAndStandards />
+
+  <ContentSection>
+
+    <Foundations />
+
+  </ContentSection>
 
 </ContentPageLayout>
