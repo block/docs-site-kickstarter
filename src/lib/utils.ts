@@ -23,6 +23,8 @@ export function getUrlRelativeToBase(url:string):string{
   // Don't prepend baseUrl for special URL types
   if (url.startsWith('#') || 
       url.startsWith('javascript:') || 
+      url.startsWith('http:') || 
+      url.startsWith('https:') || 
       url.startsWith('mailto:') || 
       url.startsWith('tel:')) {
     return url;

@@ -3,8 +3,7 @@ import ContentPageLayout from "@/layouts/ContentPageLayout.astro";
 import CTASection from '@/components/block/CTASection.astro';
 import ExploreProjects from "@/components/blockopensource/ExploreProjects.astro";
 import { Card, CardTitle, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
-import Image from "astro/components/Image.astro";
-import goose from '@/icons/block-open-source/goose.svg';
+import ContentSection from "@/components/block/ContentSection.astro";
 import Icon from "@/components/block/Icon.astro";
 import GitHubStats from "@/components/block/GitHubStats.astro"
 import OpenSourceContributions from "@/components/blockopensource/OpenSourceContributions.astro";
@@ -21,25 +20,32 @@ const description = "At Block, we believe open source is at the heart of innovat
   showTitleAsH1={false}
 >
 
-  <CTASection
-    title={title}
-    tagline={tagline}
-    description={description}
-  >
-    <div class="text-muted-foreground text-lg">
+{/*
+  <ContentSection
+    className="border rounded-lg">
+ */}
+    <CTASection
+      title={title}
+      tagline={tagline}
+      description={description}
+    >
+      <div class="text-muted-foreground text-lg">
 
-        By collaborating in the open, we create higher quality software, hardware, 
-        and protocols through relentless collective examination, and also ensure our systems, 
-        hardware, and protocols evolve to meet real-world needs.
+          By collaborating in the open, we create higher quality software, hardware, 
+          and protocols through relentless collective examination, and also ensure our systems, 
+          hardware, and protocols evolve to meet real-world needs.
 
-        We are committed to building solutions that serve our customers, while enriching the 
-        broader developer community with open, accessible tools. Our open source strategy 
-        emphasizes transparency, collaboration, and shared progress—because building together 
-        empowers everyone.
+          We are committed to building solutions that serve our customers, while enriching the 
+          broader developer community with open, accessible tools. Our open source strategy 
+          emphasizes transparency, collaboration, and shared progress—because building together 
+          empowers everyone.
 
-    </div>
-  </CTASection>
-  
+      </div>
+    </CTASection>
+{/*
+  </ContentSection>
+*/}
+
 <div class="mx-auto max-w-7xl">
 
   <h2>Featured projects</h2>
@@ -180,7 +186,11 @@ const description = "At Block, we believe open source is at the heart of innovat
 
 <div class="p-4"/>
 
-<ExploreProjects />
+<ContentSection>
+
+  <ExploreProjects />
+
+</ContentSection>
 
 <div class="p-4"/>
 

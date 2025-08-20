@@ -33,12 +33,12 @@ export interface GitHubOrgs {
         href={org.href} 
         target="_blank" 
         rel="noopener noreferrer"
-        class="flex flex-col items-center text-center p-3 sm:p-4 md:p-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 no-underline"
+        class="group flex flex-col items-center text-center p-3 sm:p-4 md:p-6 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 no-underline"
       >
         <div class="mb-2 sm:mb-3 md:mb-4 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 xl:w-20 xl:h-20 flex items-center justify-center">
           <Icon 
             name={org.iconName} 
-            class="w-full h-full text-black dark:text-white"
+            class="w-full h-full text-black dark:text-white transition-transform duration-200 group-hover:scale-110"
           />
         </div>
         <span class="text-sm sm:text-base md:text-lg font-medium leading-tight">

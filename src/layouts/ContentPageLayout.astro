@@ -21,6 +21,8 @@
 
 
 import BaseLayout from "./BaseLayout.astro";
+import ContentSectionOpen from "@/components/block/ContentSectionOpen.astro";
+import ContentSectionClose from "@/components/block/ContentSectionClose.astro";
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
@@ -41,9 +43,9 @@ const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = tr
 <BaseLayout title={title} description={description}>
   <div class="relative min-h-[calc(100vh-4rem)]">
     <!-- Background Pattern -->
-    <div class="fixed inset-0 bg-grid-slate-200/20 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
+    <div class="fixed inset-0 bg-block-pattern [mask-image:linear-gradient(0deg,rgba(255,255,255,0.5),rgba(255,255,255,0.8))] dark:[mask-image:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.8))]"></div>
 
-    <!-- Main Content -->
+    <!-- Navbar -->
     <div class={`
       relative mx-auto min-h-[calc(100vh-64px)] max-w-[1800px] px-6
       grid gap-6
@@ -71,7 +73,7 @@ const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = tr
       )}
 
       <main class="min-w-0 py-8 px-10 xl:px-6 lg:px-6 md:px-4">
-        <div class="prose prose-slate dark:prose-invert max-w-none bg-background/80 backdrop-blur-sm rounded-lg p-8 md:p-4 mx-auto" style="max-width: min(100%, 100ch);">
+        <div class="prose prose-slate dark:prose-invert mx-auto"style="max-width: min(100%, 100ch);">
           
           {/** Breadcrumbs */}
           {showBreadcrumbs && (
@@ -115,14 +117,10 @@ const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = tr
 </script>
 
 <style>
-  /* Background grid pattern - keeping this as it's complex SVG data URLs */
-  .bg-grid-slate-200\/20 {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .bg-grid-slate-200\/20 {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
-    }
+  /* Background block pattern using our custom SVG */
+  .bg-block-pattern {
+    background-image: url('/src/icons/block-background.svg');
+    background-repeat: repeat;
+    background-size: 50px 50px;
   }
 </style>

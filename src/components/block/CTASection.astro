@@ -1,6 +1,7 @@
 ---
 import { getUrlRelativeToBase } from '@/lib/utils';
 import Icon from '@/components/block/Icon.astro';
+import '@/styles/global.css';
 
 interface Props {
   title?: string;
@@ -13,8 +14,10 @@ interface Props {
   secondaryButtonText?: string;
   secondaryButtonHref?: string;
   secondaryButtonIconName?: any;
-  variant?: 'default' | 'dark' | 'gradient' | 'bordered';
   layout?: 'centered' | 'split';
+  isDark?: boolean;
+  titleClasses? : string;
+  descriptionClasses? : string;
   className?: string;
 }
 
@@ -29,19 +32,19 @@ const {
   secondaryButtonText,
   secondaryButtonHref = "#",
   secondaryButtonIconName,
-  variant = 'default',
   layout = 'centered',
+  isDark = false,
+  titleClasses = "text-4xl md:text-6xl pb-1 m-0 font-white bg-clip-text text-transparent bg-gradient-to-r " + (isDark ? "from-background to-background/70" : "from-foreground to-foreground/70"),
+  descriptionClasses = "text-xl leading-relaxed m-0 " + (isDark ? "text-muted-background" : "text-muted-foreground"),
   className = '',
 } = Astro.props;
 
 const sectionClasses = [
   'cta-section',
-  `variant-${variant}`,
   `layout-${layout}`,
   className
 ].filter(Boolean).join(' ');
 
-const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent";
 ---
 
 <section class={`relative overflow-hidden ${sectionClasses}`}>
@@ -66,7 +69,7 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
         )}
         
         {description && (
-          <p class="text-xl leading-relaxed opacity-90 m-0 text-muted-foreground">
+          <p class={descriptionClasses}>
             {description}
           </p>
         )}
@@ -120,7 +123,7 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
             )}
             
             {description && (
-              <p class="text-xl leading-relaxed opacity-90 m-0 text-muted-foreground">
+              <p class={descriptionClasses}>
                 {description}
               </p>
             )}
@@ -159,36 +162,7 @@ const titleClasses = "text-4xl md:text-6xl font-black pb-1 m-0 bg-gradient-to-r 
 </section>
 
 <style>
-  .cta-section {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  /* Variants */
-  .cta-section.variant-default {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-  }
-  
-  .cta-section.variant-dark {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
-  }
-  
-  .cta-section.variant-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
-    color: hsl(var(--primary-foreground));
-  }
-  
-  .cta-section.variant-bordered {
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    border: 1px solid hsl(var(--border));
-    border-radius: 1rem;
-    margin: 2rem 0;
-  }
-  
-  /* Variant-specific button styles */
+
   /* Hover effects for icons */
   a:hover svg {
     transform: translateX(2px);
