@@ -18,7 +18,7 @@ const copyrightText = footerBlockOSData.copyright || `© ${currentYear} ${footer
         {footerBlockOSData.logo && (
           <div class="footer-logo w-16 h-16">
             <Icon name={footerBlockOSData.logo}/>
-            {footerBlockOSData.companyName}
+            <div class="mx-2">{footerBlockOSData.companyName}</div>
           </div>
         )}
       </div>
