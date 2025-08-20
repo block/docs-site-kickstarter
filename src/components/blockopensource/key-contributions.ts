@@ -1,10 +1,6 @@
-export interface KeyContribution {
-  name: string;
-  href: string;
-  description: string;
-}
+import type { ExternalLink } from '@/components/block/ExternalLinksSection.astro';
 
-export const keyContributions: KeyContribution[] = [
+export const keyContributions: ExternalLink[] = [
   {
     name: "Triton",
     href: "https://github.com/triton-inference-server/server",

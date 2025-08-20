@@ -5,6 +5,7 @@ import ExploreProjects from "@/components/blockopensource/ExploreProjects.astro"
 import ContentSection from "@/components/block/ContentSection.astro";
 import FeaturedProjects from "@/components/blockopensource/FeaturedProjects.astro";
 import OpenSourceContributions from "@/components/blockopensource/OpenSourceContributions.astro";
+import GovernanceAndStandards from "@/components/blockopensource/GovernanceAndStandards.astro";
 import Participate from "@/components/blockopensource/Participate.astro";
 
 const pageTitle = "Block - Open Source";
@@ -51,6 +52,15 @@ const description = "At Block, we believe open source is at the heart of innovat
 
   <OpenSourceContributions />
 
-  <Participate />
+  <ContentSection
+    className="pt-8">
+
+    <Participate />
+
+  </ContentSection>
+
+  <div class="p-4"/>
+
+  <GovernanceAndStandards />
 
 </ContentPageLayout>
