@@ -1,34 +1,24 @@
 ---
 import { keyContributions} from './key-contributions';
-import ExternalLinkCard from '@/components/block/ExternalLinkCard.astro';
+import ExternalLinksSection from '@/components/block/ExternalLinksSection.astro';
 
 interface Props {}
 
 const { } = Astro.props;
 ---
 
-<section>
-    <h2 class="mt-0">Block's Significant Open Source Contributions</h2>
-    <p>
-      Block has a deep and sustained commitment to open source, contributing to 
-      foundational technologies that power our products and the broader developer ecosystem. 
-      Our involvement spans across infrastructure, developer tooling, security, and financial 
-      innovation, with contributions to both widely adopted community projects and highly 
-      specialized tools. From contributions to software ecosystems like MySQL, Android, and 
-      Bitcoin to advancing developer productivity and cloud infrastructure with gRPC, Envoy, 
-      and LeakCanary, our work has had a lasting impact. Our philosophy is not only about using 
-      open source but actively giving back and shaping it—enhancing projects we depend on and 
-      sharing our own innovations with the world. This approach aligns with our mission of 
-      economic empowerment by fostering transparency, security, and accessibility in technology.
-    </p>
-    <h3 class="mb-0">Key Contributions</h3>
-    <div id="contributions" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 py-6 md:py-8">
-        {keyContributions.map((contribution) => (
-            <ExternalLinkCard 
-              title={contribution.name}
-              href={contribution.href}
-              description={contribution.description}
-            />
-        ))}
-    </div>
-</section>
+<ExternalLinksSection
+  title="Block's Significant Open Source Contributions"
+  subtitle="Key Contributions"
+  externalLinks={keyContributions}>
+    Block has a deep and sustained commitment to open source, contributing to 
+    foundational technologies that power our products and the broader developer ecosystem. 
+    Our involvement spans across infrastructure, developer tooling, security, and financial 
+    innovation, with contributions to both widely adopted community projects and highly 
+    specialized tools. From contributions to software ecosystems like MySQL, Android, and 
+    Bitcoin to advancing developer productivity and cloud infrastructure with gRPC, Envoy, 
+    and LeakCanary, our work has had a lasting impact. Our philosophy is not only about using 
+    open source but actively giving back and shaping it—enhancing projects we depend on and 
+    sharing our own innovations with the world. This approach aligns with our mission of 
+    economic empowerment by fostering transparency, security, and accessibility in technology.
+</ExternalLinksSection>
