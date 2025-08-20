@@ -90,7 +90,7 @@ const copyrightText = copyright || `© ${currentYear} ${companyName}. All rights
             {sections.map((section) => (
               <div class="footer-section">
                 <h4 class="section-title">{section.title}</h4>
-                <ul class="section-links">
+                <ul class="section-links horizontal">
                   {section.links.map((link) => (
                     <li>
                       <a 
@@ -148,7 +148,7 @@ const copyrightText = copyright || `© ${currentYear} ${companyName}. All rights
             {sections.map((section) => (
               <div class="footer-section">
                 <h4 class="section-title">{section.title}</h4>
-                <ul class="section-links">
+                <ul class="section-links horizontal">
                   {section.links.map((link) => (
                     <li>
                       <a 
@@ -288,6 +288,18 @@ const copyrightText = copyright || `© ${currentYear} ${companyName}. All rights
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+  
+  .section-links.horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  
+  .section-links.horizontal li:not(:last-child)::after {
+    content: " | ";
+    color: hsl(var(--muted-foreground));
+    margin: 0 0.5rem;
   }
   
   .footer-link {
