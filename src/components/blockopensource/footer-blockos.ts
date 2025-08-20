@@ -19,7 +19,7 @@ export interface FooterBlockOSData {
 }
 
 export const footerBlockOSData: FooterBlockOSData = {
-  logo: "src/icons/block-open-source/block.svg",
+  logo: "block-open-source/block",
   companyName: "block",
   description: " ",
   sections: [
