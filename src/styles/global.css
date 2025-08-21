@@ -32,6 +32,16 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
+  /* Block brand colors */
+  --color-afterpay: #b2fce4;
+  --color-tidal: #0ec7c7;
+  --color-proto: #ff5b00;
+  --color-cashapp: #01c846;
+  --color-square: #006aff;
+  --color-block: #000000;
+  --color-spiral: #ff00ff;
+  --color-weebly: #4285f4;
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -512,4 +522,48 @@
 .animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Ensure Tailwind generates hover variants for custom brand colors */
+@layer utilities {
+  .hover\:bg-afterpay:hover {
+    background-color: var(--color-afterpay);
+  }
+  
+  .hover\:bg-tidal:hover {
+    background-color: var(--color-tidal);
+  }
+  
+  .hover\:bg-proto:hover {
+    background-color: var(--color-proto);
+  }
+  
+  .hover\:bg-cashapp:hover {
+    background-color: var(--color-cashapp);
+  }
+  
+  .hover\:bg-square:hover {
+    background-color: var(--color-square);
+  }
+  
+  .hover\:bg-block:hover {
+    background-color: var(--color-block);
+  }
+  
+  .hover\:bg-spiral:hover {
+    background-color: var(--color-spiral);
+  }
+  
+  .hover\:bg-weebly:hover {
+    background-color: var(--color-weebly);
+  }
+
+  /* Ensure group-hover text color variants are generated */
+  .group:hover .group-hover\:text-white {
+    color: white;
+  }
+  
+  .group:hover .group-hover\:text-black {
+    color: black;
+  }
 }

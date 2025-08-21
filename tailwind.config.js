@@ -56,6 +56,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Block brand colors
+        afterpay: "#b2fce4",
+        tidal: "#0ec7c7",
+        proto: "#ff5b00",
+        cashapp: "#01c846",
+        square: "#006aff",
+        block: "#000000",
+        spiral: "#ff00ff",
       },
       borderRadius: {
         lg: "var(--radius)",
