@@ -5,7 +5,7 @@ export const githubOrganizations: Brand[] = [
     name: "Block",
     href: "https://github.com/block",
     iconName: "block-open-source/block",
-    bgHoverClass: "bg-square",
+    bgHoverClass: "bg-block",
     foregroundHoverClass: "text-white",
   },
   {
