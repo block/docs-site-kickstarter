@@ -21,8 +21,6 @@
 
 
 import BaseLayout from "./BaseLayout.astro";
-import ContentSectionOpen from "@/components/block/ContentSectionOpen.astro";
-import ContentSectionClose from "@/components/block/ContentSectionClose.astro";
 import type { MarkdownHeading } from 'astro';
 import TableOfContents from "@/components/docs/TableOfContents.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
@@ -73,7 +71,7 @@ const { title, description, headings, showTitleAsH1 = true, showBreadcrumbs = tr
       )}
 
       <main class="min-w-0 py-8 px-10 xl:px-6 lg:px-6 md:px-4">
-        <div class="prose prose-slate dark:prose-invert mx-auto"style="max-width: min(100%, 100ch);">
+        <div id="mainContent" class="prose prose-slate dark:prose-invert mx-auto" style="max-width: min(100%, 100ch);">
           
           {/** Breadcrumbs */}
           {showBreadcrumbs && (
