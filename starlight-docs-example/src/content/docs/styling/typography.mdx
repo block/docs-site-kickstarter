@@ -1,0 +1,146 @@
+---
+title: "Typography"
+description: "Typography documentation covering headings, paragraphs, lists, and more."
+draft: false
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import Accordion from "starlight-block-theme/components/Accordion.astro"
+import AccordionContent from "starlight-block-theme/components/AccordionContent.astro"
+
+Comprehensive typography documentation covering headings, paragraphs, lists, blockquotes, links, and code styling.
+
+## Headings
+
+Block uses Cash Sans with specific weights for each heading level:
+
+### Heading Hierarchy
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+
+### CSS Properties
+
+<Tabs>
+  <TabItem label="Weights">
+    | Heading | Weight | Letter Spacing |
+    |---------|--------|----------------|
+    | H1      | 900 (Black) | -0.025em  |
+    | H2      | 700 (Bold)  | -0.02em   |
+    | H3      | 600 (Semibold) | -0.015em |
+    | H4      | 600 (Semibold) | -0.015em |
+    | H5      | 600 (Semibold) | normal   |
+    | H6      | 600 (Semibold) | normal   |
+  </TabItem>
+  <TabItem label="Sizes">
+    | Heading | Size (Desktop) | Size (Mobile) |
+    |---------|---------------|---------------|
+    | H1      | 2.625rem (42px) | 2.1875rem (35px) |
+    | H2      | 2.1875rem (35px) | 1.8125rem (29px) |
+    | H3      | 1.8125rem (29px) | 1.5rem (24px) |
+    | H4      | 1.5rem (24px)    | 1.25rem (20px) |
+    | H5      | 1.25rem (20px)   | 1.125rem (18px) |
+    | H6      | 1rem (16px)      | 1rem (16px) |
+  </TabItem>
+</Tabs>
+
+## Paragraphs
+
+Body text uses Cash Sans Regular (400) with a line height of 1.75:
+
+This is a standard paragraph. The Block design system uses Cash Sans as the primary font family, with careful attention to line height and letter spacing for optimal readability. The font rendering is enhanced with anti-aliasing for crisp text on all displays.
+
+## Lists
+
+### Unordered Lists
+
+- First item in the list
+- Second item with more detail
+  - Nested item one
+  - Nested item two
+- Third item
+
+### Ordered Lists
+
+1. First step in the process
+2. Second step with explanation
+   1. Sub-step A
+   2. Sub-step B
+3. Third and final step
+
+## Blockquotes
+
+> This is a blockquote. It's styled with a left border and slightly muted text color to distinguish it from regular content.
+
+> **Note:** Blockquotes can contain **bold text**, *italic text*, and `inline code`.
+
+## Links
+
+Links are styled with the accent color and underline on hover:
+
+[This is an example link](#) — links use the accent color and become underlined on hover.
+
+## Inline Code
+
+Use backticks for inline code: `const example = true;`
+
+Inline code is styled with a subtle background, border, and monospace font (Cash Sans Mono).
+
+## Code Blocks
+
+```typescript
+// Code blocks use Cash Sans Mono with syntax highlighting
+interface ThemeConfig {
+  colors: {
+    primary: string;
+    background: string;
+    text: string;
+  };
+  fonts: {
+    heading: string;
+    body: string;
+    mono: string;
+  };
+}
+```
+
+## Font Stacks
+
+<Accordion label="Body Text Font Stack">
+  <AccordionContent>
+    <p>The body text font stack:</p>
+    <code>'Cash Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'</code>
+  </AccordionContent>
+</Accordion>
+
+<Accordion label="Monospace Font Stack">
+  <AccordionContent>
+    <p>The monospace font stack:</p>
+    <code>'Cash Sans Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace</code>
+  </AccordionContent>
+</Accordion>
+
+## Text Rendering
+
+The Block theme enables optimized text rendering:
+
+```css
+body {
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+
+## Best Practices
+
+1. **Heading Hierarchy**: Always follow proper heading order (h1 → h2 → h3)
+2. **Line Length**: Keep content width around 65-75 characters for readability
+3. **Font Weights**: Use the designated weights for each heading level
+4. **Spacing**: Maintain consistent spacing between text elements
+5. **Contrast**: Ensure text meets WCAG AA contrast requirements

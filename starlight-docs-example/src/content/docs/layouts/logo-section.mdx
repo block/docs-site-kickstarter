@@ -1,0 +1,69 @@
+---
+title: "Logo Section"
+description: "A logo showcase component for displaying client or partner logos."
+draft: false
+---
+
+The Logo Section component displays client, partner, or technology logos in various layout patterns.
+
+## Usage
+
+```astro
+---
+import LogoSection from "@/components/block/LogoSection.astro"
+
+const logos = [
+  { src: "/images/logos/company-a.svg", alt: "Company A" },
+  { src: "/images/logos/company-b.svg", alt: "Company B" },
+  { src: "/images/logos/company-c.svg", alt: "Company C" },
+  { src: "/images/logos/company-d.svg", alt: "Company D" },
+];
+---
+
+<LogoSection
+  title="Trusted by leading companies"
+  logos={logos}
+/>
+```
+
+## Layout Variants
+
+### Grid
+
+```astro
+<LogoSection layout="grid" logos={logos} />
+```
+
+Displays logos in a responsive grid layout.
+
+### Marquee
+
+```astro
+<LogoSection layout="marquee" logos={logos} />
+```
+
+Continuously scrolling logo marquee animation.
+
+### Centered
+
+```astro
+<LogoSection layout="centered" logos={logos} />
+```
+
+Logos centered in a single row with equal spacing.
+
+## Props
+
+| Prop   | Type                                    | Default  | Description                    |
+|--------|-----------------------------------------|----------|--------------------------------|
+| title  | `string`                                | -        | Section heading                |
+| logos  | `{ src: string, alt: string }[]`        | `[]`     | Array of logo images           |
+| layout | `'grid' \| 'marquee' \| 'centered'`    | `'grid'` | Layout variant                 |
+
+## Best Practices
+
+1. **Image Quality**: Use SVG logos for crisp rendering at any size
+2. **Consistency**: Ensure all logos have similar visual weight
+3. **Alt Text**: Provide descriptive alt text for each logo
+4. **Grayscale**: Consider desaturating logos for visual consistency
+5. **Permission**: Ensure you have permission to display each logo

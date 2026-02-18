@@ -1,0 +1,70 @@
+---
+title: "Header Section"
+description: "A flexible header section for page introductions."
+draft: false
+---
+
+The Header Section component provides customizable page headers with taglines, headlines, and descriptions.
+
+## Usage
+
+```astro
+---
+import HeaderSection from "@/components/block/HeaderSection.astro"
+---
+
+<HeaderSection
+  tagline="Getting Started"
+  headline="Build Better Documentation"
+  description="Everything you need to create professional documentation sites with Block."
+/>
+```
+
+## Variants
+
+### Default
+
+```astro
+<HeaderSection
+  headline="Welcome to Block"
+  description="A modern documentation template."
+/>
+```
+
+### With Tagline
+
+```astro
+<HeaderSection
+  tagline="New Release"
+  headline="Block v2.0"
+  description="Completely redesigned with new components and layouts."
+/>
+```
+
+### Centered
+
+```astro
+<HeaderSection
+  align="center"
+  tagline="Open Source"
+  headline="Built for Everyone"
+  description="Free, open-source, and community-driven."
+/>
+```
+
+## Props
+
+| Prop        | Type                    | Default  | Description                    |
+|-------------|-------------------------|----------|--------------------------------|
+| tagline     | `string`                | -        | Small text above the headline  |
+| headline    | `string`                | -        | Main heading text              |
+| description | `string`                | -        | Supporting description         |
+| align       | `'left' \| 'center'`   | `'left'` | Text alignment                 |
+| className   | `string`                | `""`     | Additional CSS classes         |
+
+## Best Practices
+
+1. **Hierarchy**: Use tagline for context, headline for the main message
+2. **Brevity**: Keep headlines under 10 words
+3. **Clarity**: Descriptions should explain, not repeat the headline
+4. **Consistency**: Use similar header patterns across pages

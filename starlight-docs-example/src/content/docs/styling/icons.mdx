@@ -1,0 +1,145 @@
+---
+title: "Icons"
+description: "Guide on using icons in your documentation site."
+draft: false
+---
+
+Learn how to use icons in your documentation site, including Radix Icons, Lucide Icons, and custom SVG icons.
+
+## Radix Icons
+
+[Radix Icons](https://www.radix-ui.com/icons) provide a clean, consistent icon set that works well with the Block design system.
+
+### Installation
+
+```bash
+pnpm add @radix-ui/react-icons
+```
+
+### Usage
+
+```tsx
+import { RocketIcon, GearIcon, PersonIcon } from "@radix-ui/react-icons"
+
+<RocketIcon className="h-5 w-5" />
+<GearIcon className="h-5 w-5" />
+<PersonIcon className="h-5 w-5" />
+```
+
+## Lucide Icons
+
+[Lucide](https://lucide.dev/) provides a comprehensive icon library:
+
+### Installation
+
+```bash
+pnpm add lucide-react
+```
+
+### Usage
+
+```tsx
+import { Check, Copy, ChevronDown } from "lucide-react"
+
+<Check className="h-5 w-5" />
+<Copy className="h-5 w-5" />
+<ChevronDown className="h-5 w-5" />
+```
+
+## Sizing
+
+Icons can be sized using Tailwind classes:
+
+```tsx
+// Extra Small
+<RocketIcon className="h-3 w-3" />
+
+// Small
+<RocketIcon className="h-4 w-4" />
+
+// Default
+<RocketIcon className="h-5 w-5" />
+
+// Large
+<RocketIcon className="h-6 w-6" />
+
+// Extra Large
+<RocketIcon className="h-8 w-8" />
+```
+
+## Coloring
+
+Apply colors with Tailwind text utilities:
+
+```tsx
+<RocketIcon className="h-5 w-5 text-primary" />
+<GearIcon className="h-5 w-5 text-muted-foreground" />
+<PersonIcon className="h-5 w-5 text-green-500" />
+```
+
+## With Components
+
+### In Buttons
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { PlusIcon } from "@radix-ui/react-icons"
+
+<Button>
+  <PlusIcon className="mr-2 h-4 w-4" />
+  Add Item
+</Button>
+
+<Button size="icon">
+  <PlusIcon className="h-4 w-4" />
+</Button>
+```
+
+### In Cards
+
+```tsx
+import { Card } from "@/components/ui/card"
+import { RocketIcon } from "@radix-ui/react-icons"
+
+<Card className="p-6">
+  <RocketIcon className="h-8 w-8 mb-4 text-primary" />
+  <h3>Quick Start</h3>
+  <p>Get up and running in minutes.</p>
+</Card>
+```
+
+## Custom SVG Icons
+
+Create custom icons as Astro components:
+
+```astro
+---
+// src/components/icons/CustomIcon.astro
+interface Props {
+  class?: string;
+}
+const { class: className = "h-5 w-5" } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+  <path d="M2 17l10 5 10-5" />
+  <path d="M2 12l10 5 10-5" />
+</svg>
+```
+
+## Best Practices
+
+1. **Consistency**: Use icons from one library when possible
+2. **Sizing**: Use consistent sizes throughout the interface
+3. **Accessibility**: Add `aria-label` for standalone icons
+4. **Color**: Use semantic colors (`text-primary`, `text-muted-foreground`)
+5. **Performance**: Tree-shake unused icons with named imports

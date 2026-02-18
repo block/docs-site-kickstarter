@@ -1,0 +1,81 @@
+---
+title: "Landing Layout"
+description: "Landing page layout for documentation home pages with hero sections and features."
+draft: false
+---
+
+The Landing layout creates compelling home pages for documentation sites with hero sections, feature highlights, and quick navigation.
+
+## Usage
+
+```astro
+---
+import Layout from "@/layouts/Layout.astro"
+import Hero from "@/components/block/Hero.astro"
+import FeatureSection from "@/components/block/FeatureSection.astro"
+import CTASection from "@/components/block/CTASection.astro"
+---
+
+<Layout title="Home">
+  <Hero headline="Welcome to Block" cta="Get Started">
+    Build beautiful documentation sites with modern tools.
+  </Hero>
+  <FeatureSection features={features} />
+  <CTASection headline="Ready to start?" />
+</Layout>
+```
+
+## Sections
+
+A typical landing page includes:
+
+1. **Hero Section** - Main headline with call-to-action
+2. **Feature Grid** - Key features or selling points
+3. **Social Proof** - Logos, testimonials, or stats
+4. **Code Example** - Quick start code snippet
+5. **CTA Section** - Final call-to-action
+
+## Variants
+
+### Minimal Landing
+
+A clean, focused landing page:
+
+```astro
+<Layout title="Docs">
+  <Hero headline="Documentation" cta="Browse Docs">
+    Everything you need to know.
+  </Hero>
+  <QuickLinks links={[
+    { title: "Installation", href: "/installation" },
+    { title: "Configuration", href: "/configuration" },
+    { title: "Deployment", href: "/deployment" },
+  ]} />
+</Layout>
+```
+
+### Full Landing
+
+A comprehensive landing page with all sections:
+
+```astro
+<Layout title="Home">
+  <Hero headline="Block" cta="Get Started">
+    The modern documentation framework.
+  </Hero>
+  <LogoSection logos={logos} />
+  <FeatureSection features={features} />
+  <BentoGrid>
+    <BentoItem title="Fast" size="large">Blazing fast builds.</BentoItem>
+    <BentoItem title="Flexible" size="small">Customize everything.</BentoItem>
+  </BentoGrid>
+  <CTASection headline="Start building today" />
+  <Footer />
+</Layout>
+```
+
+## Related Layouts
+
+- [Documentation](/layouts/documentation/) - Standard docs layout
+- [Tutorial](/layouts/tutorial/) - Step-by-step guides
+- [API Reference](/layouts/api/) - API documentation

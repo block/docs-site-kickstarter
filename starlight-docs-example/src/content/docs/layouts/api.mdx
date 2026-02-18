@@ -1,0 +1,87 @@
+---
+title: "API Reference Layout"
+description: "A split-view layout for API endpoint documentation."
+draft: false
+---
+
+The API Reference layout provides a split-view design for documenting API endpoints, with request/response examples alongside parameter descriptions.
+
+## Overview
+
+The API layout features:
+- **Split-view design**: Description on the left, code examples on the right
+- **Endpoint grouping**: Organize endpoints by resource or category
+- **Request/Response examples**: Show example payloads with syntax highlighting
+- **Parameter tables**: Document query params, headers, and body fields
+- **Authentication info**: Display auth requirements per endpoint
+
+## Usage
+
+```astro
+---
+import APILayout from "@/layouts/APILayout.astro"
+---
+
+<APILayout
+  title="Users API"
+  baseUrl="https://api.example.com/v1"
+  endpoints={endpoints}
+/>
+```
+
+## Endpoint Documentation
+
+### Example Endpoint
+
+```markdown
+## GET /users
+
+Retrieve a list of users.
+
+### Parameters
+
+| Parameter | Type     | Required | Description            |
+|-----------|----------|----------|------------------------|
+| page      | integer  | No       | Page number (default 1)|
+| limit     | integer  | No       | Items per page (max 100)|
+| search    | string   | No       | Search query           |
+
+### Response
+
+200 OK
+
+\`\`\`json
+{
+  "data": [
+    {
+      "id": "usr_123",
+      "name": "Jane Doe",
+      "email": "jane@example.com"
+    }
+  ],
+  "meta": {
+    "total": 42,
+    "page": 1,
+    "limit": 20
+  }
+}
+\`\`\`
+```
+
+## Configuration
+
+```typescript
+interface APIEndpoint {
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  path: string;
+  description: string;
+  parameters?: Parameter[];
+  requestBody?: RequestBody;
+  responses: Response[];
+}
+```
+
+## Related Layouts
+
+- [Documentation Layout](/layouts/documentation/) - Standard docs layout
+- [Tutorial Layout](/layouts/tutorial/) - Step-by-step guides

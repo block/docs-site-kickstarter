@@ -1,0 +1,184 @@
+---
+title: "Tabs"
+description: "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+draft: false
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+A set of layered sections of content—known as tab panels—that are displayed one at a time. Built with accessibility in mind and styled to match the Block design system.
+
+## Usage
+
+```astro
+---
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/block/tabs"
+---
+
+<Tabs defaultValue="account" className="w-[400px]">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="password">Password</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">
+    Make changes to your account here.
+  </TabsContent>
+  <TabsContent value="password">
+    Change your password here.
+  </TabsContent>
+</Tabs>
+```
+
+## Examples
+
+### Basic Tabs
+
+<Tabs>
+  <TabItem label="Account">
+    **Account Settings**
+
+    Make changes to your account here. Click save when you're done.
+  </TabItem>
+  <TabItem label="Password">
+    **Password Settings**
+
+    Change your password here. After saving, you'll be logged out.
+  </TabItem>
+</Tabs>
+
+### Multiple Tab Sets
+
+You can have multiple independent tab sets on the same page:
+
+<Tabs>
+  <TabItem label="Overview">
+    Overview content goes here.
+  </TabItem>
+  <TabItem label="Analytics">
+    Analytics dashboard content.
+  </TabItem>
+  <TabItem label="Reports">
+    Reports and data visualization.
+  </TabItem>
+</Tabs>
+
+```astro
+<Tabs defaultValue="overview" className="w-[300px]">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports">Reports</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">
+    Overview content goes here.
+  </TabsContent>
+  <TabsContent value="analytics">
+    Analytics dashboard content.
+  </TabsContent>
+  <TabsContent value="reports">
+    Reports and data visualization.
+  </TabsContent>
+</Tabs>
+```
+
+### Code Examples
+
+Tabs are perfect for showing the same functionality in different programming languages:
+
+<Tabs>
+  <TabItem label="JavaScript">
+    ```javascript
+    console.log("Debugging in the console is old school");
+    ```
+  </TabItem>
+  <TabItem label="Java">
+    ```java
+    public static void main(String... args){
+      System.out.println("It's verbose but at least it's a real programming language");
+    }
+    ```
+  </TabItem>
+  <TabItem label="Go">
+    ```go
+    fmt.Println("TBH I'm not sure this is how console logging works in Go but StackOverflow said it is")
+    ```
+  </TabItem>
+</Tabs>
+
+## Component API
+
+### Tabs
+
+The root container component that manages the tab state.
+
+| Prop         | Type     | Default | Description                                    |
+|--------------|----------|---------|------------------------------------------------|
+| defaultValue | `string` | -       | The value of the tab that should be active by default |
+| className    | `string` | `""`    | Additional CSS classes to apply                |
+| id           | `string` | auto    | Unique identifier (auto-generated if not provided) |
+
+### TabsList
+
+A container for the tab triggers (buttons).
+
+| Prop      | Type     | Default | Description                     |
+|-----------|----------|---------|---------------------------------|
+| className | `string` | `""`    | Additional CSS classes to apply |
+
+### TabsTrigger
+
+The clickable tab button that activates a tab panel.
+
+| Prop      | Type      | Default | Description                                    |
+|-----------|-----------|---------|------------------------------------------------|
+| value     | `string`  | -       | **Required.** The value that identifies this tab |
+| className | `string`  | `""`    | Additional CSS classes to apply                |
+| disabled  | `boolean` | `false` | Whether the tab trigger is disabled           |
+
+### TabsContent
+
+The tab panel content that is displayed when its corresponding trigger is active.
+
+| Prop      | Type     | Default | Description                                      |
+|-----------|----------|---------|--------------------------------------------------|
+| value     | `string` | -       | **Required.** The value that identifies this panel |
+| className | `string` | `""`    | Additional CSS classes to apply                  |
+
+## Accessibility
+
+The Tabs component is built with comprehensive accessibility features:
+
+- **Keyboard Navigation**:
+  - Arrow keys (Left/Right/Up/Down) to navigate between tabs
+  - Home/End keys to jump to first/last tab
+  - Enter/Space to activate a tab
+  - Tab key to move focus in and out of the tab group
+- **ARIA Attributes**:
+  - `role="tablist"` on the TabsList container
+  - `role="tab"` on each TabsTrigger
+  - `role="tabpanel"` on each TabsContent
+  - `aria-selected` to indicate active tab state
+  - `aria-controls` linking tabs to their panels
+  - `aria-labelledby` linking panels to their tabs
+- **Focus Management**:
+  - Proper tabindex management (-1 for inactive tabs, 0 for active tab)
+  - Focus moves to newly activated tabs
+  - Disabled tabs are skipped during keyboard navigation
+- **Screen Reader Support**: Announces tab changes and content with proper semantic markup
+
+## Styling
+
+The components are styled using standard Tailwind CSS classes. You can customize the appearance by:
+
+1. **CSS Classes**: Add custom Tailwind classes via the `className` prop
+2. **Custom CSS**: Override specific styles by targeting the component classes
+3. **Tailwind Utilities**: Use Tailwind's utility classes for quick styling
+
+## Implementation Details
+
+The Tabs component is implemented as Astro components with embedded JavaScript for interactivity:
+
+- **State Management**: Uses DOM attributes and classes to manage tab state
+- **Event Handling**: Click and keyboard events are handled with vanilla JavaScript
+- **Auto-initialization**: Tabs are automatically initialized when the page loads
+- **Unique IDs**: Each tab set gets unique IDs to prevent conflicts on pages with multiple tab groups

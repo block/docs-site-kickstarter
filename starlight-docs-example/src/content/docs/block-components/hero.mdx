@@ -1,0 +1,41 @@
+---
+title: "Hero"
+description: "The center of attention for the page"
+draft: false
+---
+
+The center of attention for a page. Includes a headline, short content, an icon, and a call to action.
+
+## Example
+
+```tsx
+import DocumentIcon from "@/pages/home/DocumentIcon.astro"
+import Hero from "@/components/block/Hero.astro"
+
+<Hero
+  image={DocumentIcon}
+  headline="Ray"
+  cta="Scroll to learn more">
+
+  When someone asks if you're a god, you say, "YES!"
+
+</Hero>
+```
+
+## Props
+
+| Prop       | Type          | Description                                    |
+|------------|---------------|------------------------------------------------|
+| `image`    | `Component`   | An Astro component to render as the hero icon  |
+| `headline` | `string`      | The main headline text                         |
+| `cta`      | `string`      | Call-to-action button text                     |
+
+## Usage Notes
+
+The Hero component is designed for landing pages and page headers. It renders:
+- A large icon/image at the top
+- A bold headline
+- Slotted content for the description
+- A call-to-action link or button
+
+This component works best as the first element on a page, providing a strong visual anchor for the content that follows.

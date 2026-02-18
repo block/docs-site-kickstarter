@@ -1,0 +1,34 @@
+---
+title: Block Docs
+description: Documentation for the Block open-source design system and documentation template.
+template: splash
+draft: false
+hero:
+  tagline: A modern documentation template built with Astro, Tailwind CSS, and shadcn/ui components.
+  actions:
+    - text: Get Started
+      link: /installation/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/nickhq/madrid
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Quick Setup" icon="rocket">
+    Get started in minutes with our pre-configured template. Clone, install, and start building.
+  </Card>
+  <Card title="Block Design System" icon="pencil">
+    Built on Cash Sans typography, a refined color palette, and accessible components.
+  </Card>
+  <Card title="Astro + React" icon="setting">
+    Powered by Astro for fast static sites with React components for interactivity.
+  </Card>
+  <Card title="Tailwind CSS" icon="open-book">
+    Fully styled with Tailwind CSS and shadcn/ui components out of the box.
+  </Card>
+</CardGrid>

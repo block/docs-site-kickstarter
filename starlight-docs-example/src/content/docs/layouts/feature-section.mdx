@@ -1,0 +1,105 @@
+---
+title: "Feature Section"
+description: "A versatile section for showcasing features and benefits."
+draft: false
+---
+
+The Feature Section component provides a flexible way to showcase features, benefits, and highlights with multiple layout options.
+
+## Usage
+
+```astro
+---
+import FeatureSection from "@/components/block/FeatureSection.astro"
+
+const features = [
+  {
+    title: "Fast Performance",
+    description: "Lightning-fast builds with partial hydration.",
+    icon: "rocket",
+  },
+  {
+    title: "TypeScript Ready",
+    description: "Full TypeScript support out of the box.",
+    icon: "code",
+  },
+  {
+    title: "SEO Optimized",
+    description: "Built-in SEO best practices and meta tags.",
+    icon: "search",
+  },
+];
+---
+
+<FeatureSection
+  headline="Why Choose Block?"
+  description="Everything you need for modern documentation."
+  features={features}
+/>
+```
+
+## Layout Variants
+
+### Split Layout
+
+Content on one side, image/illustration on the other:
+
+```astro
+<FeatureSection
+  layout="split"
+  headline="Built for Developers"
+  features={features}
+  image="/images/developer-tools.png"
+/>
+```
+
+### Stacked Layout
+
+Features displayed in a vertical stack:
+
+```astro
+<FeatureSection
+  layout="stacked"
+  headline="Core Features"
+  features={features}
+/>
+```
+
+### Centered Layout
+
+Features centered with icons above text:
+
+```astro
+<FeatureSection
+  layout="centered"
+  headline="What We Offer"
+  features={features}
+/>
+```
+
+## Props
+
+| Prop        | Type                                     | Default     | Description                    |
+|-------------|------------------------------------------|-------------|--------------------------------|
+| headline    | `string`                                 | -           | Section heading                |
+| description | `string`                                 | -           | Section description            |
+| features    | `Feature[]`                              | `[]`        | Array of feature items         |
+| layout      | `'split' \| 'stacked' \| 'centered'`    | `'stacked'` | Layout variant                 |
+| image       | `string`                                 | -           | Image URL (for split layout)   |
+
+### Feature Type
+
+```typescript
+interface Feature {
+  title: string;
+  description: string;
+  icon?: string;
+  href?: string;
+}
+```
+
+## Related
+
+- [Bento Grid](/layouts/bento-grid/) - Grid-based feature showcase
+- [Header Section](/layouts/header-section/) - Page headers
+- [CTA Section](/layouts/cta-section/) - Call-to-action sections

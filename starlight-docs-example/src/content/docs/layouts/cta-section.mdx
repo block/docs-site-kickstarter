@@ -1,0 +1,86 @@
+---
+title: "CTA Section"
+description: "Call-to-action section component with multiple variants and layouts."
+draft: false
+---
+
+The CTA (Call-to-Action) Section component provides prominent, attention-grabbing sections to drive user action.
+
+## Usage
+
+```astro
+---
+import CTASection from "@/components/block/CTASection.astro"
+---
+
+<CTASection
+  headline="Ready to get started?"
+  description="Join thousands of developers building with Block."
+  primaryAction={{ label: "Get Started", href: "/installation" }}
+  secondaryAction={{ label: "View Demo", href: "/demo" }}
+/>
+```
+
+## Variants
+
+### Default
+
+```astro
+<CTASection
+  headline="Start Building Today"
+  description="Everything you need to create amazing documentation."
+  primaryAction={{ label: "Get Started", href: "/installation" }}
+/>
+```
+
+### Dark
+
+```astro
+<CTASection
+  variant="dark"
+  headline="Join the Community"
+  description="Connect with developers worldwide."
+  primaryAction={{ label: "Join Discord", href: "/discord" }}
+/>
+```
+
+### Gradient
+
+```astro
+<CTASection
+  variant="gradient"
+  headline="Upgrade Your Docs"
+  description="Take your documentation to the next level."
+  primaryAction={{ label: "Learn More", href: "/features" }}
+/>
+```
+
+### Bordered
+
+```astro
+<CTASection
+  variant="bordered"
+  headline="Need Help?"
+  description="Our team is ready to assist you."
+  primaryAction={{ label: "Contact Us", href: "/contact" }}
+/>
+```
+
+## Props
+
+| Prop            | Type                                              | Default     | Description                    |
+|-----------------|---------------------------------------------------|-------------|--------------------------------|
+| headline        | `string`                                          | -           | Main heading text              |
+| description     | `string`                                          | -           | Supporting description         |
+| variant         | `'default' \| 'dark' \| 'gradient' \| 'bordered'`| `'default'` | Visual style variant           |
+| primaryAction   | `{ label: string, href: string }`                 | -           | Primary button                 |
+| secondaryAction | `{ label: string, href: string }`                 | -           | Optional secondary button      |
+| align           | `'center' \| 'left'`                              | `'center'`  | Text alignment                 |
+
+## Best Practices
+
+1. **Clear Message**: Use concise, action-oriented headlines
+2. **Single Focus**: Each CTA section should have one primary action
+3. **Contrast**: Ensure CTA stands out from surrounding content
+4. **Placement**: Position CTAs after compelling content
+5. **Mobile**: Test button sizing on small screens

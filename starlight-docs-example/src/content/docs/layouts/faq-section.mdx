@@ -1,0 +1,102 @@
+---
+title: "FAQ Section"
+description: "Interactive FAQ section with accordion functionality and multiple visual variants."
+draft: false
+---
+
+import Accordion from "starlight-block-theme/components/Accordion.astro"
+import AccordionContent from "starlight-block-theme/components/AccordionContent.astro"
+
+The FAQ Section component creates interactive frequently asked questions sections with accordion functionality.
+
+## Usage
+
+```astro
+---
+import FAQSection from "@/components/block/FAQSection.astro"
+
+const faqs = [
+  {
+    question: "What is Block?",
+    answer: "Block is an open-source design system and documentation template built with Astro.",
+  },
+  {
+    question: "Is it free to use?",
+    answer: "Yes, Block is completely free and open-source under the MIT license.",
+  },
+];
+---
+
+<FAQSection
+  title="Frequently Asked Questions"
+  description="Find answers to common questions."
+  faqs={faqs}
+/>
+```
+
+## Example
+
+<Accordion label="What is Block?">
+  <AccordionContent>
+    <p>Block is an open-source design system and documentation template built with Astro, Tailwind CSS, and shadcn/ui components.</p>
+  </AccordionContent>
+</Accordion>
+
+<Accordion label="Is it free to use?">
+  <AccordionContent>
+    <p>Yes, Block is completely free and open-source under the MIT license. You can use it for personal and commercial projects.</p>
+  </AccordionContent>
+</Accordion>
+
+<Accordion label="How do I customize the theme?">
+  <AccordionContent>
+    <p>You can customize colors, fonts, and spacing by modifying the CSS custom properties in your global stylesheet and the Tailwind configuration.</p>
+  </AccordionContent>
+</Accordion>
+
+## Variants
+
+### Default
+
+Uses the standard accordion styling with card-based design:
+
+```astro
+<FAQSection faqs={faqs} variant="default" />
+```
+
+### Bordered
+
+Clean design with borders but no background fill:
+
+```astro
+<FAQSection faqs={faqs} variant="bordered" />
+```
+
+### Minimal
+
+Ultra-clean design with just bottom borders:
+
+```astro
+<FAQSection faqs={faqs} variant="minimal" />
+```
+
+## Props
+
+| Prop        | Type                                        | Default     | Description                    |
+|-------------|---------------------------------------------|-------------|--------------------------------|
+| title       | `string`                                    | -           | Section heading                |
+| description | `string`                                    | -           | Section description            |
+| faqs        | `{ question: string, answer: string }[]`    | `[]`        | Array of FAQ items             |
+| variant     | `'default' \| 'bordered' \| 'minimal'`      | `'default'` | Visual style variant           |
+
+## Comparison with Accordion
+
+| Feature | Accordion | FAQ Section |
+|---------|-----------|-------------|
+| **Purpose** | Individual collapsible items | Complete FAQ page section |
+| **Usage** | Single accordion per component | Multiple FAQs in one component |
+| **Header** | Just the accordion label | Includes title, tagline, description |
+| **Content** | Flexible content via AccordionContent | Text-based FAQ answers |
+| **Layout** | Individual item control | Managed group layout |
+
+Choose **Accordion** for individual control over collapsible items, and **FAQ Section** for a complete FAQ implementation.

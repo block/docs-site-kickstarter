@@ -1,0 +1,110 @@
+---
+title: "Create a Page"
+description: "Learn how to create new pages using .astro or .mdx files."
+draft: false
+---
+
+Learn how to create new pages in your documentation site using `.astro` or `.mdx` files.
+
+## Page Types
+
+### Astro Pages
+
+Create `.astro` files in `src/pages/` for full control over layout and functionality:
+
+```astro
+---
+// src/pages/about.astro
+import Layout from "@/layouts/Layout.astro"
+---
+
+<Layout title="About">
+  <main>
+    <h1>About Us</h1>
+    <p>Welcome to our documentation site.</p>
+  </main>
+</Layout>
+```
+
+### MDX Pages
+
+Create `.mdx` files for content-focused pages with component support:
+
+```mdx
+---
+title: "About"
+layout: "@/layouts/Layout.astro"
+---
+
+# About Us
+
+Welcome to our documentation site.
+```
+
+## Dynamic Routes
+
+Create dynamic routes using bracket notation:
+
+```
+src/pages/
+  ├── blog/
+  │   └── [slug].astro    # Dynamic blog post pages
+  ├── docs/
+  │   └── [...slug].astro  # Catch-all docs pages
+  └── users/
+      └── [id].astro       # Dynamic user pages
+```
+
+### Dynamic Route Example
+
+```astro
+---
+// src/pages/blog/[slug].astro
+import { getCollection } from "astro:content"
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog")
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props
+const { Content } = await post.render()
+---
+
+<Layout title={post.data.title}>
+  <article>
+    <h1>{post.data.title}</h1>
+    <Content />
+  </article>
+</Layout>
+```
+
+## Static Assets
+
+Place static files in the `public/` directory:
+
+```
+public/
+  ├── images/
+  │   └── hero.jpg
+  ├── fonts/
+  │   └── custom.woff2
+  └── favicon.ico
+```
+
+Reference them with absolute paths:
+
+```html
+<img src="/images/hero.jpg" alt="Hero image" />
+```
+
+## Best Practices
+
+1. **File Organization**: Keep related pages in subdirectories
+2. **Naming Convention**: Use kebab-case for file names
+3. **Layouts**: Use shared layouts for consistent structure
+4. **SEO**: Add meta tags to all pages
+5. **Performance**: Optimize images and assets

@@ -1,0 +1,93 @@
+---
+title: "Theme Customization"
+description: "Learn how to customize the Block theme."
+draft: false
+---
+
+Learn how to customize the Block theme to match your brand identity.
+
+## Overview
+
+The Block theme is built on CSS custom properties (variables) that can be easily overridden to create your own look and feel.
+
+## Quick Start with tweakcn
+
+The fastest way to customize your theme is with [tweakcn](https://tweakcn.com) — a visual theme editor for shadcn/ui:
+
+1. Visit [tweakcn.com](https://tweakcn.com)
+2. Adjust colors, radius, and spacing visually
+3. Copy the generated CSS variables
+4. Paste into your `src/styles/global.css`
+
+## CSS Custom Properties
+
+### Colors
+
+Override the base colors in your CSS:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --primary: 220.9 39.3% 11%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 224 71.4% 4.1%;
+  --radius: 0.5rem;
+}
+```
+
+### Dark Mode
+
+```css
+.dark {
+  --background: 224 71.4% 4.1%;
+  --foreground: 210 20% 98%;
+  --card: 224 71.4% 4.1%;
+  --card-foreground: 210 20% 98%;
+  --primary: 210 20% 98%;
+  --primary-foreground: 220.9 39.3% 11%;
+  /* ... */
+}
+```
+
+## Fonts
+
+To change the font family, update the CSS custom properties:
+
+```css
+:root {
+  --sl-font: 'Your Font', sans-serif;
+  --sl-font-system-mono: 'Your Mono Font', monospace;
+}
+```
+
+## Border Radius
+
+Adjust the global border radius:
+
+```css
+:root {
+  --radius: 0.75rem; /* More rounded */
+  --radius: 0.25rem; /* More sharp */
+  --radius: 0;       /* No rounding */
+}
+```
+
+## Best Practices
+
+1. **Consistency**: Use CSS variables throughout for easy updates
+2. **Contrast**: Ensure sufficient contrast ratios (WCAG AA minimum)
+3. **Dark Mode**: Always test both light and dark themes
+4. **Typography**: Match font weights to your brand guidelines
+5. **Testing**: Preview changes on multiple screen sizes

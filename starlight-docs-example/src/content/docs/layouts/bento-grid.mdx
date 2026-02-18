@@ -1,0 +1,92 @@
+---
+title: "Bento Grid"
+description: "A flexible grid layout for showcasing features in a bento box pattern."
+draft: false
+---
+
+The Bento Grid layout creates visually appealing grid layouts inspired by the bento box pattern, perfect for showcasing features, products, or content highlights.
+
+## Usage
+
+```astro
+---
+import BentoGrid from "@/components/block/BentoGrid.astro"
+import BentoItem from "@/components/block/BentoItem.astro"
+---
+
+<BentoGrid>
+  <BentoItem title="Feature One" size="large">
+    <p>Description of the first feature.</p>
+  </BentoItem>
+  <BentoItem title="Feature Two" size="small">
+    <p>Quick highlight.</p>
+  </BentoItem>
+  <BentoItem title="Feature Three" size="small">
+    <p>Another highlight.</p>
+  </BentoItem>
+  <BentoItem title="Feature Four" size="medium">
+    <p>Medium-sized feature card.</p>
+  </BentoItem>
+</BentoGrid>
+```
+
+## Item Sizes
+
+| Size     | Grid Span | Description                        |
+|----------|-----------|-----------------------------------|
+| `small`  | 1 column  | Compact feature card              |
+| `medium` | 2 columns | Standard feature card             |
+| `large`  | 2 columns, 2 rows | Hero-style feature card  |
+
+## Props
+
+### BentoGrid
+
+| Prop      | Type     | Default | Description                     |
+|-----------|----------|---------|---------------------------------|
+| className | `string` | `""`    | Additional CSS classes          |
+| columns   | `number` | `3`     | Number of grid columns          |
+
+### BentoItem
+
+| Prop      | Type                           | Default   | Description                     |
+|-----------|--------------------------------|-----------|---------------------------------|
+| title     | `string`                       | -         | Item heading                    |
+| size      | `'small' \| 'medium' \| 'large'` | `'small'` | Grid span size              |
+| className | `string`                       | `""`      | Additional CSS classes          |
+| icon      | `Component`                    | -         | Optional icon component         |
+
+## Layout Patterns
+
+### Feature Showcase
+
+```astro
+<BentoGrid>
+  <BentoItem title="Performance" size="large">
+    Lightning-fast builds with Astro's partial hydration.
+  </BentoItem>
+  <BentoItem title="TypeScript" size="small">
+    Full TypeScript support out of the box.
+  </BentoItem>
+  <BentoItem title="Components" size="small">
+    Rich component library included.
+  </BentoItem>
+</BentoGrid>
+```
+
+### Product Highlights
+
+```astro
+<BentoGrid columns={4}>
+  <BentoItem title="API" size="medium">API documentation</BentoItem>
+  <BentoItem title="SDK" size="medium">Client SDKs</BentoItem>
+  <BentoItem title="CLI" size="small">Command-line tool</BentoItem>
+  <BentoItem title="Dashboard" size="small">Web dashboard</BentoItem>
+</BentoGrid>
+```
+
+## Responsive Behavior
+
+- **Desktop**: Full grid layout with specified columns
+- **Tablet**: 2-column layout
+- **Mobile**: Single column, stacked layout

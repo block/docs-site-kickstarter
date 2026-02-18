@@ -1,0 +1,91 @@
+---
+title: "Tutorial Layout"
+description: "A step-by-step tutorial layout with progress tracking."
+draft: false
+---
+
+The Tutorial layout provides a structured environment for step-by-step guides with progress tracking and interactive elements.
+
+## Features
+
+- **Step-by-step navigation**: Clear progression through tutorial steps
+- **Progress tracking**: Visual indicator of completion
+- **Code validation**: Optional code checking at each step
+- **Time estimates**: Expected duration for each step
+- **Prerequisites**: List requirements before starting
+
+## Usage
+
+```astro
+---
+import TutorialLayout from "@/layouts/TutorialLayout.astro"
+---
+
+<TutorialLayout
+  title="Build Your First Doc Site"
+  steps={[
+    {
+      title: "Install Dependencies",
+      description: "Set up your development environment.",
+      duration: "5 min",
+    },
+    {
+      title: "Create Your First Page",
+      description: "Build your first documentation page.",
+      duration: "10 min",
+    },
+    {
+      title: "Customize the Theme",
+      description: "Apply your brand to the site.",
+      duration: "15 min",
+    },
+  ]}
+/>
+```
+
+## Tutorial Structure
+
+### Prerequisites
+
+List what users need before starting:
+
+```markdown
+## Prerequisites
+
+- Node.js 18+ installed
+- Basic knowledge of HTML/CSS
+- A code editor (VS Code recommended)
+```
+
+### Steps
+
+Each step includes:
+- Clear title
+- Detailed instructions
+- Code examples
+- Expected output
+- Common pitfalls
+
+### Completion
+
+End with:
+- Summary of what was built
+- Links to next tutorials
+- Related documentation
+
+## Props
+
+| Prop          | Type         | Description                    |
+|---------------|--------------|--------------------------------|
+| title         | `string`     | Tutorial title                 |
+| description   | `string`     | Brief overview                 |
+| steps         | `Step[]`     | Array of tutorial steps        |
+| prerequisites | `string[]`   | Required knowledge/tools       |
+| difficulty    | `string`     | Difficulty level               |
+| duration      | `string`     | Total estimated time           |
+
+## Related Layouts
+
+- [Documentation](/layouts/documentation/) - Standard docs layout
+- [Landing](/layouts/landing/) - Home page layout
+- [API Reference](/layouts/api/) - API documentation

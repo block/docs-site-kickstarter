@@ -1,0 +1,113 @@
+---
+title: "Table"
+description: "A responsive table component for displaying structured data."
+draft: false
+---
+
+A responsive table component for displaying structured data with sorting, pagination, and mobile-friendly layouts.
+
+## Usage
+
+```tsx
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+<Table>
+  <TableCaption>A list of recent invoices.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Invoice</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Method</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>INV001</TableCell>
+      <TableCell>Paid</TableCell>
+      <TableCell>Credit Card</TableCell>
+      <TableCell className="text-right">$250.00</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Examples
+
+### Basic Table
+
+| Invoice | Status  | Method      | Amount   |
+|---------|---------|-------------|----------|
+| INV001  | Paid    | Credit Card | $250.00  |
+| INV002  | Pending | PayPal      | $150.00  |
+| INV003  | Unpaid  | Wire        | $350.00  |
+| INV004  | Paid    | Credit Card | $450.00  |
+| INV005  | Paid    | PayPal      | $550.00  |
+
+### With Custom Styling
+
+```tsx
+<Table className="border">
+  <TableHeader className="bg-muted">
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Role</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">John Doe</TableCell>
+      <TableCell>Developer</TableCell>
+      <TableCell>Active</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+## Component API
+
+### Table
+
+| Component       | Description                              |
+|----------------|------------------------------------------|
+| `Table`         | The root table wrapper                   |
+| `TableHeader`   | The table header section                 |
+| `TableBody`     | The table body section                   |
+| `TableFooter`   | The table footer section                 |
+| `TableRow`      | A table row                              |
+| `TableHead`     | A header cell                            |
+| `TableCell`     | A body cell                              |
+| `TableCaption`  | A caption for the table                  |
+
+## Responsive Design
+
+Tables automatically handle responsive layouts:
+
+- **Desktop**: Full table with all columns visible
+- **Tablet**: Horizontal scroll for wide tables
+- **Mobile**: Stacked layout or horizontal scroll
+
+```tsx
+<div className="overflow-x-auto">
+  <Table>
+    {/* Table content */}
+  </Table>
+</div>
+```
+
+## Best Practices
+
+1. **Data Structure**: Keep tables simple and focused
+2. **Headers**: Always include clear column headers
+3. **Alignment**: Right-align numerical data
+4. **Responsive**: Wrap in `overflow-x-auto` for mobile
+5. **Accessibility**: Use proper semantic table elements

@@ -1,0 +1,93 @@
+---
+title: "Blog Section"
+description: "A blog section component with multiple layouts for displaying posts."
+draft: false
+---
+
+The Blog Section component provides multiple layout options for displaying blog posts, including grid, list, and featured layouts.
+
+## Usage
+
+```astro
+---
+import BlogSection from "@/components/block/BlogSection.astro"
+
+const posts = [
+  {
+    title: "Getting Started with Astro",
+    description: "Learn the basics of building with Astro.",
+    date: "2024-01-15",
+    author: "Jane Doe",
+    image: "/images/blog/astro-basics.jpg",
+    href: "/blog/getting-started",
+    tags: ["astro", "tutorial"],
+  },
+  // ... more posts
+];
+---
+
+<BlogSection
+  title="Latest Posts"
+  description="Read our latest articles and tutorials."
+  posts={posts}
+  layout="grid"
+/>
+```
+
+## Layout Options
+
+### Grid Layout
+
+```astro
+<BlogSection posts={posts} layout="grid" />
+```
+
+Displays posts in a responsive grid (3 columns on desktop, 2 on tablet, 1 on mobile).
+
+### List Layout
+
+```astro
+<BlogSection posts={posts} layout="list" />
+```
+
+Displays posts in a vertical list with larger preview cards.
+
+### Featured Layout
+
+```astro
+<BlogSection posts={posts} layout="featured" />
+```
+
+Highlights the first post with a large card, remaining posts in a grid below.
+
+## Props
+
+| Prop        | Type                                  | Default  | Description                        |
+|-------------|---------------------------------------|----------|------------------------------------|
+| title       | `string`                              | -        | Section heading                    |
+| description | `string`                              | -        | Section description                |
+| posts       | `BlogPost[]`                          | `[]`     | Array of blog post data            |
+| layout      | `'grid' \| 'list' \| 'featured'`     | `'grid'` | Layout variant                     |
+| limit       | `number`                              | -        | Maximum posts to display           |
+
+### BlogPost Type
+
+```typescript
+interface BlogPost {
+  title: string;
+  description: string;
+  date: string;
+  author?: string;
+  image?: string;
+  href: string;
+  tags?: string[];
+}
+```
+
+## Best Practices
+
+1. **Images**: Use consistent aspect ratios for post images
+2. **Descriptions**: Keep descriptions concise (1-2 sentences)
+3. **Tags**: Use a consistent set of tags across posts
+4. **Dates**: Use ISO format (YYYY-MM-DD) for dates
+5. **Responsive**: Test all layout variants on different screen sizes

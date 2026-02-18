@@ -1,0 +1,17 @@
+{
+  "name": "starlight-block-theme",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./styles": "./styles/block-theme.css",
+    "./components/Accordion.astro": "./components/Accordion.astro",
+    "./components/AccordionContent.astro": "./components/AccordionContent.astro",
+    "./components/Checklist.astro": "./components/Checklist.astro",
+    "./components/GitHubStats.astro": "./components/GitHubStats.astro"
+  },
+  "peerDependencies": {
+    "@astrojs/starlight": ">=0.34.0",
+    "astro": ">=5.0.0"
+  }
+}

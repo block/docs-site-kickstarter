@@ -11,6 +11,8 @@
     "dev": "astro dev",
     "preview": "astro preview",
     "start": "astro dev",
+    "dev:docs": "cd starlight-docs-example && npx astro dev --port 4322",
+    "dev:all": "pnpm dev & pnpm dev:docs",
     "format": "biome format --write ."
   },
   "dependencies": {

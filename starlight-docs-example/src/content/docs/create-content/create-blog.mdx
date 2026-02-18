@@ -1,0 +1,139 @@
+---
+title: "Create a Blog Post"
+description: "Learn how to create blog posts using MDX with rich content support."
+draft: false
+---
+
+Learn how to create engaging blog posts using MDX with frontmatter, rich content, and interactive components.
+
+## Blog Post Structure
+
+### Frontmatter
+
+Every blog post starts with frontmatter that defines metadata:
+
+```mdx
+---
+title: "Your Blog Post Title"
+description: "A brief description of your blog post"
+date: "2024-01-15"
+author: "Your Name"
+tags: ["astro", "web-dev", "tutorial"]
+image: "/images/blog/post-cover.jpg"
+draft: false
+---
+```
+
+### Required Fields
+
+| Field         | Type     | Description                          |
+|---------------|----------|--------------------------------------|
+| `title`       | `string` | The title of your blog post          |
+| `description` | `string` | A brief summary for SEO and previews |
+| `date`        | `string` | Publication date (YYYY-MM-DD)        |
+
+### Optional Fields
+
+| Field    | Type       | Description                          |
+|----------|------------|--------------------------------------|
+| `author` | `string`   | The author's name                    |
+| `tags`   | `string[]` | Categorization tags                  |
+| `image`  | `string`   | Cover image path                     |
+| `draft`  | `boolean`  | Set to `true` to hide in production  |
+
+## Writing Content
+
+### Markdown Basics
+
+Blog posts support full Markdown syntax:
+
+```markdown
+## Headings
+
+Regular paragraphs with **bold**, *italic*, and `inline code`.
+
+- Unordered lists
+- With multiple items
+
+1. Ordered lists
+2. With numbered items
+
+> Blockquotes for emphasis
+
+[Links](https://example.com) and ![images](/path/to/image.jpg)
+```
+
+### Using Components
+
+You can import and use React or Astro components in your blog posts:
+
+```mdx
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+
+<Card className="p-6 my-4">
+  <h3>Interactive Example</h3>
+  <p>This is a card component inside a blog post.</p>
+  <Button>Click Me</Button>
+</Card>
+```
+
+## Blog Features
+
+### Tags
+
+Tags help organize and categorize your content:
+
+```mdx
+---
+tags: ["react", "typescript", "tutorial"]
+---
+```
+
+### Authors
+
+Support multiple authors with profile information:
+
+```typescript
+// src/data/authors.ts
+export const authors = {
+  "jane-doe": {
+    name: "Jane Doe",
+    avatar: "/images/authors/jane.jpg",
+    bio: "Frontend developer and technical writer",
+  },
+};
+```
+
+### RSS Feed
+
+Generate an RSS feed for your blog:
+
+```typescript
+// src/pages/rss.xml.ts
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+
+export async function GET(context) {
+  const posts = await getCollection("blog");
+  return rss({
+    title: "My Blog",
+    description: "A blog about web development",
+    site: context.site,
+    items: posts.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.description,
+      link: `/blog/${post.slug}/`,
+    })),
+  });
+}
+```
+
+## Best Practices
+
+1. **SEO**: Write descriptive titles and meta descriptions
+2. **Structure**: Use headings to organize content logically
+3. **Images**: Optimize images and use descriptive alt text
+4. **Links**: Use relative links for internal navigation
+5. **Drafts**: Use the `draft` flag while working on posts

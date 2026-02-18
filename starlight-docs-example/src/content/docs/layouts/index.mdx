@@ -1,0 +1,56 @@
+---
+title: "Layouts Overview"
+description: "An overview of all available layout components and page templates."
+draft: false
+---
+
+Block provides a comprehensive set of layout components for building documentation sites, landing pages, and marketing pages.
+
+## Available Layouts
+
+### Page Layouts
+
+- **[Landing](/layouts/landing/)** - Landing pages with hero sections, features, and quick navigation
+- **[Documentation](/layouts/documentation/)** - Standard documentation layout with sidebar and table of contents
+- **[Tutorial](/layouts/tutorial/)** - Step-by-step tutorial layout with progress tracking
+- **[API Reference](/layouts/api/)** - Split-view layout for API endpoint documentation
+
+### Section Components
+
+- **[Bento Grid](/layouts/bento-grid/)** - Flexible grid layout for showcasing features in a bento box pattern
+- **[Header Section](/layouts/header-section/)** - Customizable page header with tagline and description
+- **[Feature Section](/layouts/feature-section/)** - Versatile section for showcasing features and benefits
+- **[CTA Section](/layouts/cta-section/)** - Call-to-action sections with multiple variants
+- **[Blog Section](/layouts/blog-section/)** - Blog post listings with multiple layout options
+- **[FAQ Section](/layouts/faq-section/)** - Interactive FAQ with accordion functionality
+- **[Logo Section](/layouts/logo-section/)** - Logo showcase for clients and partners
+- **[Footer](/layouts/footer/)** - Comprehensive footer with navigation and social links
+
+## Quick Start
+
+Each layout component can be used independently or combined to build complete pages:
+
+```astro
+---
+import Layout from "@/layouts/Layout.astro"
+import HeaderSection from "@/components/block/HeaderSection.astro"
+import FeatureSection from "@/components/block/FeatureSection.astro"
+import CTASection from "@/components/block/CTASection.astro"
+import Footer from "@/components/block/Footer.astro"
+---
+
+<Layout title="My Page">
+  <HeaderSection headline="Welcome" description="Get started with Block" />
+  <FeatureSection features={features} />
+  <CTASection headline="Ready to start?" />
+  <Footer />
+</Layout>
+```
+
+## Design Principles
+
+1. **Composable**: Mix and match sections to build custom pages
+2. **Responsive**: All layouts adapt to mobile, tablet, and desktop
+3. **Accessible**: Built with ARIA attributes and keyboard navigation
+4. **Themeable**: Inherits from the Block design system
+5. **Performant**: Server-rendered with minimal client JavaScript

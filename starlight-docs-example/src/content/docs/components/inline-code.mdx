@@ -1,0 +1,53 @@
+---
+title: "Inline Code"
+description: "A component for highlighting inline code or commands within text."
+draft: false
+---
+
+The InlineCode component is used to highlight code snippets, commands, or technical terms within regular text content.
+
+## Usage
+
+Use backticks in Markdown to create inline code:
+
+This is an example of `inline code` within a sentence.
+
+Use the `npm install` command to install dependencies.
+
+The `useState` hook is a fundamental React API.
+
+## Styling
+
+Inline code is automatically styled with:
+- A subtle background color
+- Rounded corners
+- Monospace font (Cash Sans Mono)
+- Slightly smaller font size
+
+## Examples
+
+### Commands
+Run `pnpm dev` to start the development server.
+
+### Code References
+The `className` prop accepts standard CSS class names.
+
+### File Paths
+Edit the configuration in `src/styles/global.css`.
+
+### Technical Terms
+The API returns a `JSON` response with a `200` status code.
+
+## Implementation
+
+Inline code styling is handled through CSS:
+
+```css
+.sl-markdown-content :not(pre) > code {
+  border-radius: 0.25rem;
+  padding: 0.15em 0.3em;
+  font-size: 0.9em;
+}
+```
+
+Light and dark mode variants are automatically applied by the Block theme.

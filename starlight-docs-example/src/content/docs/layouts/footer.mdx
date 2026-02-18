@@ -1,0 +1,76 @@
+---
+title: "Footer"
+description: "A comprehensive footer component with navigation sections, social links, and newsletter signup."
+draft: false
+---
+
+The Footer component provides a full-featured page footer with navigation columns, social links, and optional newsletter signup.
+
+## Usage
+
+```astro
+---
+import Footer from "@/components/block/Footer.astro"
+---
+
+<Footer
+  logo={{ src: "/images/logo.svg", alt: "Block" }}
+  columns={[
+    {
+      title: "Product",
+      links: [
+        { label: "Features", href: "/features" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Changelog", href: "/changelog" },
+      ],
+    },
+    {
+      title: "Resources",
+      links: [
+        { label: "Documentation", href: "/docs" },
+        { label: "Tutorials", href: "/tutorials" },
+        { label: "Blog", href: "/blog" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "About", href: "/about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" },
+      ],
+    },
+  ]}
+  social={[
+    { platform: "github", href: "https://github.com/nickhq/madrid" },
+    { platform: "twitter", href: "https://twitter.com/example" },
+  ]}
+  copyright="2024 Block. All rights reserved."
+/>
+```
+
+## Props
+
+| Prop      | Type            | Description                    |
+|-----------|-----------------|--------------------------------|
+| logo      | `Logo`          | Logo image and alt text        |
+| columns   | `Column[]`      | Navigation link columns        |
+| social    | `SocialLink[]`  | Social media links             |
+| copyright | `string`        | Copyright text                 |
+| newsletter| `boolean`       | Show newsletter signup form    |
+
+## Features
+
+- **Responsive Grid**: Columns stack on mobile
+- **Social Icons**: Built-in icons for major platforms
+- **Newsletter**: Optional email signup form
+- **Dark Mode**: Automatic theme adaptation
+- **Accessibility**: Proper navigation landmarks and labels
+
+## Best Practices
+
+1. **Organization**: Group related links logically
+2. **Consistency**: Match navigation structure to site layout
+3. **Legal**: Include required legal links (privacy, terms)
+4. **Social**: Only include active social channels
+5. **Mobile**: Verify tap targets on mobile devices

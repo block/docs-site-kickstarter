@@ -1,0 +1,70 @@
+---
+title: "GitHub Statistics"
+description: "A widget that displays GitHub statistics"
+draft: false
+---
+
+import GitHubStats from "starlight-block-theme/components/GitHubStats.astro"
+
+A widget that displays GitHub statistics including stars, forks, and followers.
+
+## Example
+
+### Import
+```tsx
+import GitHubStats from "@/components/block/GitHubStats.astro"
+```
+
+### Usage
+
+#### Stars for GitHub Repository
+<GitHubStats repo="block/goose"/>
+
+```tsx
+<GitHubStats repo="block/goose"/>
+```
+
+#### Forks for GitHub Repository
+<GitHubStats repo="block/goose" type="forks"/>
+
+```tsx
+<GitHubStats repo="block/goose" type="forks"/>
+```
+
+#### Followers for GitHub Account
+<GitHubStats account="block" type="followers"/>
+
+```tsx
+<GitHubStats account="block" type="followers"/>
+```
+
+## Sizes
+
+The GitHub Stats component supports different sizes:
+```tsx
+<GitHubStats size="lg" />
+<GitHubStats size="default" />
+<GitHubStats size="sm" />
+```
+
+### Default Size
+
+<GitHubStats repo="block/goose"/>
+
+### Large
+
+<GitHubStats repo="block/goose" size="lg" />
+
+### Small
+<GitHubStats repo="block/goose" size="sm" />
+
+## Properties
+
+The GitHub Stats component accepts the following props:
+
+| Prop      | Type                                  | Default     | Description                               |
+|-----------|---------------------------------------|-------------|-------------------------------------------|
+| type      | `'stars' \| 'forks' \| 'followers'`  | `stars`     | The type of GitHub statistic to display   |
+| repo      | `string`                              | None        | Required for `stars` and `forks` types; the repository name, e.g. "block/goose" |
+| account   | `string`                              | None        | Required for `followers` type; the GitHub username or organization name |
+| size      | `'default' \| 'sm' \| 'lg'`          | `default`   | The size of the component                 |

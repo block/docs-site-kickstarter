@@ -1,0 +1,72 @@
+---
+title: "Documentation Layout"
+description: "The default documentation layout with sidebar, table of contents, and responsive design."
+draft: false
+---
+
+The Documentation layout is the default layout for documentation pages. It provides a sidebar for navigation, a table of contents, and responsive design for all screen sizes.
+
+## Features
+
+- **Sidebar Navigation**: Collapsible sidebar with section grouping
+- **Table of Contents**: Auto-generated from page headings
+- **Breadcrumbs**: Navigation breadcrumbs for deep pages
+- **Previous/Next**: Page navigation links
+- **Search**: Full-text search integration
+- **Responsive**: Adapts to mobile, tablet, and desktop
+
+## Usage
+
+Documentation pages automatically use this layout when placed in the `src/content/docs/` directory.
+
+```mdx
+---
+title: "My Doc Page"
+description: "Documentation for a feature."
+---
+
+## Getting Started
+
+Content goes here...
+```
+
+## Sidebar Configuration
+
+Configure the sidebar in `astro.config.mjs`:
+
+```typescript
+starlight({
+  sidebar: [
+    {
+      label: 'Getting Started',
+      items: [
+        { label: 'Installation', link: '/installation/' },
+        { label: 'Configuration', link: '/configuration/' },
+      ],
+    },
+    {
+      label: 'Components',
+      autogenerate: { directory: 'components' },
+    },
+  ],
+})
+```
+
+## Table of Contents
+
+The table of contents is automatically generated from `h2` and `h3` headings on the page. You can configure the depth:
+
+```mdx
+---
+title: "My Page"
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 3
+---
+```
+
+## Related Layouts
+
+- [Landing Layout](/layouts/landing/) - For landing and marketing pages
+- [Tutorial Layout](/layouts/tutorial/) - For step-by-step guides
+- [API Reference](/layouts/api/) - For API documentation

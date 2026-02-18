@@ -1,0 +1,126 @@
+---
+title: "Create a Doc Page"
+description: "Learn how to create documentation pages with MDX."
+draft: false
+---
+
+Learn how to create documentation pages with MDX, including structure, components, and best practices.
+
+## Doc Page Structure
+
+### Frontmatter
+
+Every documentation page starts with frontmatter:
+
+```mdx
+---
+title: "Page Title"
+description: "A brief description of the page content"
+slug: "custom-slug"
+---
+```
+
+### Required Fields
+
+| Field         | Type     | Description                          |
+|---------------|----------|--------------------------------------|
+| `title`       | `string` | The page title (shown in sidebar)    |
+| `description` | `string` | A brief summary for SEO             |
+
+### Optional Fields
+
+| Field   | Type     | Description                          |
+|---------|----------|--------------------------------------|
+| `slug`  | `string` | Custom URL slug                      |
+| `draft` | `boolean`| Hide page in production              |
+
+## File Location
+
+Documentation pages live in `src/content/docs/`:
+
+```
+src/content/docs/
+  ├── index.mdx              # Home page
+  ├── installation.mdx       # Top-level pages
+  ├── configuration.mdx
+  ├── components/             # Grouped sections
+  │   ├── button.mdx
+  │   ├── card-group.mdx
+  │   └── table.mdx
+  └── layouts/
+      ├── index.mdx
+      └── landing.mdx
+```
+
+## Writing Documentation
+
+### Headings
+
+Use headings to create a clear content hierarchy:
+
+```markdown
+## Main Section (H2)
+
+Content for this section.
+
+### Subsection (H3)
+
+More detailed content.
+
+#### Detail (H4)
+
+Specific details.
+```
+
+### Code Blocks
+
+Include code examples with syntax highlighting:
+
+````markdown
+```typescript title="example.ts"
+interface Config {
+  site: string;
+  base?: string;
+}
+```
+````
+
+### Tables
+
+Use Markdown tables for structured data:
+
+```markdown
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Data 1   | Data 2   | Data 3   |
+```
+
+### Admonitions
+
+Use Starlight's built-in callouts:
+
+```markdown
+:::note
+This is a note callout.
+:::
+
+:::tip
+This is a helpful tip.
+:::
+
+:::caution
+Be careful with this.
+:::
+
+:::danger
+This is a dangerous operation.
+:::
+```
+
+## Best Practices
+
+1. **Clear Titles**: Use descriptive, searchable page titles
+2. **Logical Structure**: Organize content with clear heading hierarchy
+3. **Code Examples**: Always include practical code examples
+4. **Cross-References**: Link to related documentation pages
+5. **Keep Updated**: Regularly review and update content

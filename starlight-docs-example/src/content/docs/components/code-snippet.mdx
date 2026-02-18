@@ -1,0 +1,84 @@
+---
+title: "Code Snippet"
+description: "A component for displaying code with syntax highlighting, line numbers, and copy functionality."
+draft: false
+---
+
+A versatile code display component with syntax highlighting, optional line numbers, and a built-in copy-to-clipboard button.
+
+## Usage
+
+```tsx
+import CodeSnippet from "@/components/block/CodeSnippet.astro"
+
+<CodeSnippet
+  code={`const greeting = "Hello, World!";
+console.log(greeting);`}
+  language="javascript"
+  title="hello.js"
+/>
+```
+
+## Features
+
+- **Syntax Highlighting**: Powered by Shiki for accurate, language-aware highlighting
+- **Copy to Clipboard**: Built-in copy button for easy code sharing
+- **Line Numbers**: Optional line number display
+- **Title Bar**: Optional filename/title display
+- **Theme Support**: Matches both light and dark modes
+
+## Examples
+
+### Basic Code Block
+
+```javascript
+const greeting = "Hello, World!";
+console.log(greeting);
+```
+
+### With Line Numbers
+
+```typescript title="example.ts" showLineNumbers
+interface User {
+  name: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+function greetUser(user: User): string {
+  return `Hello, ${user.name}!`;
+}
+```
+
+### Multiple Languages
+
+```python title="example.py"
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))
+```
+
+```bash title="terminal"
+npm install @astrojs/starlight
+pnpm build
+```
+
+## Props
+
+| Prop         | Type      | Default      | Description                                    |
+|--------------|-----------|--------------|------------------------------------------------|
+| `code`       | `string`  | **Required** | The code content to display                    |
+| `language`   | `string`  | `"text"`     | Programming language for syntax highlighting   |
+| `title`      | `string`  | -            | Optional title/filename shown in the header    |
+| `showLines`  | `boolean` | `false`      | Whether to show line numbers                   |
+| `highlights` | `number[]`| `[]`         | Line numbers to highlight                      |
+
+## Best Practices
+
+1. Always specify the language for proper syntax highlighting
+2. Use the title prop to show filenames when displaying file contents
+3. Keep code snippets focused and concise
+4. Use line highlighting to draw attention to important lines
